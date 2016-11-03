@@ -12,18 +12,18 @@
 # Table of Contents
 
 1. Use-Case Name
-  1.1 Brief Description
+    1.1 Brief Description
 2. Flow of Events
-  2.1 Basic Flow
-  2.2 Alternative Flows
+    2.1 Basic Flow
+    2.2 Alternative Flows
 3. Special Requirements
-  3.1 Actual Browser
-  3.2 Internet Connection
+    3.1 Actual Browser
+    3.2 Internet Connection
 4. Preconditions
-  4.1 Received Link
+    4.1 Received Link
 5. Postconditions
-  5.1 Joined The Game
-  5.2 Error Page
+    5.1 Joined The Game
+    5.2 Error Page
 6. Extension Points
 
 # Use-Case Specification: Enter game room by link
@@ -33,7 +33,7 @@ A user who create a private game room could invite players by sending them a lin
 
 ## 2.    Flow of Events
 ### 2.1   Basic Flow
-![alt text](https://raw.githubusercontent.com/Kahmul/TINF15B4MCJI/master/Use-Cases/Enter%20Game%20Room%20By%20Link/Diagram-EnterGameRoombyLink.png "Test")
+![Usec](https://raw.githubusercontent.com/Kahmul/TINF15B4MCJI/master/Use-Cases/Enter%20Game%20Room%20By%20Link/Diagram-EnterGameRoombyLink.png)
 ### 2.2   Alternative Flows
 None
 ## 3.    Special Requirements
