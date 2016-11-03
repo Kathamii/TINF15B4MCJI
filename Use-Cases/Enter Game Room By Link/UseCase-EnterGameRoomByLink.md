@@ -10,6 +10,7 @@
 
 
 # Table of Contents
+
 1. Use-Case Name
   1.1 Brief Description
 2. Flow of Events
@@ -32,7 +33,7 @@ A user who create a private game room could invite players by sending them a lin
 
 ## 2.    Flow of Events
 ### 2.1   Basic Flow
-
+![alt text](https://raw.githubusercontent.com/Kahmul/TINF15B4MCJI/master/Use-Cases/Enter%20Game%20Room%20By%20Link/Diagram-EnterGameRoombyLink.png "Test")
 ### 2.2   Alternative Flows
 None
 ## 3.    Special Requirements
