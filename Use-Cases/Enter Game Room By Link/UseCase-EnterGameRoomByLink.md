@@ -10,20 +10,20 @@
 
 
 # Table of Contents
-1. 	  Use-Case Name
-1.1  	Brief Description
-2.    Flow of Events
-2.1  	Basic Flow
-2.2  	Alternative Flows
-3.    Special Requirements
-3.1  	Actual Browser
-3.2  	Internet Connection
-4.    Preconditions
-4.1  	Received Link
-5.    Postconditions
-5.1  	Joined The Game
-5.2	  Error Page
-6.  	Extension Points
+1. Use-Case Name
+1.1 Brief Description
+2. Flow of Events
+2.1 Basic Flow
+2.2 Alternative Flows
+3. Special Requirements
+3.1 Actual Browser
+3.2 Internet Connection
+4. Preconditions
+4.1 Received Link
+5. Postconditions
+5.1 Joined The Game
+5.2 Error Page
+6. Extension Points
 
 # Use-Case Specification: Enter game room by link
 ## 1.    Use-Case Name
