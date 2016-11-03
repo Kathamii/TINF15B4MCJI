@@ -33,7 +33,7 @@ A user who create a private game room could invite players by sending them a lin
 
 ## 2.    Flow of Events
 ### 2.1   Basic Flow
-![Usec](https://raw.githubusercontent.com/Kahmul/TINF15B4MCJI/master/Use-Cases/Enter%20Game%20Room%20By%20Link/Diagram-EnterGameRoombyLink.png)
+![Use-case-diagramm](https://raw.githubusercontent.com/Kahmul/TINF15B4MCJI/master/Use-Cases/Enter%20Game%20Room%20By%20Link/Diagram-EnterGameRoombyLink.png)
 ### 2.2   Alternative Flows
 None
 ## 3.    Special Requirements
