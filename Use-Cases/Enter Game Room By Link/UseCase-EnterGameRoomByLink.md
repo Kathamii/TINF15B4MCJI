@@ -3,11 +3,11 @@
 ### Version 1.0
 
 # Revision History
-|-----------|---------|---------------|-----------------|
+
 |Date       | Version |	Description   |	Author          |
 |-----------|---------|---------------|-----------------|
 |01/11/2016 |	1.0     |	Initial draft |	Christian Vogel |
-|-----------|---------|---------------|-----------------|
+
 
 # Table of Contents
 1. 	  Use-Case Name
