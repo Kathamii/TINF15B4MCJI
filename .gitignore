@@ -1,5 +1,5 @@
 /bin/
 /.idea
-/.classpath
-/.project
-/FactRacing.iml
+.classpath
+.project
+FactRacing.iml
