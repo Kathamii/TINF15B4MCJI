@@ -32,10 +32,10 @@ This use-case allows the player/user to create a custom game room with selected 
 ### 2. Flow of Events
 #### 2.1 Basic Flow
 The Basic Flow Diagram:
-![Diagram][DiagramPic]
+![Diagram](https://github.com/Kahmul/TINF15B4MCJI/blob/master/docs/Use-Cases/Create%20Game%20Room/UseCaseCreateGameRoom.png)
 
 A Screenshot/Mockup of what this use case could look:
-![Link to Mockup](https://github.com/Kahmul/TINF15B4MCJI/blob/master/Mockups/pages/gameroomcreation.png)
+![Link to Mockup](https://github.com/Kahmul/TINF15B4MCJI/blob/master/docs/Mockups/pages/gameroomcreation.png)
 
 
 #### 2.2 Alternative Flows
@@ -62,6 +62,3 @@ No change in the database. Showing pages depending on the way out of creating ga
 
 ### 6. Extension Points
 (n/a)
-
-<!-- Link definitions -->
-[DiagramPic]: https://github.com/Kahmul/TINF15B4MCJI/blob/master/Use-Cases/Create%20Game%20Room/UseCaseCreateGameRoom.png
