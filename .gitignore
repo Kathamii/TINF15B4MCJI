@@ -2,4 +2,5 @@
 /.idea
 .classpath
 .project
-FactRacing.iml
+#Ignore all .iml
+**/*.iml
