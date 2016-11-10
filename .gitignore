@@ -1,6 +1,4 @@
 /bin/
-
-.classpath
-.project
-FactRacing.iml
-/.idea/*
+/.idea
+/.classpath
+/.project
