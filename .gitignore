@@ -4,3 +4,4 @@
 .project
 #Ignore all .iml
 **/*.iml
+/out/
