@@ -29,11 +29,11 @@
 # Use-Case Specification: Enter game room by link
 ## 1.    Use-Case Name
 ### 1.1   Brief Description
-A user who create a private game room could invite players by sending them a link. If the player clicks at this link and try to join the room, this use-case take affect.
+A user who create a private game room could invite players by sending them a link. If the player clicks at this link and try to join the room, this use-case take affect. For this use-case exists a fitting [.feature file](https://github.com/Kahmul/TINF15B4MCJI/blob/master/docs/Use-Cases/Enter%20Game%20Room%20By%20Link/EnterGameRoomByLink.feature) written in Cucumber with tests for all Flows.
 
 ## 2.    Flow of Events
 ### 2.1   Basic Flow
-![Use-case-diagramm](https://raw.githubusercontent.com/Kahmul/TINF15B4MCJI/master/Use-Cases/Enter%20Game%20Room%20By%20Link/Diagram-EnterGameRoombyLink.png)
+![Use-case-diagramm](https://github.com/Kahmul/TINF15B4MCJI/blob/master/docs/Use-Cases/Enter%20Game%20Room%20By%20Link/Diagram-EnterGameRoombyLink.png)
 ### 2.2   Alternative Flows
 None
 ## 3.    Special Requirements
