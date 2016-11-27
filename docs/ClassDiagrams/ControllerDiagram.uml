@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>SPRING</ID>
+  <OriginalElement>appContextPath=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;appContextName=dispatcher-servlet</OriginalElement>
+  <nodes>
+    <node x="234.0" y="272.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;tag=mvc:annotation-driven;offset=638</node>
+    <node x="406.0" y="198.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]</node>
+    <node x="970.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.FactRacingController;bean_name=factRacingController</node>
+    <node x="1033.4285714285716" y="0.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.GameRoom;bean_name=gameRoom</node>
+    <node x="835.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.PlayingFieldPos;bean_name=playingFieldPos</node>
+    <node x="736.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Difficulty;bean_name=difficulty</node>
+    <node x="617.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.PlayingPiece;bean_name=playingPiece</node>
+    <node x="504.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.UserSession;bean_name=userSession</node>
+    <node x="429.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Card;bean_name=card</node>
+    <node x="354.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Chat;bean_name=chat</node>
+    <node x="272.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Game;bean_name=game</node>
+    <node x="190.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Decks;bean_name=decks</node>
+    <node x="74.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.PlayingField;bean_name=playingField</node>
+    <node x="0.0" y="79.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Dice;bean_name=dice</node>
+    <node x="0.0" y="390.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=org.springframework.web.servlet.resource.ResourceHttpRequestHandler;tag=mvc:resources;offset=935</node>
+    <node x="0.0" y="272.0">module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=org.springframework.web.servlet.view.InternalResourceViewResolver;tag=bean;offset=730</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.GameRoom;bean_name=gameRoom">
+      <point x="89.375" y="-14.5" />
+      <point x="592.875" y="178.0" />
+      <point x="1121.5" y="178.0" />
+      <point x="1121.5" y="54.0" />
+      <point x="1103.9285714285716" y="54.0" />
+      <point x="23.5" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Game;bean_name=game">
+      <point x="-40.625" y="-14.5" />
+      <point x="462.875" y="148.0" />
+      <point x="303.0" y="148.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.PlayingFieldPos;bean_name=playingFieldPos">
+      <point x="56.875" y="-14.5" />
+      <point x="560.375" y="158.0" />
+      <point x="892.5" y="158.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.FactRacingController;bean_name=factRacingController" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.GameRoom;bean_name=gameRoom">
+      <point x="0.0" y="-14.5" />
+      <point x="1040.5" y="54.0" />
+      <point x="1056.9285714285716" y="54.0" />
+      <point x="-23.5" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Chat;bean_name=chat">
+      <point x="-24.375" y="-14.5" />
+      <point x="479.125" y="138.0" />
+      <point x="381.5" y="138.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.PlayingPiece;bean_name=playingPiece">
+      <point x="24.375" y="-14.5" />
+      <point x="527.875" y="138.0" />
+      <point x="666.5" y="138.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.PlayingField;bean_name=playingField">
+      <point x="-73.125" y="-14.5" />
+      <point x="430.375" y="168.0" />
+      <point x="122.0" y="168.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Decks;bean_name=decks">
+      <point x="-56.875" y="-14.5" />
+      <point x="446.625" y="158.0" />
+      <point x="221.0" y="158.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Dice;bean_name=dice">
+      <point x="-89.375" y="-14.5" />
+      <point x="414.125" y="178.0" />
+      <point x="27.0" y="178.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.FactRacingController;bean_name=factRacingController">
+      <point x="73.125" y="-14.5" />
+      <point x="576.625" y="168.0" />
+      <point x="1040.5" y="168.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Difficulty;bean_name=difficulty">
+      <point x="40.625" y="-14.5" />
+      <point x="544.125" y="148.0" />
+      <point x="775.5" y="148.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.UserSession;bean_name=userSession">
+      <point x="8.125" y="-14.5" />
+      <point x="511.625" y="128.0" />
+      <point x="550.5" y="128.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_name=(com.factracing) [Component]" target="module=TINF15B4MCJI;context=C:/Users/janik/IdeaProjects/TINF15B4MCJI/src/main/webapp/WEB-INF/dispatcher-servlet.xml;bean_class=com.factracing.Card;bean_name=card">
+      <point x="-8.125" y="-14.5" />
+      <point x="495.375" y="128.0" />
+      <point x="456.5" y="128.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="564.0" y="209.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Local context</Category>
+    <Category>Properties</Category>
+  </Categories>
+</Diagram>
+
