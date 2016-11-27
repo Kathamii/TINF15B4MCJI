@@ -3,12 +3,13 @@ Fact Racing
 
 Version 1.0
  
-# Revision History
+### Revision History
 |Date	|Version	|Description	|Author|
 |----------|----------|----------|----------|
 |24/11/2016|1.0| Initial draft| Janik Ritz|
+|27/11/2016|1.1| First Content| Janik Ritz|
 	
-# Table of Contents
+## Table of Contents
 1. Introduction  
     1.1 Purpose  
     1.2 Scope  
@@ -33,19 +34,29 @@ Version 1.0
  
 # Software Architecture Document 
 ### 1. Introduction
+This Document describes the scope
 [The introduction of the Software Architecture Document provides an overview of the entire Software Architecture Document. It includes the purpose, scope, definitions, acronyms, abbreviations, references, and overview of the Software Architecture Document.]
+
 #### 1.1	Purpose
 This document provides a comprehensive architectural overview of the system, using a number of different architectural views to depict different aspects of the system. It is intended to capture and convey the significant architectural decisions which have been made on the system.
 
 [This section defines the role or purpose of the Software Architecture Document, in the overall project documentation, and briefly describes the structure of the document. The specific audiences for the document is identified, with an indication of how they are expected to use the document.]
 #### 1.2	Scope
-[A brief description of what the Software Architecture Document applies to; what is affected or influenced by this document.]
+This projects Framework is Spring with MVC (and possibly other). This influences the relations between Model, View and Controller. This also affects the communication to any database.
+
 #### 1.3	Definitions, Acronyms, and Abbreviations
 [This subsection provides the definitions of all terms, acronyms, and abbreviations required to properly interpret the Software Architecture Document.  This information may be provided by reference to the project’s Glossary.]
+
 #### 1.4	References
+| Title | Version | Date | Organisation |
+|-------|---------|------|--------------|
+|[FactRacingClassDiagram](/ClassDiagrams/FactRacingClassDiagram.png)| ? | 27/11/2016 | GamesCobold|
+|[Use-Cases Overview](/Use-Cases/Use-CaseOverview1.0.png)| 1.0 | 27/11/2016 | GamesCobold|
 [This subsection provides a complete list of all documents referenced elsewhere in the Software Architecture Document. Identify each document by title, report number (if applicable), date, and publishing organization. Specify the sources from which the references can be obtained. This information may be provided by reference to an appendix or to another document.]
+
 #### 1.5	Overview
 [This subsection describes what the rest of the Software Architecture Document contains and explains how the Software Architecture Document is organized.]
+
 ### 2.	Architectural Representation 
 [This section describes what software architecture is for the current system, and how it is represented. Of the Use-Case, Logical, Process, Deployment, and Implementation Views, it enumerates the views that are necessary, and for each view, explains what types of model elements it contains.]
 ### 3.	Architectural Goals and Constraints 
@@ -74,7 +85,7 @@ N/A
 N/A
 ### 9.	Data View (optional)
 [A description of the persistent data storage perspective of the system. This section is optional if there is little or no persistent data, or the translation between the Design Model and the Data Model is trivial.]
-### 10.	Size and Performance 
+### 10.	Size and Performance
 [A description of the major dimensioning characteristics of the software that impact the architecture, as well as the target performance constraints.]
 ### 11.	Quality 
 [A description of how the software architecture contributes to all capabilities (other than functionality) of the system: extensibility, reliability, portability, and so on. If these characteristics have special significance, such as safety, security or privacy implications, they must be clearly delineated.]
