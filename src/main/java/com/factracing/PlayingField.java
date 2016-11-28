@@ -4,9 +4,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 
-/**
- * Created by janik on 22/11/2016.
- */
 @Service
 public class PlayingField {
     private LinkedList<PlayingFieldPos> positions;

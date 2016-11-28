@@ -4,9 +4,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-/**
- * Created by janik on 22/11/2016.
- */
 @Service
 public class Dice {
     private Random random;
