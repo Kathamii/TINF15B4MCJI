@@ -7,7 +7,7 @@
     <groupId>groupId</groupId>
     <artifactId>FactRacing</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -15,6 +15,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.3.2.RELEASE</version>
         </dependency>
+        <!--
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -27,6 +28,7 @@
             <version>1.0.11</version>
             <type>pom</type>
         </dependency>
+        -->
     </dependencies>
 
 </project>
