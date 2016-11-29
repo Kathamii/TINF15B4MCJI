@@ -1,13 +1,14 @@
 Fact Racing
 # Software Architecture Document
 
-Version 1.0
+Version 1.2
  
 ### Revision History
 |Date	|Version	|Description	|Author|
 |----------|----------|----------|----------|
 |24/11/2016|1.0| Initial draft| Janik Ritz|
 |27/11/2016|1.1| First Content| Janik Ritz|
+|29/11/2016|1.2| Most Content Finished| Janik Ritz|
 	
 ## Table of Contents
 1. Introduction  
