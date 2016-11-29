@@ -44,7 +44,9 @@ This document provides a comprehensive architectural overview of the system, usi
 This projects Framework is Spring with MVC (and possibly other). This influences the relations between Model, View and Controller. This also affects the communication to any database.
 
 #### 1.3	Definitions, Acronyms, and Abbreviations
-[This subsection provides the definitions of all terms, acronyms, and abbreviations required to properly interpret the Software Architecture Document.  This information may be provided by reference to the project’s Glossary.]
+|Acronym/Abbreviation | Description/Definition|
+|---------------------|-----------------------|
+|MVC|Model, View, Controller|
 
 #### 1.4	References
 | Title | Version | Date | Organisation |
