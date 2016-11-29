@@ -34,13 +34,11 @@ Version 1.0
  
 # Software Architecture Document 
 ### 1. Introduction
-This Document describes the scope
-[The introduction of the Software Architecture Document provides an overview of the entire Software Architecture Document. It includes the purpose, scope, definitions, acronyms, abbreviations, references, and overview of the Software Architecture Document.]
+This document provides information about how the architecture of FactRacing is build. FactRacing is therefore influenced by the provided information.
 
 #### 1.1	Purpose
 This document provides a comprehensive architectural overview of the system, using a number of different architectural views to depict different aspects of the system. It is intended to capture and convey the significant architectural decisions which have been made on the system.
 
-[This section defines the role or purpose of the Software Architecture Document, in the overall project documentation, and briefly describes the structure of the document. The specific audiences for the document is identified, with an indication of how they are expected to use the document.]
 #### 1.2	Scope
 This projects Framework is Spring with MVC (and possibly other). This influences the relations between Model, View and Controller. This also affects the communication to any database.
 
@@ -54,7 +52,6 @@ This projects Framework is Spring with MVC (and possibly other). This influences
 |[Use-Cases Overview](/docs/Use-Cases/Use-Case%20Overview%201.0.png)| 1.0 | 27/11/2016 | GamesCobold|
 |[Use-Case Create Game Room](/docs/Use-Cases/Create%20Game%20Room/CreateGameRoomSpecifications.md)| 1.0 | 27/11/2016 | GamesCobold|
 |[Use-Case Enter Game Room by Link](/docs/Use-Cases/Enter%20Game%20Room%20By%20Link/UseCase-EnterGameRoomByLink.md)| 1.0 | 27/11/2016 | GamesCobold|
-[This subsection provides a complete list of all documents referenced elsewhere in the Software Architecture Document. Identify each document by title, report number (if applicable), date, and publishing organization. Specify the sources from which the references can be obtained. This information may be provided by reference to an appendix or to another document.]
 
 #### 1.5	Overview
 This document contains relevant information about the framework we used and the architectural goals that should be reached
@@ -69,7 +66,6 @@ We used the Spring Framework, which was developed by Pivotal Software.
 > The Spring Framework is an application framework and inversion of control container for the Java platform. The framework's core features can be used by any Java application, but there are extensions for building web applications on top of the Java EE platform. Although the framework does not impose any specific programming model, it has become popular in the Java community as an alternative to, replacement for, or even addition to the Enterprise JavaBeans (EJB) model. The Spring Framework is open source.
 > > Wikipedia, 29/11/2016  
 
-[This section describes the software requirements and objectives that have some significant impact on the architecture; for example, safety, security, privacy, use of an off-the-shelf product, portability, distribution, and reuse. It also captures the special constraints that may apply: design and implementation strategy, development tools, team structure, schedule, legacy code, and so on.]
 ### 4.	Use-Case View 
 N/A
 #### 4.1	Use-Case Realizations
@@ -84,13 +80,12 @@ Our Project is parted into Model (+ Database), View and Controller. Here You can
 ![View - Class Diagram](//TODO)
 ##### Controller
 ![Controller - Class Diagram](/docs/ClassDiagrams/ControllerDiagram.png)  
-[This subsection describes the overall decomposition of the design model in terms of its package hierarchy and layers.]
 #### 5.2	Architecturally Significant Design Packages
 N/A
 ### 6.	Process View 
 N/A
 ### 7.	Deployment View 
-[This section describes one or more physical network (hardware) configurations on which the software is deployed and run. It is a view of the Deployment Model. At a minimum for each configuration it should indicate the physical nodes (computers, CPUs) that execute the software and their interconnections (bus, LAN, point-to-point, and so on.) Also include a mapping of the processes of the Process View onto the physical nodes.]
+![Deployment Simple](/docs/Software_Architecture/Deployment.png)
 ### 8.	Implementation View 
 N/A
 #### 8.1	Overview
@@ -98,8 +93,8 @@ N/A
 #### 8.2	Layers
 N/A
 ### 9.	Data View (optional)
-[A description of the persistent data storage perspective of the system. This section is optional if there is little or no persistent data, or the translation between the Design Model and the Data Model is trivial.]
+N/A yet
 ### 10.	Size and Performance
-[A description of the major dimensioning characteristics of the software that impact the architecture, as well as the target performance constraints.]
+N/A
 ### 11.	Quality 
-[A description of how the software architecture contributes to all capabilities (other than functionality) of the system: extensibility, reliability, portability, and so on. If these characteristics have special significance, such as safety, security or privacy implications, they must be clearly delineated.]
+N/A
