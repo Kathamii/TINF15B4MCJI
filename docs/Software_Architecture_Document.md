@@ -50,8 +50,8 @@ This projects Framework is Spring with MVC (and possibly other). This influences
 #### 1.4	References
 | Title | Version | Date | Organisation |
 |-------|---------|------|--------------|
-|[FactRacingClassDiagram](/ClassDiagrams/FactRacingClassDiagram.png)| ? | 27/11/2016 | GamesCobold|
-|[Use-Cases Overview](/Use-Cases/Use-CaseOverview1.0.png)| 1.0 | 27/11/2016 | GamesCobold|
+|[FactRacingClassDiagram](/docs/ClassDiagrams/FactRacingClassDiagram.png)| ? | 27/11/2016 | GamesCobold|
+|[Use-Cases Overview](/docs/Use-Cases/Use-Case%20Overview%201.0.png)| 1.0 | 27/11/2016 | GamesCobold|
 [This subsection provides a complete list of all documents referenced elsewhere in the Software Architecture Document. Identify each document by title, report number (if applicable), date, and publishing organization. Specify the sources from which the references can be obtained. This information may be provided by reference to an appendix or to another document.]
 
 #### 1.5	Overview
