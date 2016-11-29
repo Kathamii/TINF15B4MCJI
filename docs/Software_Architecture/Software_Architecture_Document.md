@@ -78,17 +78,15 @@ N/A
 ### 5.	Logical View
 Our Project is parted into Model (+ Database), View and Controller. Here You can see the different parts.  
 ##### Model
+#### 5.1	Overview
 ![Model - Class Diagram](/docs/ClassDiagrams/FactRacingClassDiagram.png)
 ##### View
 ![View - Class Diagram](//TODO)
 ##### Controller
 ![Controller - Class Diagram](/docs/ClassDiagrams/ControllerDiagram.png)  
-[This section describes the architecturally significant parts of the design model, such as its decomposition into subsystems and packages. And for each significant package, its decomposition into classes and class utilities. You should introduce architecturally significant classes and describe their responsibilities, as well as a few very important relationships, operations, and attributes.]
-#### 5.1	Overview
 [This subsection describes the overall decomposition of the design model in terms of its package hierarchy and layers.]
 #### 5.2	Architecturally Significant Design Packages
-[For each significant package, include a subsection with its name, its brief description, and a diagram with all significant classes and packages contained within the package. 
-For each significant class in the package, include its name, brief description, and, optionally, a description of some of its major responsibilities, operations, and attributes.]
+N/A
 ### 6.	Process View 
 N/A
 ### 7.	Deployment View 
