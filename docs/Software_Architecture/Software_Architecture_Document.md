@@ -59,16 +59,30 @@ This projects Framework is Spring with MVC (and possibly other). This influences
 #### 1.5	Overview
 This document contains relevant information about the framework we used and the architectural goals that should be reached
 
-### 2.	Architectural Representation 
+### 2.	Architectural Representation
+Our Application is web-based and consist of Spring with MVC and Hibernate.  
+The Architecture of Spring with MVC can be portrayed with the following image:  
+![MVC Spring Archtitecture](/docs/Software_Architecture/MVC-Architecture.png)
 
 ### 3.	Architectural Goals and Constraints 
+We used the Spring Framework, which was developed by Pivotal Software.
+> The Spring Framework is an application framework and inversion of control container for the Java platform. The framework's core features can be used by any Java application, but there are extensions for building web applications on top of the Java EE platform. Although the framework does not impose any specific programming model, it has become popular in the Java community as an alternative to, replacement for, or even addition to the Enterprise JavaBeans (EJB) model. The Spring Framework is open source.
+> > Wikipedia, 29/11/2016  
+
 [This section describes the software requirements and objectives that have some significant impact on the architecture; for example, safety, security, privacy, use of an off-the-shelf product, portability, distribution, and reuse. It also captures the special constraints that may apply: design and implementation strategy, development tools, team structure, schedule, legacy code, and so on.]
 ### 4.	Use-Case View 
 N/A
 #### 4.1	Use-Case Realizations
 N/A
 
-### 5.	Logical View 
+### 5.	Logical View
+Our Project is parted into Model (+ Database), View and Controller. Here You can see the different parts.  
+##### Model
+![Model - Class Diagram](/docs/ClassDiagrams/FactRacingClassDiagram.png)
+##### View
+![View - Class Diagram](//TODO)
+##### Controller
+![Controller - Class Diagram](/docs/ClassDiagrams/ControllerDiagram.png)  
 [This section describes the architecturally significant parts of the design model, such as its decomposition into subsystems and packages. And for each significant package, its decomposition into classes and class utilities. You should introduce architecturally significant classes and describe their responsibilities, as well as a few very important relationships, operations, and attributes.]
 #### 5.1	Overview
 [This subsection describes the overall decomposition of the design model in terms of its package hierarchy and layers.]
