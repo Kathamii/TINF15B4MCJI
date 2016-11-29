@@ -52,13 +52,15 @@ This projects Framework is Spring with MVC (and possibly other). This influences
 |-------|---------|------|--------------|
 |[FactRacingClassDiagram](/docs/ClassDiagrams/FactRacingClassDiagram.png)| ? | 27/11/2016 | GamesCobold|
 |[Use-Cases Overview](/docs/Use-Cases/Use-Case%20Overview%201.0.png)| 1.0 | 27/11/2016 | GamesCobold|
+|[Use-Case Create Game Room](/docs/Use-Cases/Create%20Game%20Room/CreateGameRoomSpecifications.md)| 1.0 | 27/11/2016 | GamesCobold|
+|[Use-Case Enter Game Room by Link](/docs/Use-Cases/Enter%20Game%20Room%20By%20Link/UseCase-EnterGameRoomByLink.md)| 1.0 | 27/11/2016 | GamesCobold|
 [This subsection provides a complete list of all documents referenced elsewhere in the Software Architecture Document. Identify each document by title, report number (if applicable), date, and publishing organization. Specify the sources from which the references can be obtained. This information may be provided by reference to an appendix or to another document.]
 
 #### 1.5	Overview
-[This subsection describes what the rest of the Software Architecture Document contains and explains how the Software Architecture Document is organized.]
+This document contains relevant information about the framework we used and the architectural goals that should be reached
 
 ### 2.	Architectural Representation 
-[This section describes what software architecture is for the current system, and how it is represented. Of the Use-Case, Logical, Process, Deployment, and Implementation Views, it enumerates the views that are necessary, and for each view, explains what types of model elements it contains.]
+
 ### 3.	Architectural Goals and Constraints 
 [This section describes the software requirements and objectives that have some significant impact on the architecture; for example, safety, security, privacy, use of an off-the-shelf product, portability, distribution, and reuse. It also captures the special constraints that may apply: design and implementation strategy, development tools, team structure, schedule, legacy code, and so on.]
 ### 4.	Use-Case View 
