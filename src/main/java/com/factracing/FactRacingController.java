@@ -1,37 +1,42 @@
 package com.factracing;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 public class FactRacingController
 {
-	@Autowired
-	GameRoom gameRoom;
 
-	@RequestMapping(value = {"/"})
+	@RequestMapping(value = { "/" })
 	public ModelAndView startPage()
 	{
 		return new ModelAndView("index");
 	}
 
-	@RequestMapping(value = {"/buttonsMain"})
-	public ModelAndView buttonsMain(@RequestParam(value = "create", required = false) String create,
-		@RequestParam(value = "join", required = false) String join, @RequestParam(value = "read", required = false) String read)
+	@RequestMapping(value = { "/creategameroom" })
+	public ModelAndView getCreateNewGameRoomMAV()
 	{
-		if (create != null)
-			return new ModelAndView("createNewGameroom");
-		if (join != null)
-			return new ModelAndView("joinRandomGame");
-		if (read != null)
-			return new ModelAndView("readManual");
-		return new ModelAndView("index");
+		return new ModelAndView("createNewGameroom");
+	}
+	
+	@RequestMapping(value = { "/randomgame" })
+	public ModelAndView getRandomGameRoomMAV()
+	{
+		return new ModelAndView("joinRandomGame");
+	}
+	
+	@RequestMapping(value = { "/manual" })
+	public ModelAndView getManualMAV()
+	{
+		return new ModelAndView("readManual");
 	}
 
-	@RequestMapping(value = {"/gameroom"})
+	@RequestMapping(value = { "/gameroom" })
 	public ModelAndView gameroom(@RequestParam(value = "minP") String minP, @RequestParam(value = "maxP") String maxP)
 	{
 		ModelAndView gameroom = new ModelAndView("gameroom");

@@ -7,10 +7,10 @@
 <body>
 <div id="contentOut">
     <div id="contentIn">
-        <h1>Fact Racing - Game room</h1>
-        Game room have following settings:<br />
-        min. Players: ${minP}<br/>
-        max. Players: ${maxP}
+        <h1>Fact Racing - Game Room</h1>
+        The game room has the following settings:<br />
+        Min. Players: ${minP}<br/>
+        Max. Players: ${maxP}
     </div>
 </div>
 
