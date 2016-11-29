@@ -37,9 +37,9 @@ public class FactRacingController
 	}
 
 	@RequestMapping(value = { "/gameroom" })
-	public ModelAndView gameroom(@RequestParam(value = "minP") String minP, @RequestParam(value = "maxP") String maxP)
+	public ModelAndView getGameRoomMAV(@RequestParam(value = "minP") String minP, @RequestParam(value = "maxP") String maxP)
 	{
-		ModelAndView gameroom = new ModelAndView("gameroom");
+		ModelAndView gameroom = new ModelAndView("gameRoom");
 		gameroom.addObject("minP", minP);
 		gameroom.addObject("maxP", maxP);
 		return gameroom;
