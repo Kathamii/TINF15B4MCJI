@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameRoom
 {
-    long grid;
-    int minP;
-    int maxP;
-    boolean join;
-    int players;
+    private long grid;
+    private int minP;
+    private int maxP;
+    private boolean join;
+    private int players;
 
     public long getGrid() {
         return grid;
