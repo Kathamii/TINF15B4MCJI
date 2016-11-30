@@ -1,18 +1,26 @@
 package com.factracing;
 
+
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
+
 @Service
-public class Dice {
-    private Random random;
+public class Dice
+{
 
-    public Dice() {
-        random =new Random();
-    }
+	private Random random;
 
-    public int getValue(){
-        return random.nextInt(6)+1;
-    }
+
+	public Dice()
+	{
+		random = new Random();
+	}
+
+
+	public int getValue()
+	{
+		return random.nextInt(6) + 1;
+	}
 }

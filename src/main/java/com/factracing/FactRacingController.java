@@ -12,7 +12,7 @@ public class FactRacingController
 {
 
 	@RequestMapping(value = { "/" })
-	public ModelAndView startPage()
+	public ModelAndView getMainPageMAV()
 	{
 		return new ModelAndView("index");
 	}
