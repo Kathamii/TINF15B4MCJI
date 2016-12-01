@@ -101,7 +101,7 @@ Our Project is parted into Model (+ Database), View and Controller. Here You can
 
 ##### View
 
-![View - Class Diagram](//TODO)
+![View - Class Diagram](/docs/ClassDiagrams/View.png)
 
 ##### Controller
 
