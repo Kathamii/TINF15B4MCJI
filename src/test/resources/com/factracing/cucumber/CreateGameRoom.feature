@@ -9,4 +9,5 @@ Feature: Create Game Room
   Scenario: Valid Inputs
     Given I navigate to "http://localhost:8080/"
     Then I should see page title as "Fact Racing"
+    Then I close browser
 
