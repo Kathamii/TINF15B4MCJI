@@ -28,25 +28,40 @@
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
             <scope>test</scope>
-            <version>1.0.11</version>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <scope>test</scope>
+            <version>1.2.5</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-jvm</artifactId>
-            <version>1.0.11</version>
+            <version>1.2.5</version>
             <type>pom</type>
         </dependency>
         <!-- Selenium/JUnit -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.43.0</version>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.8.2</version>
+            <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <!-- These are the selenium-cucumber methods dependencies -->
+        <dependency>
+            <groupId>sample</groupId>
+            <artifactId>com.sample</artifactId>
+            <version>1.0.0</version>
+            <type>jar</type>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/selenium-cucumber-methods-1.0.0.jar</systemPath>
         </dependency>
     </dependencies>
     <build>
