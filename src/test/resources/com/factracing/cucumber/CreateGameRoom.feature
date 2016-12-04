@@ -7,5 +7,6 @@ Feature: Create Game Room
   I want to create a Game Room with my Configurations
 
   Scenario: Valid Inputs
-    Given Session with Name
+    Given I navigate to "http://localhost:8080/"
+    Then I should see page title as "Fact Racing"
 
