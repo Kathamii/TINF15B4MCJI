@@ -1,8 +1,8 @@
 package com.factracing.cucumber;
 
-import cucumber.annotation.en.Given;
-import cucumber.runtime.PendingException;
-import org.junit.runner.RunWith;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
