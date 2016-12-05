@@ -8,6 +8,11 @@ Feature: Create Game Room
 
   Scenario: Valid Inputs
     Given I navigate to "http://localhost:8080/"
-    Then I should see page title as "Fact Racing"
-    Then I wait for 5 sec
-    Then I close browser
+    And I wait for 1 sec
+    Then I click on element having name "create"
+    And I wait for 1 sec
+    And I clear input field having name "minP"
+    And I enter "2" into input field having name "minP"
+    And I clear input field having name "maxP"
+    And I enter "3" into input field having name "maxP"
+    And I close browser
