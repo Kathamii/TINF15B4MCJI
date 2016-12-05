@@ -15,4 +15,3 @@ Feature: Create Game Room
     And I enter "2" into input field having name "minP"
     And I clear input field having name "maxP"
     And I enter "3" into input field having name "maxP"
-    And I close browser
