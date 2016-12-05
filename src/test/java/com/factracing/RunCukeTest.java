@@ -9,7 +9,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		plugin = {"html:target/cucumberHtmlReport"},
 		//pretty:target/cucumber-json-report.json
-		features = "classpath:com/factracing/cucumber/CreateGameRoom.feature"
+		features = "classpath:com/factracing/cucumber/"
 )
 
 public class RunCukeTest {
