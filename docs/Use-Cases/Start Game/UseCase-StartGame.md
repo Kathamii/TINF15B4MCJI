@@ -32,7 +32,7 @@ A user who created a game room could administrate the room. If the player is fin
 
 ## 2.    Flow of Events
 ### 2.1   Basic Flow
-![Use-case-diagramm](TINF15B4MCJI/docs/Use-Cases/Start Game/Diagram-StartGame.png)
+![Use-case-diagramm](https://github.com/Kahmul/TINF15B4MCJI/blob/97644c27676cbafb3cf188fa0d4cdbc5345b8926/docs/Use-Cases/Start%20Game/Diagram-StartGame.png)
 ### 2.2   Alternative Flows
 None
 ## 3.    Special Requirements
