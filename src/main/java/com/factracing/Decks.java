@@ -1,6 +1,7 @@
 package com.factracing;
 
 
+import com.factracing.model.Card;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
