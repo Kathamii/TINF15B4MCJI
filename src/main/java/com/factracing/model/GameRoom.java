@@ -1,31 +1,24 @@
-package com.factracing;
+package com.factracing.model;
 
 
 import org.springframework.stereotype.Service;
 
+import javax.persistence.*;
 
-@Service
+
+@Entity
+@Table(name = "GAMEROOM")
 public class GameRoom
 {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idGameRoom;
 
-	private long grid;
 	private int minP;
 	private int maxP;
 	private boolean join;
 	private int players;
-
-
-	public long getGrid()
-	{
-		return grid;
-	}
-
-
-	public void setGrid(long grid)
-	{
-		this.grid = grid;
-	}
-
 
 	public int getMinP()
 	{
@@ -72,5 +65,13 @@ public class GameRoom
 	public void setPlayers(int players)
 	{
 		this.players = players;
+	}
+
+	public int getIdGameRoom() {
+		return idGameRoom;
+	}
+
+	public void setIdGameRoom(int idGameRoom) {
+		this.idGameRoom = idGameRoom;
 	}
 }

@@ -1,14 +1,23 @@
-package com.factracing;
+package com.factracing.model;
 
 
 import org.springframework.stereotype.Service;
 
+import javax.persistence.*;
 
-@Service
+
+@Entity
+@Table(name = "USERSESSION")
 public class UserSession
 {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idUserSession;
 
+	@OneToOne(mappedBy = "")//TODO
 	private PlayingPiece SID;
+	@OneToOne(mappedBy = "")//TODO
 	private GameRoom GRID;
 	private String userName;
 
@@ -51,5 +60,13 @@ public class UserSession
 	public void setUserName(String userName)
 	{
 		this.userName = userName;
+	}
+
+	public int getIdUserSession() {
+		return idUserSession;
+	}
+
+	public void setIdUserSession(int idUserSession) {
+		this.idUserSession = idUserSession;
 	}
 }

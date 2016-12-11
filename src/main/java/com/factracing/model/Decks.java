@@ -1,19 +1,26 @@
-package com.factracing;
+package com.factracing.model;
 
 
 import com.factracing.model.Card;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.*;
 import java.util.LinkedList;
 
 
-@Service
+@Entity
+@Table(name = "DECK")
 public class Decks
 {
 
-	private String category;
-	private LinkedList<Card> Cards;
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idDeck;
 
+	private String category;
+	@OneToMany(mappedBy = "")//TODO
+	private LinkedList<Card> Cards;
 
 	public Decks()
 	{
@@ -41,5 +48,13 @@ public class Decks
 	public void setCards(LinkedList<Card> cards)
 	{
 		Cards = cards;
+	}
+
+	public int getIdDeck() {
+		return idDeck;
+	}
+
+	public void setIdDeck(int idDeck) {
+		this.idDeck = idDeck;
 	}
 }

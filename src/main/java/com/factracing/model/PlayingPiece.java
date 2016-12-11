@@ -1,13 +1,22 @@
-package com.factracing;
+package com.factracing.model;
 
 
 import org.springframework.stereotype.Service;
 
+import javax.persistence.*;
 
-@Service
+
+@Entity
+@Table(name = "PLAYINGPIECE")
 public class PlayingPiece
 {
 
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idPlayingPiece;
+
+	@OneToOne(mappedBy = "")//TODO
 	private PlayingFieldPos playingFieldPos;
 	private int points;
 
@@ -38,5 +47,13 @@ public class PlayingPiece
 	public void setPoints(int points)
 	{
 		this.points = points;
+	}
+
+	public int getIdPlayingPiece() {
+		return idPlayingPiece;
+	}
+
+	public void setIdPlayingPiece(int idPlayingPiece) {
+		this.idPlayingPiece = idPlayingPiece;
 	}
 }
