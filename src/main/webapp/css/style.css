@@ -20,6 +20,13 @@ body {
     border:5px solid saddlebrown;
 }
 
+#back-link {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color: saddlebrown;
+}
+
 h1 {
     color: saddlebrown;
 }
