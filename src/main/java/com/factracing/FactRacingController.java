@@ -43,4 +43,10 @@ public class FactRacingController
 		gameroom.addObject("maxP", maxP);
 		return gameroom;
 	}
+
+	@RequestMapping(value = { "/gameField" })
+	public ModelAndView getGameMAV()
+	{
+		return new ModelAndView("gameField");
+	}
 }
