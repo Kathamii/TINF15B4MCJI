@@ -11,5 +11,4 @@ Feature: Join Random Game Room
     And I wait for 3 sec
     Then I click on element having name "join"
     And I wait for 3 sec
-    And I close browser
     

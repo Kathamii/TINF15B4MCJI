@@ -22,3 +22,5 @@ Feature: Start Game
     Then I select "public" option by value from radio button group having name "visibility"
     And I wait for 1 sec
     Then I click on element having name "submit"
+    And I wait for 1 sec
+    And I close browser

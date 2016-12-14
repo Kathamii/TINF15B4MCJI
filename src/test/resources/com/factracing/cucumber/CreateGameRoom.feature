@@ -13,5 +13,7 @@ Feature: Create Game Room
     And I wait for 1 sec
     And I clear input field having name "minP"
     And I enter "2" into input field having name "minP"
+    And I wait for 1 sec
     And I clear input field having name "maxP"
     And I enter "3" into input field having name "maxP"
+    And I wait for 1 sec
