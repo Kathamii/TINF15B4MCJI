@@ -29,14 +29,14 @@ Fact Racing
 ### 1.  Use-Case Name
 #### 1.1 Brief Description
 This use-case allows the player/user to create a custom game room with selected question decks.
-For this use-case exists a fitting .feature [file](https://github.com/Kahmul/TINF15B4MCJI/blob/master/docs/Use-Cases/Create%20Game%20Room/CreateGameRoom.feature) written in Cucumber with tests for all Flows.
+For this use-case exists a fitting .feature [file](../../../src/test/resources/com/factracing/cucumber/CreateGameRoom.feature) written in Cucumber with tests for all Flows.
 ### 2. Flow of Events
 #### 2.1 Basic Flow
 The Basic Flow Diagram:
-![Diagram](https://github.com/Kahmul/TINF15B4MCJI/blob/master/docs/Use-Cases/Create%20Game%20Room/UseCaseCreateGameRoom.png)
+![Diagram](UseCaseCreateGameRoom.png)
 
 A Screenshot/Mockup of what this use case could look:
-![Link to Mockup](https://github.com/Kahmul/TINF15B4MCJI/blob/master/docs/Mockups/pages/gameroomcreation.png)
+![Link to Mockup](../../Mockups/pages/gameroomcreation.png)
 
 
 #### 2.2 Alternative Flows

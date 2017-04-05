@@ -62,7 +62,7 @@ This projects Framework is Spring with MVC (and possibly other). This influences
 |:-------------------------------------------------------------------------------------------------------------------|:--------|:-----------|:-------------|
 | [FactRacingClassDiagram](/docs/ClassDiagrams/FactRacingClassDiagram.png)                                           | ?       | 27/11/2016 | GamesCobold  |
 | [Use-Cases Overview](/docs/Use-Cases/Use-Case%20Overview%201.0.png)                                                | 1.0     | 27/11/2016 | GamesCobold  |
-| [Use-Case Create Game Room](/docs/Use-Cases/Create%20Game%20Room/CreateGameRoomSpecification.md)                   | 1.0     | 27/11/2016 | GamesCobold  |
+| [Use-Case Create Game Room](/docs/Use-Cases/Create%20Game%20Room/CreateGameRoom.md)                   | 1.0     | 27/11/2016 | GamesCobold  |
 | [Use-Case Enter Game Room by Link](/docs/Use-Cases/Enter%20Game%20Room%20By%20Link/UseCase-EnterGameRoomByLink.md) | 1.0     | 27/11/2016 | GamesCobold  |
 
 #### 1.5	Overview
