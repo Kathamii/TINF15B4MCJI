@@ -58,12 +58,12 @@ This projects Framework is Spring with MVC (and possibly other). This influences
 
 #### 1.4	References
 
-| Title                                                                                                              | Version | Date       | Organisation |
-|:-------------------------------------------------------------------------------------------------------------------|:--------|:-----------|:-------------|
-| [FactRacingClassDiagram](/docs/ClassDiagrams/FactRacingClassDiagram.png)                                           | ?       | 27/11/2016 | GamesCobold  |
-| [Use-Cases Overview](/docs/Use-Cases/Use-Case%20Overview%201.0.png)                                                | 1.0     | 27/11/2016 | GamesCobold  |
-| [Use-Case Create Game Room](/docs/Use-Cases/Create%20Game%20Room/CreateGameRoom.md)                   | 1.0     | 27/11/2016 | GamesCobold  |
-| [Use-Case Enter Game Room by Link](/docs/Use-Cases/Enter%20Game%20Room%20By%20Link/UseCase-EnterGameRoomByLink.md) | 1.0     | 27/11/2016 | GamesCobold  |
+| Title                                                                                                           | Version | Date       | Organisation |
+|:----------------------------------------------------------------------------------------------------------------|:--------|:-----------|:-------------|
+| [FactRacingClassDiagram](../ClassDiagrams/FactRacingClassDiagram.png)                                           | ?       | 27/11/2016 | GamesCobold  |
+| [Use-Cases Overview](../Use-Cases/Use-Case%20Overview%201.0.png)                                                | 1.0     | 27/11/2016 | GamesCobold  |
+| [Use-Case Create Game Room](../Use-Cases/Create%20Game%20Room/CreateGameRoom.md)                                | 1.0     | 27/11/2016 | GamesCobold  |
+| [Use-Case Enter Game Room by Link](../Use-Cases/Enter%20Game%20Room%20By%20Link/UseCase-EnterGameRoomByLink.md) | 1.0     | 27/11/2016 | GamesCobold  |
 
 #### 1.5	Overview
 
@@ -73,7 +73,7 @@ This document contains relevant information about the framework we used and the 
 
 Our Application is web-based and consist of Spring with MVC and Hibernate.  
 The Architecture of Spring with MVC can be portrayed with the following image:  
-![MVC Spring Archtitecture](/docs/Software_Architecture/MVC-Architecture.png)
+![MVC Spring Archtitecture](MVC-Architecture.png)
 
 ### 3.	Architectural Goals and Constraints 
 
@@ -97,15 +97,15 @@ Our Project is parted into Model (+ Database), View and Controller. Here You can
 
 #### 5.1	Overview
 
-![Model - Class Diagram](/docs/ClassDiagrams/FactRacingClassDiagram.png)
+![Model - Class Diagram](../ClassDiagrams/FactRacingClassDiagram.png)
 
 ##### View
 
-![View - Class Diagram](/docs/ClassDiagrams/View.png)
+![View - Class Diagram](../ClassDiagrams/View.png)
 
 ##### Controller
 
-![Controller - Class Diagram](/docs/ClassDiagrams/ControllerDiagram.png)  
+![Controller - Class Diagram](../ClassDiagrams/ControllerDiagram.png)
 
 #### 5.2	Architecturally Significant Design Packages
 
@@ -117,7 +117,7 @@ N/A
 
 ### 7.	Deployment View 
 
-![Deployment Simple](/docs/Software_Architecture/Deployment.png)
+![Deployment Simple](Deployment.png)
 
 ### 8.	Implementation View 
 
