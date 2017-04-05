@@ -28,11 +28,11 @@
 # Use-Case Specification: Start game
 ## 1.    Use-Case Name
 ### 1.1   Brief Description
-A user who created a game room could administrate the room. If the player is fine with the settings, he can start the game. For this use-case exists a fitting [.feature file](https://github.com/Kahmul/TINF15B4MCJI/blob/master/src/test/resources/com/factracing/cucumber/StartGame.feature) written in Cucumber with tests for all Flows.
+A user who created a game room could administrate the room. If the player is fine with the settings, he can start the game. For this use-case exists a fitting [.feature file](../../../src/test/resources/com/factracing/cucumber/StartGame.feature) written in Cucumber with tests for all Flows.
 
 ## 2.    Flow of Events
 ### 2.1   Basic Flow
-![Use-case-diagramm](https://github.com/Kahmul/TINF15B4MCJI/blob/97644c27676cbafb3cf188fa0d4cdbc5345b8926/docs/Use-Cases/Start%20Game/Diagram-StartGame.png)
+![Use-case-diagramm](Diagram-StartGame.png)
 ### 2.2   Alternative Flows
 None
 ## 3.    Special Requirements
