@@ -7,8 +7,6 @@ import static org.junit.Assert.assertEquals;
 public class CardTest{
     @Test
     public void difficultyTest(){
-        Card c = new Card();
-        int d = c.getDifficulty();
-        assertEquals(0, d);
+        assertEquals(new Card().getDifficulty(), 0);
     }
-        }
+}
