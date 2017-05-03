@@ -1,4 +1,4 @@
-# Master Test Plan
+# Fact Racing Test Plan
 
 ## Revision History
 
@@ -81,40 +81,119 @@
 
 ## 1. Introduction
 ### 1.1 Purpose
+The purpose of the Iteration Test Plan is to gather all of the information necessary to plan and control the test effort for a given iteration. It describes the approach to testing the software, and is the top-level plan generated and used by managers to direct the test effort.
+This Test Plan for Fact Racing supports the following objectives:
+- Outlines the testing approach that will be used
+- Identifies the required resources
+
 ### 1.2 Scope
+This document addresses the following types and levels of testing:
+- Java JUnit Tests
+- Functional Tests
+
 ### 1.3 Intended Audience
+The intended audience of the test plan are the project members and developers.
+
 ### 1.4 Document Terminology and Acronyms
+n/a
+
 ### 1.5 References
+n/a
+
 ### 1.6 Document Structure
+n/a
+
 ## 2. Evaluation Mission and Test Motivation
 ### 2.1 Background
+n/a
+
 ### 2.2 Evaluation Mission
+n/a
 ### 2.3 Test Motivators
+n/a
+
 ## 3. Target Test Items
+n/a
+
 ## 4. Outline of Planned Tests
+n/a
+
 ### 4.1 Outline of Test Inclusions
+n/a
+
 ### 4.2 Outline of other candidates for potential inclusion
+n/a
+
 ### 4.3 Outline of Test Exclusions
+n/a
+
 ## 5. Test Approach
 ### 5.1 Initial Test-Idea Catalogs and other reference sources
+n/a
+
 ### 5.2 Testing Techniques and Types
+n/a
+
 #### 5.2.1 Data and Database Integrity Testing
+n/a
+
 #### 5.2.2 Function Testing
+|                         |                                                      |
+|-------------------------|------------------------------------------------------|
+| Technique Objective:    | Testing the functionality of the code                | 
+| Technique:              | Testing the self-written code                        | 
+| Oracles:                | Cucumber extension for Eclipse/IntelliJ + Java JUnit | 
+| Success Criteria:       | All tests pass                                       | 
+| Special Considerations: | n/a                                                  | 
+
 #### 5.2.3 Business Cycle Testing
+n/a
+
 #### 5.2.4 Business Cycle Testing
+|                         |                                                      |
+|-------------------------|------------------------------------------------------|
+| Technique Objective:    | Testing the webpages for correct behavior            | 
+| Technique:              | Create or modify tests for each window to verify proper navigation and object states for each application window and object. | 
+| Oracles:                | Tests are successful if every interaction with the GUI could be performed and produces an logical answer. | 
+| Required Tools:         | Cucumber                                             |
+| Success Criteria:       | All tests pass successfully                          | 
+| Special Considerations: | n/a                                                  | 
+
 #### 5.2.5 Performance Profiling
+n/a
+
 #### 5.2.6 Load Testing
+n/a
+
 #### 5.2.7 Stress Testing
+n/a
+
 #### 5.2.8 Volume Testing
+n/a
+
 #### 5.2.9 Security and Access Control Testing
+n/a
+
 #### 5.2.10 Failover and Recovery Testing
+n/a
+
 #### 5.2.11 Configuration Testing
+n/a
+
 #### 5.2.12 Installation Testing
+n/a
+
 ## 6. Entry and Exit Criteria
 ### 6.1 Test Plan
 #### 6.1.1 Test Plan Entry Criteria
+n/a
+
 #### 6.1.2 Test Plan Exit Criteria
+n/a
+
 #### 6.1.3 Suspension and resumption criteria
+n/a
+
 ### 6.2 Test Cycles
 #### 6.2.1 Test Cycle Entry Criteria
 #### 6.2.2 Test Cycle Exit Criteria
