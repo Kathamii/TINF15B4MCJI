@@ -196,34 +196,104 @@ n/a
 
 ### 6.2 Test Cycles
 #### 6.2.1 Test Cycle Entry Criteria
+n/a
+
 #### 6.2.2 Test Cycle Exit Criteria
+n/a
+
 #### 6.2.3 Test Cycle abnormal termination
+n/a
+
 ## 7. Deliverables
 ### 7.1 Test Evaluation Summaries
+n/a
+
 ### 7.2 Reporting on Test Coverage
+Test Coverage is evaluated on every push to the repository.
+
 ### 7.3 Perceived Quality Reports
+n/a
+
 ### 7.4 Incident Logs and Change Requests
+Travis CI for automated building and continuous testing.
+
 ### 7.5 Smoke Test Suite and supporting Test Scripts
+n/a
+
 ### 7.6 Additional work products
 #### 7.6.1 Detailed Test Results
+n/a
+
 #### 7.6.2 Additional automated functional Test Scripts
+tbd
+
 #### 7.6.3 Test Guidelines
+n/a
+
 #### 7.6.4 Traceability Matrices
+n/a
+
 ## 8. Testing Workflow
+User interface tests and function tests are executed at every push to the repository.
+
 ## 9. Environmental Needs
 ### 9.1 Base System Hardware
+|Resource | Quantity | Name and Type |
+|----------|---------|---------------|
+|Webserver | 1       | tbd/Type      |
+|- Server Name  |    | tbd/Name      |
+|- Database |        | tbd/Name      |
+
 ### 9.2 Base Software Elements in the Test Environment
+|Software Element Name | Version | Type and Other Notes |
+|----------------------|---------|----------------------|
+| Mozilla Firefox      | diffrent| Internet Browser     |
+| MySql                |         | Database             |
+| Travis               |         | Test-Framework       |
+
 ### 9.3 Productivity and Support Tools
+| Tool Category or Type | Tool Brand Name | Vendor or In-house | Version |
+|-----------------------|-----------------|--------------------|---------|
+| Test Management	    | Travis CI	      |                    |         |
+| Project Management	| Jira            | Atlassian          |         |
+| DBMS tools            | MySQL           |                    |         |
+
 ### 9.4 Test Environment Configurations
+n/a
+
 ## 10. Responsibilities, Staffing and Training Needs
 ### 10.1 People and Roles
+Every member of Fact Racing is Implementer and Test Designer. We all code and write tests for it.
+
 ### 10.2 Staffing and Training Needs
+n/a
+
 ## 11. Iteration Milestones
+tbd
+
 ## 12. Risks, Dependencies, Assumptions and Constraints
+| Risk                            | Mitigation Strategy | Contingency (Risk is realized) |
+|---------------------------------|---------------------|--------------------------------|
+| Travis CI goes down             | external provider –-> no chance | Searching for an alternative + Run Tests locally |
+
+
 ## 13. Management Process and Procedures
+n/a
+
 ### 13.1 Measuring and Assessing the Extent of Testing
+n/a
+
 ### 13.2 Assessing the deliverables of this Test Plan
+n/a
+
 ### 13.3 Problem Reporting, Escalation and Issue Resolution
+n/a
+
 ### 13.4 Managing Test Cycles
+n/a
+
 ### 13.5 Traceability Strategies
+n/a
+
 ### 13.6 Approval and Signoff
+n/a
