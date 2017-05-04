@@ -1,0 +1,7 @@
+language: java
+
+# Install with Maven
+mvn install -DskipTests -fn -quiet
+
+# Test with Maven
+mvn test -B
