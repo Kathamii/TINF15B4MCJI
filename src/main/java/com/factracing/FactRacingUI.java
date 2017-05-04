@@ -1,13 +1,12 @@
 package com.factracing;
 
-import javax.servlet.annotation.WebListener;
 import javax.servlet.annotation.WebServlet;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.ContextLoaderListener;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinServlet;
 import com.vaadin.spring.annotation.EnableVaadin;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.server.SpringVaadinServlet;
@@ -28,10 +27,6 @@ import com.vaadin.ui.VerticalLayout;
 @SpringUI
 public class FactRacingUI extends UI {
 
-    @WebListener
-    public static class MyContextLoaderListener extends ContextLoaderListener {
-    }
-
     @Configuration
     @EnableVaadin
     public static class MyConfiguration {
@@ -39,6 +34,8 @@ public class FactRacingUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+    	
+    	SpringContextHelper helper = new SpringContextHelper(VaadinServlet.getCurrent().getServletContext());
         final VerticalLayout layout = new VerticalLayout();
 
         final TextField name = new TextField();
@@ -56,6 +53,6 @@ public class FactRacingUI extends UI {
     }
 
     @WebServlet(urlPatterns = "/*", name = "FactRacingUIServlet", asyncSupported = true)
-    public static class MyUIServlet extends SpringVaadinServlet {
+    public static class FactRacingUIServlet extends SpringVaadinServlet {
     }
 }
