@@ -1,7 +1,19 @@
+# New Version
 language: java
+jdk:
+ - oraclejdk8
+deploy:
+ provider: heroku
+ api-key:
+  secure: $HEROKU_API_KEY
+ app: lippep-spring-boot-test
+
+
+# Depricated Version
+#language: java
 
 # Install with Maven
-mvn install -DskipTests -fn -quiet
+#mvn install -DskipTests -fn -quiet
 
 # Test with Maven
-mvn test -B
+#mvn test -B
