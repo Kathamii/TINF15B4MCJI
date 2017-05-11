@@ -1,4 +1,4 @@
-package com.factracing;
+package com.factracing.ui;
 
 
 import org.springframework.boot.SpringApplication;
