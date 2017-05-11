@@ -2,6 +2,8 @@ package com.factracing;
 
 import org.junit.Test;
 
+import com.factracing.beans.Card;
+
 import static org.junit.Assert.assertEquals;
 
 public class CardTest{
