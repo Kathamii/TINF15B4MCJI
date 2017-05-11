@@ -16,14 +16,16 @@ import com.vaadin.ui.VerticalLayout;
 public class MainNavigationView extends VerticalLayout implements View
 {
 
+	private Label welcomeLabel;
+
+
 	public MainNavigationView()
 	{
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
-		Label welcomeLabel = new Label("<h2><center>Welcome, <center><br>" + FactRacingUI.getUserSession().getUserName() + "!<h2>",
-				ContentMode.HTML);
-		
+		welcomeLabel = new Label("<h2><center>Welcome!<center><br><h2>", ContentMode.HTML);
+
 		VerticalLayout buttonLayout = new VerticalLayout();
 		buttonLayout.setSizeFull();
 		buttonLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
@@ -31,19 +33,19 @@ public class MainNavigationView extends VerticalLayout implements View
 		Button manualButton = new Button("Read Manual");
 		manualButton.addClickListener(e -> {
 		});
-		
+
 		Button joinRandomRoomButton = new Button("Join Random Game Room");
 		manualButton.addClickListener(e -> {
 		});
-		
+
 		Button createRoomButton = new Button("Create Game Room");
 		manualButton.addClickListener(e -> {
 		});
-		
+
 		Button changeNameButton = new Button("Change Name");
 		manualButton.addClickListener(e -> {
 		});
-		
+
 		buttonLayout.addComponents(manualButton, joinRandomRoomButton, createRoomButton);
 
 		addComponents(factRacingLabel, welcomeLabel, buttonLayout, changeNameButton);
@@ -53,7 +55,7 @@ public class MainNavigationView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-
+		welcomeLabel.setValue("<h2><center>Welcome, <center><br>" + FactRacingUI.getUserSession().getUserName() + "!<h2>");
 	}
 
 }

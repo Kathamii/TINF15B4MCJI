@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import com.factracing.beans.UserSession;
@@ -18,6 +19,8 @@ public class FactRacingUI extends UI
 {
 
 	private Navigator navigator;
+	
+	@Autowired
 	private static UserSession user;
 
 
