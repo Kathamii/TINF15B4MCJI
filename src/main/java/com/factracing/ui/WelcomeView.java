@@ -16,18 +16,20 @@ public class WelcomeView extends VerticalLayout implements View
 	
 	public WelcomeView()
 	{
-		setDefaultComponentAlignment(Alignment.TOP_CENTER);
+		setMargin(true);
+		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		Label welcomeLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
-		Label nameLabel = new Label("<h2><center>Welcome!<center><br>What's your name?<h2>", ContentMode.HTML);
+		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
+		Label welcomeLabel = new Label("<h2><center>Welcome!<center><br>What's your name?<h2>", ContentMode.HTML);
 		final TextField nameField = new TextField();
 
 		Button button = new Button("Use");
 		button.addClickListener(e -> {
+			FactRacingUI.getUserSession().setUserName(nameField.getValue());
 			UI.getCurrent().getNavigator().navigateTo("mainNav");
 		});
 
-		addComponents(welcomeLabel, nameLabel, nameField, button);
+		addComponents(factRacingLabel, welcomeLabel, nameField, button);
 	}
 
 	@Override
