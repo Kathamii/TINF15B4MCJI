@@ -56,6 +56,7 @@ public class MainNavigationView extends VerticalLayout implements View
 	public void enter(ViewChangeEvent event)
 	{
 		welcomeLabel.setValue("<h2><center>Welcome, <center><br>" + FactRacingUI.getUserSession().getUserName() + "!<h2>");
+		UI.getCurrent().getPage().setTitle(FactRacingUI.getUserSession().getUserName() + " - Fact Racing");
 	}
 
 }

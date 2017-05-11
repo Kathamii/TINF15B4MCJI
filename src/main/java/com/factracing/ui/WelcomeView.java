@@ -2,6 +2,7 @@ package com.factracing.ui;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.UserError;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -25,7 +26,12 @@ public class WelcomeView extends VerticalLayout implements View
 
 		Button button = new Button("Use");
 		button.addClickListener(e -> {
-			FactRacingUI.getUserSession().setUserName(nameField.getValue());
+			String userName = nameField.getValue();
+			if(userName == null || userName.length() <= 0) {
+				nameField.setComponentError(new UserError("Invalid name!"));
+				return;
+			}
+			FactRacingUI.getUserSession().setUserName(userName);
 			UI.getCurrent().getNavigator().navigateTo("mainNav");
 		});
 
