@@ -39,8 +39,8 @@ public class FactRacingUI extends UI
 		navigator = new Navigator(this, this);
 		user = new UserSession();
 		
-		navigator.addView("", new WelcomeView());
-		navigator.addView("mainNav", new MainNavigationView());
+		navigator.addView(WelcomeView.VIEW_NAME, new WelcomeView());
+		navigator.addView(MainNavigationView.VIEW_NAME, new MainNavigationView());
 		
 		navigator.navigateTo("");
 		setNavigator(navigator);
