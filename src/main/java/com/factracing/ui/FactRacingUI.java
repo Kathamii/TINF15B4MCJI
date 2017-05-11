@@ -6,17 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.EnableVaadin;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-
-import net.sourceforge.htmlunit.corejs.javascript.tools.shell.Main;
 
 
 @Theme("valo")
@@ -24,7 +16,7 @@ import net.sourceforge.htmlunit.corejs.javascript.tools.shell.Main;
 public class FactRacingUI extends UI
 {
 
-	public static Navigator navigator;
+	private Navigator navigator;
 
 
 	@Configuration
@@ -45,5 +37,6 @@ public class FactRacingUI extends UI
 		navigator.addView("mainNav", new MainNavigationView());
 		
 		navigator.navigateTo("");
+		setNavigator(navigator);
 	}
 }

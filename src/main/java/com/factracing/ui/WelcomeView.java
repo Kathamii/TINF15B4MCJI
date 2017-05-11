@@ -7,6 +7,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 
@@ -23,7 +24,7 @@ public class WelcomeView extends VerticalLayout implements View
 
 		Button button = new Button("Use");
 		button.addClickListener(e -> {
-			FactRacingUI.navigator.navigateTo("mainNav");
+			UI.getCurrent().getNavigator().navigateTo("mainNav");
 		});
 
 		addComponents(welcomeLabel, nameLabel, nameField, button);
