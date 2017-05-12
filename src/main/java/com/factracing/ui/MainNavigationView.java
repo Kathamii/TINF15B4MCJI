@@ -9,9 +9,11 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.PopupView;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 
 
 @SpringView(name = MainNavigationView.VIEW_NAME)
@@ -90,6 +92,17 @@ public class MainNavigationView extends VerticalLayout implements View
 		Button changeNameButton = new Button("Change Name");
 		changeNameButton.setSizeFull();
 		changeNameButton.addClickListener(e -> {
+			Window popUp = new Window("Namechange");
+			popUp.setWidth("50%");
+			popUp.setHeight("50%");
+			popUp.center();
+			popUp.setModal(true);
+			
+			VerticalLayout popUpLayout = new VerticalLayout();
+
+			popUp.setContent(popUpLayout);
+
+			UI.getCurrent().addWindow(popUp);
 		});
 		
 		userConfigLayout.addComponent(changeNameButton);
