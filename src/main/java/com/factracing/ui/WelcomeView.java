@@ -39,7 +39,7 @@ public class WelcomeView extends VerticalLayout implements View
 				return;
 			}
 			FactRacingUI.getUserSession().setUserName(userName);
-			UI.getCurrent().getNavigator().navigateTo("mainNav");
+			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 
 		addComponents(factRacingLabel, welcomeLabel, nameField, button);
@@ -49,7 +49,10 @@ public class WelcomeView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-
+		if (FactRacingUI.getUserSession().getUserName() != null)
+		{
+			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
+		}
 	}
 
 }

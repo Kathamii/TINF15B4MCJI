@@ -3,6 +3,7 @@ package com.factracing.ui;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.UserError;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Alignment;
@@ -93,18 +94,39 @@ public class MainNavigationView extends VerticalLayout implements View
 		changeNameButton.setSizeFull();
 		changeNameButton.addClickListener(e -> {
 			Window popUp = new Window("Namechange");
-			popUp.setWidth("50%");
-			popUp.setHeight("50%");
+			popUp.setWidth("40%");
+			popUp.setHeight("30%");
+			popUp.setResizable(false);
 			popUp.center();
 			popUp.setModal(true);
-			
+
 			VerticalLayout popUpLayout = new VerticalLayout();
+			popUpLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+			
+			Label welcomeLabel = new Label("<h2>What do you want your name to be?<h2>", ContentMode.HTML);
+			final TextField nameField = new TextField();
+			nameField.setValue(FactRacingUI.getUserSession().getUserName());
+
+			Button button = new Button("Use this name");
+			button.addClickListener(ev -> {
+				String userName = nameField.getValue();
+				if (userName == null || userName.length() <= 0)
+				{
+					nameField.setComponentError(new UserError("Invalid name!"));
+					return;
+				}
+				FactRacingUI.getUserSession().setUserName(userName);
+				popUp.close();
+				enter(null); // change name on page and title
+			});
+
+			popUpLayout.addComponents(welcomeLabel, nameField, button);
 
 			popUp.setContent(popUpLayout);
 
 			UI.getCurrent().addWindow(popUp);
 		});
-		
+
 		userConfigLayout.addComponent(changeNameButton);
 
 		return userConfigLayout;
