@@ -43,6 +43,12 @@ public class MainNavigationView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
+		updateNameOnPage();
+	}
+
+
+	private void updateNameOnPage()
+	{
 		welcomeLabel.setValue("<h2><center>Welcome, <center><br>" + FactRacingUI.getUserSession().getUserName() + "!<h2>");
 		UI.getCurrent().getPage().setTitle(FactRacingUI.getUserSession().getUserName() + " - Fact Racing");
 	}
@@ -117,7 +123,7 @@ public class MainNavigationView extends VerticalLayout implements View
 				}
 				FactRacingUI.getUserSession().setUserName(userName);
 				popUp.close();
-				enter(null); // change name on page and title
+				updateNameOnPage();
 			});
 
 			popUpLayout.addComponents(welcomeLabel, nameField, button);
