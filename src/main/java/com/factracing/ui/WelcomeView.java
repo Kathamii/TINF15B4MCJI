@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.UserError;
@@ -30,7 +31,8 @@ public class WelcomeView extends VerticalLayout implements View
 		Label welcomeLabel = new Label("<h2><center>Welcome!<center><br>What's your name?<h2>", ContentMode.HTML);
 		final TextField nameField = new TextField();
 
-		Button button = new Button("Use");
+		Button button = new Button("Submit");
+		button.setClickShortcut(KeyCode.ENTER, 0);
 		button.addClickListener(e -> {
 			String userName = nameField.getValue();
 			if (userName == null || userName.length() <= 0)
@@ -49,6 +51,7 @@ public class WelcomeView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
+		// if the user already logged in don't allow him to go back here
 		if (FactRacingUI.getUserSession().getUserName() != null)
 		{
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);

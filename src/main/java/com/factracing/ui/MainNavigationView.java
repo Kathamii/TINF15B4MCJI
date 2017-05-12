@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.UserError;
@@ -9,8 +10,6 @@ import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.PopupView;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
@@ -72,12 +71,13 @@ public class MainNavigationView extends VerticalLayout implements View
 
 		Button joinRandomRoomButton = new Button("Join Random Game Room");
 		joinRandomRoomButton.setSizeFull();
-		manualButton.addClickListener(e -> {
+		joinRandomRoomButton.addClickListener(e -> {
 		});
 
 		Button createRoomButton = new Button("Create Game Room");
 		createRoomButton.setSizeFull();
-		manualButton.addClickListener(e -> {
+		createRoomButton.addClickListener(e -> {
+			UI.getCurrent().getNavigator().navigateTo(CreateGameRoomView.VIEW_NAME);
 		});
 
 		buttonLayout.addComponents(manualButton, joinRandomRoomButton, createRoomButton);
@@ -108,12 +108,13 @@ public class MainNavigationView extends VerticalLayout implements View
 
 			VerticalLayout popUpLayout = new VerticalLayout();
 			popUpLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-			
+
 			Label welcomeLabel = new Label("<h2>What do you want your name to be?<h2>", ContentMode.HTML);
 			final TextField nameField = new TextField();
 			nameField.setValue(FactRacingUI.getUserSession().getUserName());
 
-			Button button = new Button("Use this name");
+			Button button = new Button("Use This Name");
+			button.setClickShortcut(KeyCode.ENTER, 0);
 			button.addClickListener(ev -> {
 				String userName = nameField.getValue();
 				if (userName == null || userName.length() <= 0)
@@ -122,15 +123,15 @@ public class MainNavigationView extends VerticalLayout implements View
 					return;
 				}
 				FactRacingUI.getUserSession().setUserName(userName);
-				popUp.close();
 				updateNameOnPage();
+				popUp.close();
 			});
 
 			popUpLayout.addComponents(welcomeLabel, nameField, button);
 
 			popUp.setContent(popUpLayout);
-
 			UI.getCurrent().addWindow(popUp);
+			nameField.setSelection(0, nameField.getValue().length());
 		});
 
 		userConfigLayout.addComponent(changeNameButton);
