@@ -1,6 +1,11 @@
 package com.factracing.ui;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -59,20 +64,50 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		ListSelect<String> availableDecks = new ListSelect<>("Available");
-		availableDecks.setItems("Deck1", "Deck2", "Deck3");
 		availableDecks.setWidth("150px");
+		List<String> availableDeckList = new ArrayList<>(); // holds the items
+		availableDeckList.add("History");
+		availableDeckList.add("Cars");
+		availableDeckList.add("Animals");
+		availableDeckList.add("Math");
+		availableDecks.setItems(availableDeckList);
+
 
 		ListSelect<String> usedDecks = new ListSelect<>("In Use");
-		usedDecks.setItems("Deck4", "Deck5", "Deck6");
 		usedDecks.setWidth("150px");
+		List<String> usedDeckList = new ArrayList<>(); // holds the items
+
 
 		VerticalLayout buttonLayout = new VerticalLayout();
-		Button removeButton = new Button("<--");
-		removeButton.setWidth("100px");
 		Button addButton = new Button("-->");
 		addButton.setWidth("100px");
+		addButton.addClickListener(e -> {
+			Set<String> selectedDecks = availableDecks.getSelectedItems();
+			Iterator<String> it = selectedDecks.iterator();
+			while(it.hasNext()) {
+				String item = it.next();
+				availableDeckList.remove(item);
+				usedDeckList.add(item);
+			}
+			availableDecks.setItems(availableDeckList);
+			usedDecks.setItems(usedDeckList);
+		});
 
-		buttonLayout.addComponents(removeButton, addButton);
+		Button removeButton = new Button("<--");
+		removeButton.setWidth("100px");
+		removeButton.addClickListener(e -> {
+			Set<String> selectedDecks = usedDecks.getSelectedItems();
+			Iterator<String> it = selectedDecks.iterator();
+			while(it.hasNext()) {
+				String item = it.next();
+				usedDeckList.remove(item);
+				availableDeckList.add(item);
+			}
+			availableDecks.setItems(availableDeckList);
+			usedDecks.setItems(usedDeckList);
+		});
+
+		buttonLayout.addComponents(addButton, removeButton);
 
 		layout.addComponents(availableDecks, buttonLayout, usedDecks);
 		return layout;
