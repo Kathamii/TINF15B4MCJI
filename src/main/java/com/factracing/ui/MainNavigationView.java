@@ -30,29 +30,10 @@ public class MainNavigationView extends VerticalLayout implements View
 		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
 		welcomeLabel = new Label("<h2><center>Welcome!<center><br><h2>", ContentMode.HTML);
 
-		VerticalLayout buttonLayout = new VerticalLayout();
-		buttonLayout.setSizeFull();
-		buttonLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+		VerticalLayout buttonLayout = createButtonLayout();
+		VerticalLayout userConfigLayout = createConfigLayout();
 
-		Button manualButton = new Button("Read Manual");
-		manualButton.addClickListener(e -> {
-		});
-
-		Button joinRandomRoomButton = new Button("Join Random Game Room");
-		manualButton.addClickListener(e -> {
-		});
-
-		Button createRoomButton = new Button("Create Game Room");
-		manualButton.addClickListener(e -> {
-		});
-
-		Button changeNameButton = new Button("Change Name");
-		manualButton.addClickListener(e -> {
-		});
-
-		buttonLayout.addComponents(manualButton, joinRandomRoomButton, createRoomButton);
-
-		addComponents(factRacingLabel, welcomeLabel, buttonLayout, changeNameButton);
+		addComponents(factRacingLabel, welcomeLabel, buttonLayout, userConfigLayout);
 	}
 
 
@@ -61,6 +42,59 @@ public class MainNavigationView extends VerticalLayout implements View
 	{
 		welcomeLabel.setValue("<h2><center>Welcome, <center><br>" + FactRacingUI.getUserSession().getUserName() + "!<h2>");
 		UI.getCurrent().getPage().setTitle(FactRacingUI.getUserSession().getUserName() + " - Fact Racing");
+	}
+
+
+	/**
+	 * Creates the buttons on the main navigation page.
+	 * 
+	 * @return
+	 */
+	private VerticalLayout createButtonLayout()
+	{
+		VerticalLayout buttonLayout = new VerticalLayout();
+		buttonLayout.setWidth("25%");
+		buttonLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+
+		Button manualButton = new Button("Read Manual");
+		manualButton.setSizeFull();
+		manualButton.addClickListener(e -> {
+		});
+
+		Button joinRandomRoomButton = new Button("Join Random Game Room");
+		joinRandomRoomButton.setSizeFull();
+		manualButton.addClickListener(e -> {
+		});
+
+		Button createRoomButton = new Button("Create Game Room");
+		createRoomButton.setSizeFull();
+		manualButton.addClickListener(e -> {
+		});
+
+		buttonLayout.addComponents(manualButton, joinRandomRoomButton, createRoomButton);
+
+		return buttonLayout;
+	}
+
+
+	/**
+	 * Creates the user specific buttons, at this point only name change.
+	 * 
+	 * @return
+	 */
+	private VerticalLayout createConfigLayout()
+	{
+		VerticalLayout userConfigLayout = new VerticalLayout();
+		userConfigLayout.setWidth("25%");
+
+		Button changeNameButton = new Button("Change Name");
+		changeNameButton.setSizeFull();
+		changeNameButton.addClickListener(e -> {
+		});
+		
+		userConfigLayout.addComponent(changeNameButton);
+
+		return userConfigLayout;
 	}
 
 }
