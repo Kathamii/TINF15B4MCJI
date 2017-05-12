@@ -32,7 +32,15 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		setSpacing(true);
 		setMargin(true);
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+	}
 
+
+	/**
+	 * Initializes layout on each enter.
+	 */
+	private void initializeLayout()
+	{
+		removeAllComponents();
 		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
 		Label createRoomLabel = new Label("<h2>Create Game Room<h2>", ContentMode.HTML);
 		TextField minPlayersField = new TextField("Minimum Players:");
@@ -72,11 +80,9 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		availableDeckList.add("Math");
 		availableDecks.setItems(availableDeckList);
 
-
 		ListSelect<String> usedDecks = new ListSelect<>("In Use");
 		usedDecks.setWidth("150px");
 		List<String> usedDeckList = new ArrayList<>(); // holds the items
-
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = new Button("-->");
@@ -118,6 +124,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 	public void enter(ViewChangeEvent event)
 	{
 		UI.getCurrent().getPage().setTitle("Create Game Room - Fact Racing");
+		initializeLayout();
 	}
 
 }
