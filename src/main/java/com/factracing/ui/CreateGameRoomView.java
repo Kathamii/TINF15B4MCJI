@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.factracing.beans.GameRoom;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -50,6 +51,12 @@ public class CreateGameRoomView extends VerticalLayout implements View
 
 		Button createRoomButton = new Button("Create Game Room");
 		createRoomButton.addClickListener(e -> {
+			GameRoom room = new GameRoom();
+			room.setMinP(Integer.valueOf(minPlayersField.getValue()));
+			room.setMaxP(Integer.valueOf(maxPlayersField.getValue()));
+			FactRacingUI.getUserSession().setGRID(room);
+			
+			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
 		});
 
 		Button backButton = new Button("Back");
