@@ -9,7 +9,7 @@ public class UserSession
 {
 
 	private PlayingPiece SID;
-	private GameRoom GRID;
+	private GameRoom currentGameRoom;
 	private String userName;
 
 
@@ -30,15 +30,15 @@ public class UserSession
 	}
 
 
-	public GameRoom getGRID()
+	public GameRoom getCurrentGameRoom()
 	{
-		return GRID;
+		return currentGameRoom;
 	}
 
 
-	public void setGRID(GameRoom GRID)
+	public void setCurrentGameRoom(GameRoom room)
 	{
-		this.GRID = GRID;
+		this.currentGameRoom = room;
 	}
 
 

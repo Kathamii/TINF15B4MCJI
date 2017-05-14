@@ -53,10 +53,10 @@ public class CreateGameRoomView extends VerticalLayout implements View
 
 		Button createRoomButton = new Button("Create Game Room");
 		createRoomButton.addClickListener(e -> {
-			GameRoom room = new GameRoom();
-			room.setMinP(Integer.valueOf(minPlayersField.getValue()));
-			room.setMaxP(Integer.valueOf(maxPlayersField.getValue()));
-			FactRacingUI.getUserSession().setGRID(room);
+			GameRoom room = new GameRoom(FactRacingUI.getUserSession());
+			room.setMinPlayers(Integer.valueOf(minPlayersField.getValue()));
+			room.setMaxPlayers(Integer.valueOf(maxPlayersField.getValue()));
+			FactRacingUI.getUserSession().setCurrentGameRoom(room);
 
 			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
 		});

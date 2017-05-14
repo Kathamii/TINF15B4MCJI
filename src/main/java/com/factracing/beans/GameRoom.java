@@ -1,6 +1,9 @@
 package com.factracing.beans;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 
@@ -8,69 +11,91 @@ import org.springframework.stereotype.Service;
 public class GameRoom
 {
 
-	private long grid;
-	private int minP;
-	private int maxP;
-	private boolean join;
-	private int players;
+	private long roomID;
+	private int minPlayers;
+	private int maxPlayers;
+	private int playerCount;
+	private List<UserSession> players;
+	private UserSession creator;
 
 
-	public long getGrid()
+	public GameRoom(UserSession creator)
 	{
-		return grid;
+		players = new ArrayList<>();
+		this.creator = creator;
+		players.add(creator);
 	}
 
 
-	public void setGrid(long grid)
+	public long getRoomID()
 	{
-		this.grid = grid;
+		return roomID;
 	}
 
 
-	public int getMinP()
+	public void setRoomID(long id)
 	{
-		return minP;
+		this.roomID = id;
 	}
 
 
-	public void setMinP(int minP)
+	public int getMinPlayers()
 	{
-		this.minP = minP;
+		return minPlayers;
 	}
 
 
-	public int getMaxP()
+	public void setMinPlayers(int minP)
 	{
-		return maxP;
+		this.minPlayers = minP;
 	}
 
 
-	public void setMaxP(int maxP)
+	public int getMaxPlayers()
 	{
-		this.maxP = maxP;
+		return maxPlayers;
 	}
 
 
-	public boolean isJoin()
+	public void setMaxPlayers(int maxP)
 	{
-		return join;
+		this.maxPlayers = maxP;
 	}
 
 
-	public void setJoin(boolean join)
+	public int getPlayerCount()
 	{
-		this.join = join;
+		return playerCount;
 	}
 
 
-	public int getPlayers()
+	public void setPlayerCount(int playerCount)
+	{
+		this.playerCount = playerCount;
+	}
+
+
+	public List<UserSession> getPlayers()
 	{
 		return players;
 	}
 
 
-	public void setPlayers(int players)
+	public boolean addPlayer(UserSession player)
 	{
-		this.players = players;
+		return players.add(player);
 	}
+
+
+	public boolean removePlayer(UserSession player)
+	{
+		return players.remove(player);
+	}
+
+
+	public UserSession getCreator()
+	{
+		return creator;
+	}
+
 }

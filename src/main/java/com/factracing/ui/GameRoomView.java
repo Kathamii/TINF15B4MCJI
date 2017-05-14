@@ -46,9 +46,9 @@ public class GameRoomView extends VerticalLayout implements View
 		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
 		Label createRoomLabel = new Label("<h2Game Room<h2>", ContentMode.HTML);
 
-		GameRoom room = FactRacingUI.getUserSession().getGRID();
-		room.setPlayers(room.getPlayers() + 1);
-		ListSelect<String> playerList = new ListSelect<>(room.getPlayers() + "/" + room.getMaxP() + " Players (" + room.getMinP() + " Minimum)");
+		GameRoom room = FactRacingUI.getUserSession().getCurrentGameRoom();
+		room.setPlayerCount(room.getPlayerCount() + 1);
+		ListSelect<String> playerList = new ListSelect<>(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
 		playerList.setItems(FactRacingUI.getUserSession().getUserName());
 		playerList.setWidth("350px");
 		HorizontalLayout deckChooserLayout = createDeckChooserLayout();
@@ -130,7 +130,7 @@ public class GameRoomView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-		if (FactRacingUI.getUserSession().getGRID().equals(null))
+		if (FactRacingUI.getUserSession().getCurrentGameRoom().equals(null))
 		{
 			UI.getCurrent().getNavigator().navigateTo(CreateGameRoomView.VIEW_NAME);
 		}
