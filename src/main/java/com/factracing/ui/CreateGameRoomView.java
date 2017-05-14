@@ -45,7 +45,9 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
 		Label createRoomLabel = new Label("<h2>Create Game Room<h2>", ContentMode.HTML);
 		TextField minPlayersField = new TextField("Minimum Players:");
+		minPlayersField.setValue("2");
 		TextField maxPlayersField = new TextField("Maximum Players:");
+		maxPlayersField.setValue("2");
 
 		HorizontalLayout deckChooserLayout = createDeckChooserLayout();
 
@@ -55,7 +57,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 			room.setMinP(Integer.valueOf(minPlayersField.getValue()));
 			room.setMaxP(Integer.valueOf(maxPlayersField.getValue()));
 			FactRacingUI.getUserSession().setGRID(room);
-			
+
 			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
 		});
 
@@ -97,7 +99,8 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		addButton.addClickListener(e -> {
 			Set<String> selectedDecks = availableDecks.getSelectedItems();
 			Iterator<String> it = selectedDecks.iterator();
-			while(it.hasNext()) {
+			while (it.hasNext())
+			{
 				String item = it.next();
 				availableDeckList.remove(item);
 				usedDeckList.add(item);
@@ -111,7 +114,8 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		removeButton.addClickListener(e -> {
 			Set<String> selectedDecks = usedDecks.getSelectedItems();
 			Iterator<String> it = selectedDecks.iterator();
-			while(it.hasNext()) {
+			while (it.hasNext())
+			{
 				String item = it.next();
 				usedDeckList.remove(item);
 				availableDeckList.add(item);
