@@ -144,7 +144,7 @@ public class MainNavigationView extends VerticalLayout implements View
 	private void showManualWindow()
 	{
 		Window popUp = new Window();
-		popUp.setWidth("500px");
+		popUp.setWidth("700px");
 		popUp.setHeight("500px");
 		popUp.setResizable(false);
 		popUp.center();
@@ -154,8 +154,20 @@ public class MainNavigationView extends VerticalLayout implements View
 		popUpLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		Label welcomeLabel = new Label("<h2>Fact Racing Manual<h2>", ContentMode.HTML);
+		Label rule1 = new Label("1. Everybody starts on the field in the top left corner.");
+		Label rule2 = new Label("2. The starting player is decided at random.");
+		Label rule3 = new Label("3. If it's your turn, you first roll your dice before moving.");
+		Label rule4 = new Label("4. Red fields are easy questions, black fields are hard questions.");
+		Label rule5 = new Label("5. If you get the question right, you get points.");
+		Label rule6 = new Label("6. If you get the question wrong, you get a penalty.");
+		Label rule7 = new Label("7. If you complete a round, you get points.");
+		Label rule8 = new Label("8. Accumulating a certain amount of points will win you the game.");
+		Label rule9 = new Label("9. The game ends if there are no more questions. Winner is the player with the most points.");
+		
 
-		popUpLayout.addComponents(welcomeLabel);
+		popUpLayout.addComponent(welcomeLabel);
+		popUpLayout.setDefaultComponentAlignment(Alignment.TOP_LEFT);
+		popUpLayout.addComponents(rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8, rule9);
 
 		popUp.setContent(popUpLayout);
 		UI.getCurrent().addWindow(popUp);
