@@ -16,6 +16,7 @@ public class GameRoom
 	private int maxPlayers;
 	private int playerCount;
 	private List<UserSession> players;
+	private List<Deck> decks;
 	private UserSession creator;
 
 
@@ -24,6 +25,7 @@ public class GameRoom
 		players = new ArrayList<>();
 		this.creator = creator;
 		players.add(creator);
+		playerCount++;
 	}
 
 
@@ -69,33 +71,66 @@ public class GameRoom
 	}
 
 
-	public void setPlayerCount(int playerCount)
-	{
-		this.playerCount = playerCount;
-	}
-
-
 	public List<UserSession> getPlayers()
 	{
 		return players;
 	}
 
 
+	public List<String> getPlayerNames()
+	{
+		List<String> playerNames = new ArrayList(players.size());
+		for (UserSession player : players)
+		{
+			playerNames.add(player.getUserName());
+		}
+		return playerNames;
+	}
+
+
 	public boolean addPlayer(UserSession player)
 	{
-		return players.add(player);
+		if (players.add(player))
+		{
+			playerCount++;
+			return true;
+		}
+		return false;
 	}
 
 
 	public boolean removePlayer(UserSession player)
 	{
-		return players.remove(player);
+		if (players.remove(player))
+		{
+			playerCount--;
+			return true;
+		}
+		return false;
 	}
 
 
 	public UserSession getCreator()
 	{
 		return creator;
+	}
+
+
+	public List<Deck> getDecks()
+	{
+		return decks;
+	}
+
+
+	public boolean addDeck(Deck deck)
+	{
+		return decks.add(deck);
+	}
+
+
+	public boolean removeDeck(Deck deck)
+	{
+		return decks.remove(deck);
 	}
 
 }

@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class Game
 {
 
-	private LinkedList<Decks> decks;
+	private LinkedList<Deck> decks;
 	private Dice dice = new Dice();
 	private final PlayingField field;
 
@@ -22,13 +22,13 @@ public class Game
 	}
 
 
-	public LinkedList<Decks> getDecks()
+	public LinkedList<Deck> getDecks()
 	{
 		return decks;
 	}
 
 
-	public void setDecks(LinkedList<Decks> decks)
+	public void setDecks(LinkedList<Deck> decks)
 	{
 		this.decks = decks;
 	}

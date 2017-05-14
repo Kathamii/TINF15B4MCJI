@@ -7,14 +7,14 @@ import java.util.LinkedList;
 
 
 @Service
-public class Decks
+public class Deck
 {
 
 	private String category;
 	private LinkedList<Card> Cards;
 
 
-	public Decks()
+	public Deck()
 	{
 	}
 

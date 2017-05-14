@@ -27,6 +27,8 @@ public class GameRoomView extends VerticalLayout implements View
 {
 
 	public static final String VIEW_NAME = "gameRoom";
+	
+	private ListSelect<String> playerList;
 
 
 	public GameRoomView()
@@ -47,14 +49,17 @@ public class GameRoomView extends VerticalLayout implements View
 		Label createRoomLabel = new Label("<h2Game Room<h2>", ContentMode.HTML);
 
 		GameRoom room = FactRacingUI.getUserSession().getCurrentGameRoom();
-		room.setPlayerCount(room.getPlayerCount() + 1);
-		ListSelect<String> playerList = new ListSelect<>(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
-		playerList.setItems(FactRacingUI.getUserSession().getUserName());
+		playerList = new ListSelect<>(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
+		playerList.setItems(room.getPlayerNames());
 		playerList.setWidth("350px");
 		HorizontalLayout deckChooserLayout = createDeckChooserLayout();
 
 		Button startGameButton = new Button("Start Game");
 		startGameButton.addClickListener(e -> {
+			if(room.getPlayerCount() < room.getMinPlayers())
+				return;
+			if(room.getPlayerCount() > room.getMaxPlayers())
+				return;
 		});
 
 		Button backButton = new Button("Leave");
@@ -130,10 +135,7 @@ public class GameRoomView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-		if (FactRacingUI.getUserSession().getCurrentGameRoom().equals(null))
-		{
-			UI.getCurrent().getNavigator().navigateTo(CreateGameRoomView.VIEW_NAME);
-		}
+		//FactRacingUI.getUserSession().setCurrentGameRoom(room); Retrieve gameroom from database here and update stuff!
 		UI.getCurrent().getPage().setTitle("Game Room - Fact Racing");
 		initializeLayout();
 	}
