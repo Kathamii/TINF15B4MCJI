@@ -43,7 +43,6 @@ public class FactRacingUI extends UI
 		navigator.addView(MainNavigationView.VIEW_NAME, new MainNavigationView());
 		navigator.addView(CreateGameRoomView.VIEW_NAME, new CreateGameRoomView());
 		navigator.addView(GameRoomView.VIEW_NAME, new GameRoomView());
-		navigator.addView(ManualView.VIEW_NAME, new ManualView());
 		
 		navigator.navigateTo("");
 		setNavigator(navigator);

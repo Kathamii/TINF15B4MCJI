@@ -67,7 +67,7 @@ public class MainNavigationView extends VerticalLayout implements View
 		Button manualButton = new Button("Read Manual");
 		manualButton.setSizeFull();
 		manualButton.addClickListener(e -> {
-			UI.getCurrent().getNavigator().navigateTo(ManualView.VIEW_NAME);
+			showManualWindow();
 		});
 
 		Button joinRandomRoomButton = new Button("Join Random Game Room");
@@ -138,6 +138,27 @@ public class MainNavigationView extends VerticalLayout implements View
 		userConfigLayout.addComponent(changeNameButton);
 
 		return userConfigLayout;
+	}
+	
+
+	private void showManualWindow()
+	{
+		Window popUp = new Window();
+		popUp.setWidth("500px");
+		popUp.setHeight("500px");
+		popUp.setResizable(false);
+		popUp.center();
+		popUp.setModal(true);
+
+		VerticalLayout popUpLayout = new VerticalLayout();
+		popUpLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+
+		Label welcomeLabel = new Label("<h2>Fact Racing Manual<h2>", ContentMode.HTML);
+
+		popUpLayout.addComponents(welcomeLabel);
+
+		popUp.setContent(popUpLayout);
+		UI.getCurrent().addWindow(popUp);
 	}
 
 }
