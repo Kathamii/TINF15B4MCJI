@@ -67,6 +67,7 @@ public class MainNavigationView extends VerticalLayout implements View
 		Button manualButton = new Button("Read Manual");
 		manualButton.setSizeFull();
 		manualButton.addClickListener(e -> {
+			UI.getCurrent().getNavigator().navigateTo(ManualView.VIEW_NAME);
 		});
 
 		Button joinRandomRoomButton = new Button("Join Random Game Room");
