@@ -20,7 +20,6 @@ public class FactRacingUI extends UI
 
 	private Navigator navigator;
 
-	@Autowired
 	private UserSession user;
 
 
