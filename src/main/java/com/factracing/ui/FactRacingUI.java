@@ -1,5 +1,6 @@
 package com.factracing.ui;
 
+
 import org.springframework.context.annotation.Configuration;
 
 import com.factracing.beans.UserSession;
@@ -10,21 +11,27 @@ import com.vaadin.spring.annotation.EnableVaadin;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 
+
 @Theme("valo")
 @SpringUI
-public class FactRacingUI extends UI {
+public class FactRacingUI extends UI
+{
 
 	private Navigator navigator;
 
 	private UserSession user;
 
+
 	@Configuration
 	@EnableVaadin
-	public static class MyConfiguration {
+	public static class MyConfiguration
+	{
 	}
 
+
 	@Override
-	protected void init(VaadinRequest vaadinRequest) {
+	protected void init(VaadinRequest vaadinRequest)
+	{
 		getPage().setTitle("Fact Racing");
 
 		navigator = new Navigator(this, this);
@@ -39,7 +46,9 @@ public class FactRacingUI extends UI {
 		setNavigator(navigator);
 	}
 
-	public UserSession getUserSession() {
+
+	public UserSession getUserSession()
+	{
 		return user;
 	}
 }

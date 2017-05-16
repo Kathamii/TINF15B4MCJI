@@ -1,73 +1,101 @@
 package com.factracing.components;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import com.factracing.beans.Deck;
 import com.vaadin.ui.ListSelect;
 
-public class DeckChooser extends ListSelect<String> {
+
+public class DeckChooser extends ListSelect<String>
+{
 
 	private List<Deck> deckList;
 
-	public DeckChooser(String caption) {
+
+	public DeckChooser(String caption)
+	{
 		super(caption);
 		deckList = new ArrayList<Deck>();
 		setWidth("150px");
 	}
 
-	public DeckChooser(String caption, Deck... decks) {
+
+	public DeckChooser(String caption, Deck... decks)
+	{
 		this(caption);
 		addDecks(decks);
 	}
 
-	public void addDeck(Deck deck) {
+
+	public void addDeck(Deck deck)
+	{
 		deckList.add(deck);
 		update();
 	}
 
-	public void addDecks(Deck... decks) {
-		for (Deck deck : decks) {
+
+	public void addDecks(Deck... decks)
+	{
+		for (Deck deck : decks)
+		{
 			deckList.add(deck);
 		}
 		update();
 	}
 
-	public void removeDeck(Deck deck) {
+
+	public void removeDeck(Deck deck)
+	{
 		deckList.remove(deck);
 		update();
 	}
 
-	public void removeDecks(Deck... decks) {
-		for (Deck deck : decks) {
+
+	public void removeDecks(Deck... decks)
+	{
+		for (Deck deck : decks)
+		{
 			deckList.remove(deck);
 		}
 		update();
 	}
 
-	public Deck getDeckByName(String name) {
-		for (Deck deck : deckList) {
-			if (deck.getCategory().equalsIgnoreCase(name)) {
+
+	public Deck getDeckByName(String name)
+	{
+		for (Deck deck : deckList)
+		{
+			if (deck.getCategory().equalsIgnoreCase(name))
+			{
 				return deck;
 			}
 		}
 		return null;
 	}
 
-	public List<Deck> getDecks() {
+
+	public List<Deck> getDecks()
+	{
 		return deckList;
 	}
 
-	public int getDeckCount() {
+
+	public int getDeckCount()
+	{
 		return deckList.size();
 	}
+
 
 	/**
 	 * Updates the ListSelect component with the current state of the list data.
 	 */
-	private void update() {
+	private void update()
+	{
 		List<String> displayNames = new ArrayList<String>(deckList.size());
-		for (Deck deck : deckList) {
+		for (Deck deck : deckList)
+		{
 			if (deck != null)
 				displayNames.add(deck.getCategory());
 		}

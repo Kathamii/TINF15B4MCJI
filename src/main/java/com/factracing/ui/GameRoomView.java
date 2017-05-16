@@ -51,16 +51,17 @@ public class GameRoomView extends VerticalLayout implements View
 		Label createRoomLabel = new Label("<h2Game Room<h2>", ContentMode.HTML);
 
 		GameRoom room = ((FactRacingUI) UI.getCurrent()).getUserSession().getCurrentGameRoom();
-		playerList = new ListSelect<>(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
+		playerList = new ListSelect<>(
+				room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
 		playerList.setItems(room.getPlayerNames());
 		playerList.setWidth("350px");
 		HorizontalLayout deckChooserLayout = createDeckChooserLayout(room);
 
 		Button startGameButton = new Button("Start Game");
 		startGameButton.addClickListener(e -> {
-			if(room.getPlayerCount() < room.getMinPlayers())
+			if (room.getPlayerCount() < room.getMinPlayers())
 				return;
-			if(room.getPlayerCount() > room.getMaxPlayers())
+			if (room.getPlayerCount() > room.getMaxPlayers())
 				return;
 		});
 
@@ -87,8 +88,9 @@ public class GameRoomView extends VerticalLayout implements View
 		availableDecks.addDecks(new Deck("History"), new Deck("Cars"), new Deck("Animals"), new Deck("Math"));
 
 		DeckChooser usedDecks = new DeckChooser("In Use");
-		for (Deck deck : room.getDecks()) {
-			if(deck == null)
+		for (Deck deck : room.getDecks())
+		{
+			if (deck == null)
 				continue;
 			usedDecks.addDeck(deck);
 			// remove decks from available list that have already been added to the In Use list
@@ -103,7 +105,8 @@ public class GameRoomView extends VerticalLayout implements View
 			Set<String> selectedDecks = availableDecks.getSelectedItems();
 			Iterator<String> it = selectedDecks.iterator();
 			Deck[] decks = new Deck[availableDecks.getDeckCount()];
-			for (int i = 0; it.hasNext(); i++) {
+			for (int i = 0; it.hasNext(); i++)
+			{
 				String item = it.next();
 				Deck deck = availableDecks.getDeckByName(item);
 				decks[i] = deck;
@@ -119,7 +122,8 @@ public class GameRoomView extends VerticalLayout implements View
 			Set<String> selectedDecks = usedDecks.getSelectedItems();
 			Iterator<String> it = selectedDecks.iterator();
 			Deck[] decks = new Deck[usedDecks.getDeckCount()];
-			for (int i = 0; it.hasNext(); i++) {
+			for (int i = 0; it.hasNext(); i++)
+			{
 				String item = it.next();
 				Deck deck = usedDecks.getDeckByName(item);
 				decks[i] = deck;
@@ -139,7 +143,7 @@ public class GameRoomView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-		//FactRacingUI.getUserSession().setCurrentGameRoom(room); Retrieve gameroom from database here and update stuff!
+		// FactRacingUI.getUserSession().setCurrentGameRoom(room); Retrieve gameroom from database here and update stuff!
 		UI.getCurrent().getPage().setTitle("Game Room - Fact Racing");
 		initializeLayout();
 	}

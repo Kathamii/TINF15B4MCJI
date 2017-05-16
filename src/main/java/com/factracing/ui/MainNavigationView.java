@@ -166,7 +166,6 @@ public class MainNavigationView extends VerticalLayout implements View
 		Label rule8 = new Label("8. Accumulating a certain amount of points will win you the game.");
 		Label rule9 = new Label("9. The game ends if there are no more questions. Winner is the player with the most points.");
 
-
 		popUpLayout.addComponent(welcomeLabel);
 		popUpLayout.setDefaultComponentAlignment(Alignment.TOP_LEFT);
 		popUpLayout.addComponents(rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8, rule9);
