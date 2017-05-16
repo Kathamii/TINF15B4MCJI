@@ -53,10 +53,10 @@ public class CreateGameRoomView extends VerticalLayout implements View
 
 		Button createRoomButton = new Button("Create Game Room");
 		createRoomButton.addClickListener(e -> {
-			GameRoom room = new GameRoom(FactRacingUI.getUserSession());
+			GameRoom room = new GameRoom(((FactRacingUI) UI.getCurrent()).getUserSession());
 			room.setMinPlayers(Integer.valueOf(minPlayersField.getValue()));
 			room.setMaxPlayers(Integer.valueOf(maxPlayersField.getValue()));
-			FactRacingUI.getUserSession().setCurrentGameRoom(room);
+			((FactRacingUI) UI.getCurrent()).getUserSession().setCurrentGameRoom(room);
 
 			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
 		});
@@ -72,7 +72,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 
 	/**
 	 * Creates the deck chooser lists.
-	 * 
+	 *
 	 * @return
 	 */
 	private HorizontalLayout createDeckChooserLayout()

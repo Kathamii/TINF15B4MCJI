@@ -40,7 +40,7 @@ public class WelcomeView extends VerticalLayout implements View
 				nameField.setComponentError(new UserError("Invalid name!"));
 				return;
 			}
-			FactRacingUI.getUserSession().setUserName(userName);
+			((FactRacingUI) UI.getCurrent()).getUserSession().setUserName(userName);
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 
@@ -52,7 +52,7 @@ public class WelcomeView extends VerticalLayout implements View
 	public void enter(ViewChangeEvent event)
 	{
 		// if the user already logged in don't allow him to go back here
-		if (FactRacingUI.getUserSession().getUserName() != null)
+		if (((FactRacingUI) UI.getCurrent()).getUserSession().getUserName() != null)
 		{
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		}

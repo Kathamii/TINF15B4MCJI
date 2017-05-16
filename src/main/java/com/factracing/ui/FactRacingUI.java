@@ -19,9 +19,9 @@ public class FactRacingUI extends UI
 {
 
 	private Navigator navigator;
-	
+
 	@Autowired
-	private static UserSession user;
+	private UserSession user;
 
 
 	@Configuration
@@ -35,20 +35,20 @@ public class FactRacingUI extends UI
 	protected void init(VaadinRequest vaadinRequest)
 	{
 		getPage().setTitle("Fact Racing");
-		
+
 		navigator = new Navigator(this, this);
 		user = new UserSession();
-		
+
 		navigator.addView(WelcomeView.VIEW_NAME, new WelcomeView());
 		navigator.addView(MainNavigationView.VIEW_NAME, new MainNavigationView());
 		navigator.addView(CreateGameRoomView.VIEW_NAME, new CreateGameRoomView());
 		navigator.addView(GameRoomView.VIEW_NAME, new GameRoomView());
-		
+
 		navigator.navigateTo("");
 		setNavigator(navigator);
 	}
-	
-	public static UserSession getUserSession() {
+
+	public UserSession getUserSession() {
 		return user;
 	}
 }

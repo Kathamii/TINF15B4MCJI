@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.factracing.beans.UserSession;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -48,14 +49,15 @@ public class MainNavigationView extends VerticalLayout implements View
 
 	private void updateNameOnPage()
 	{
-		welcomeLabel.setValue("<h2><center>Welcome, <center><br>" + FactRacingUI.getUserSession().getUserName() + "!<h2>");
-		UI.getCurrent().getPage().setTitle(FactRacingUI.getUserSession().getUserName() + " - Fact Racing");
+		UserSession session = ((FactRacingUI) UI.getCurrent()).getUserSession();
+		welcomeLabel.setValue("<h2><center>Welcome, <center><br>" + session.getUserName() + "!<h2>");
+		UI.getCurrent().getPage().setTitle(session.getUserName() + " - Fact Racing");
 	}
 
 
 	/**
 	 * Creates the buttons on the main navigation page.
-	 * 
+	 *
 	 * @return
 	 */
 	private VerticalLayout createButtonLayout()
@@ -89,7 +91,7 @@ public class MainNavigationView extends VerticalLayout implements View
 
 	/**
 	 * Creates the user specific buttons, at this point only name change.
-	 * 
+	 *
 	 * @return
 	 */
 	private VerticalLayout createConfigLayout()
@@ -112,7 +114,7 @@ public class MainNavigationView extends VerticalLayout implements View
 
 			Label welcomeLabel = new Label("<h2>What do you want your name to be?<h2>", ContentMode.HTML);
 			final TextField nameField = new TextField();
-			nameField.setValue(FactRacingUI.getUserSession().getUserName());
+			nameField.setValue(((FactRacingUI) UI.getCurrent()).getUserSession().getUserName());
 
 			Button button = new Button("Use This Name");
 			button.setClickShortcut(KeyCode.ENTER, 0);
@@ -123,7 +125,7 @@ public class MainNavigationView extends VerticalLayout implements View
 					nameField.setComponentError(new UserError("Invalid name!"));
 					return;
 				}
-				FactRacingUI.getUserSession().setUserName(userName);
+				((FactRacingUI) UI.getCurrent()).getUserSession().setUserName(userName);
 				updateNameOnPage();
 				popUp.close();
 			});
@@ -139,7 +141,7 @@ public class MainNavigationView extends VerticalLayout implements View
 
 		return userConfigLayout;
 	}
-	
+
 
 	private void showManualWindow()
 	{
@@ -163,7 +165,7 @@ public class MainNavigationView extends VerticalLayout implements View
 		Label rule7 = new Label("7. If you complete a round, you get points.");
 		Label rule8 = new Label("8. Accumulating a certain amount of points will win you the game.");
 		Label rule9 = new Label("9. The game ends if there are no more questions. Winner is the player with the most points.");
-		
+
 
 		popUpLayout.addComponent(welcomeLabel);
 		popUpLayout.setDefaultComponentAlignment(Alignment.TOP_LEFT);
