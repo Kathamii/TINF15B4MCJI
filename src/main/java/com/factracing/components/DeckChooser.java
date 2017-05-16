@@ -54,6 +54,10 @@ public class DeckChooser extends ListSelect<String> {
 		return null;
 	}
 
+	public List<Deck> getDecks() {
+		return deckList;
+	}
+
 	public int getDeckCount() {
 		return deckList.size();
 	}

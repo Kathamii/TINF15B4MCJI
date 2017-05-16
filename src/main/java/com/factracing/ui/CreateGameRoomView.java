@@ -43,13 +43,15 @@ public class CreateGameRoomView extends VerticalLayout implements View {
 		TextField maxPlayersField = new TextField("Maximum Players:");
 		maxPlayersField.setValue("2");
 
-		HorizontalLayout deckChooserLayout = createDeckChooserLayout();
+		DeckChooser usedDecks = new DeckChooser("In Use");
+		HorizontalLayout deckChooserLayout = createDeckChooserLayout(usedDecks);
 
 		Button createRoomButton = new Button("Create Game Room");
 		createRoomButton.addClickListener(e -> {
 			GameRoom room = new GameRoom(((FactRacingUI) UI.getCurrent()).getUserSession());
 			room.setMinPlayers(Integer.valueOf(minPlayersField.getValue()));
 			room.setMaxPlayers(Integer.valueOf(maxPlayersField.getValue()));
+			room.setDecks(usedDecks.getDecks());
 			((FactRacingUI) UI.getCurrent()).getUserSession().setCurrentGameRoom(room);
 
 			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
@@ -69,14 +71,12 @@ public class CreateGameRoomView extends VerticalLayout implements View {
 	 *
 	 * @return
 	 */
-	private HorizontalLayout createDeckChooserLayout() {
+	private HorizontalLayout createDeckChooserLayout(DeckChooser usedDecks) {
 		HorizontalLayout layout = new HorizontalLayout();
 		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		DeckChooser availableDecks = new DeckChooser("Available");
 		availableDecks.addDecks(new Deck("History"), new Deck("Cars"), new Deck("Animals"), new Deck("Math"));
-
-		DeckChooser usedDecks = new DeckChooser("In Use");
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = new Button("-->");
@@ -92,6 +92,7 @@ public class CreateGameRoomView extends VerticalLayout implements View {
 			}
 			availableDecks.removeDecks(decks);
 			usedDecks.addDecks(decks);
+
 		});
 
 		Button removeButton = new Button("<--");

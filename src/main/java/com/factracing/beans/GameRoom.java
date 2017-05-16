@@ -121,6 +121,9 @@ public class GameRoom
 		return decks;
 	}
 
+	public void setDecks(List<Deck> decks) {
+		this.decks = decks;
+	}
 
 	public boolean addDeck(Deck deck)
 	{

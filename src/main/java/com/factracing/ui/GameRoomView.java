@@ -6,8 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
+import com.factracing.components.DeckChooser;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -52,7 +54,7 @@ public class GameRoomView extends VerticalLayout implements View
 		playerList = new ListSelect<>(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
 		playerList.setItems(room.getPlayerNames());
 		playerList.setWidth("350px");
-		HorizontalLayout deckChooserLayout = createDeckChooserLayout();
+		HorizontalLayout deckChooserLayout = createDeckChooserLayout(room);
 
 		Button startGameButton = new Button("Start Game");
 		startGameButton.addClickListener(e -> {
@@ -76,23 +78,23 @@ public class GameRoomView extends VerticalLayout implements View
 	 *
 	 * @return
 	 */
-	private HorizontalLayout createDeckChooserLayout()
+	private HorizontalLayout createDeckChooserLayout(GameRoom room)
 	{
 		HorizontalLayout layout = new HorizontalLayout();
 		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		ListSelect<String> availableDecks = new ListSelect<>("Available");
-		availableDecks.setWidth("150px");
-		List<String> availableDeckList = new ArrayList<>(); // holds the items
-		availableDeckList.add("History");
-		availableDeckList.add("Cars");
-		availableDeckList.add("Animals");
-		availableDeckList.add("Math");
-		availableDecks.setItems(availableDeckList);
+		DeckChooser availableDecks = new DeckChooser("Available");
+		availableDecks.addDecks(new Deck("History"), new Deck("Cars"), new Deck("Animals"), new Deck("Math"));
 
-		ListSelect<String> usedDecks = new ListSelect<>("In Use");
-		usedDecks.setWidth("150px");
-		List<String> usedDeckList = new ArrayList<>(); // holds the items
+		DeckChooser usedDecks = new DeckChooser("In Use");
+		for (Deck deck : room.getDecks()) {
+			if(deck == null)
+				continue;
+			usedDecks.addDeck(deck);
+			// remove decks from available list that have already been added to the In Use list
+			Deck deck2 = availableDecks.getDeckByName(deck.getCategory());
+			availableDecks.removeDeck(deck2);
+		}
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = new Button("-->");
@@ -100,14 +102,15 @@ public class GameRoomView extends VerticalLayout implements View
 		addButton.addClickListener(e -> {
 			Set<String> selectedDecks = availableDecks.getSelectedItems();
 			Iterator<String> it = selectedDecks.iterator();
-			while (it.hasNext())
-			{
+			Deck[] decks = new Deck[availableDecks.getDeckCount()];
+			for (int i = 0; it.hasNext(); i++) {
 				String item = it.next();
-				availableDeckList.remove(item);
-				usedDeckList.add(item);
+				Deck deck = availableDecks.getDeckByName(item);
+				decks[i] = deck;
 			}
-			availableDecks.setItems(availableDeckList);
-			usedDecks.setItems(usedDeckList);
+			availableDecks.removeDecks(decks);
+			usedDecks.addDecks(decks);
+			room.setDecks(usedDecks.getDecks());
 		});
 
 		Button removeButton = new Button("<--");
@@ -115,14 +118,15 @@ public class GameRoomView extends VerticalLayout implements View
 		removeButton.addClickListener(e -> {
 			Set<String> selectedDecks = usedDecks.getSelectedItems();
 			Iterator<String> it = selectedDecks.iterator();
-			while (it.hasNext())
-			{
+			Deck[] decks = new Deck[usedDecks.getDeckCount()];
+			for (int i = 0; it.hasNext(); i++) {
 				String item = it.next();
-				usedDeckList.remove(item);
-				availableDeckList.add(item);
+				Deck deck = usedDecks.getDeckByName(item);
+				decks[i] = deck;
 			}
-			availableDecks.setItems(availableDeckList);
-			usedDecks.setItems(usedDeckList);
+			availableDecks.addDecks(decks);
+			usedDecks.removeDecks(decks);
+			room.setDecks(usedDecks.getDecks());
 		});
 
 		buttonLayout.addComponents(addButton, removeButton);
