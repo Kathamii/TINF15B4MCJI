@@ -14,8 +14,9 @@ public class Deck
 	private LinkedList<Card> Cards;
 
 
-	public Deck()
+	public Deck(String category)
 	{
+		this.category = category;
 	}
 
 

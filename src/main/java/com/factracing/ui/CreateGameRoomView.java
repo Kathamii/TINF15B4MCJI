@@ -1,12 +1,13 @@
 package com.factracing.ui;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
+import com.factracing.components.DeckChooser;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -15,32 +16,25 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-
 @SpringView(name = CreateGameRoomView.VIEW_NAME)
-public class CreateGameRoomView extends VerticalLayout implements View
-{
+public class CreateGameRoomView extends VerticalLayout implements View {
 
 	public static final String VIEW_NAME = "createGameRoom";
 
-
-	public CreateGameRoomView()
-	{
+	public CreateGameRoomView() {
 		setSpacing(true);
 		setMargin(true);
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 	}
 
-
 	/**
 	 * Initializes layout on each enter.
 	 */
-	private void initializeLayout()
-	{
+	private void initializeLayout() {
 		removeAllComponents();
 		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
 		Label createRoomLabel = new Label("<h2>Create Game Room<h2>", ContentMode.HTML);
@@ -66,32 +60,23 @@ public class CreateGameRoomView extends VerticalLayout implements View
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 
-		addComponents(factRacingLabel, createRoomLabel, minPlayersField, maxPlayersField, deckChooserLayout, createRoomButton, backButton);
+		addComponents(factRacingLabel, createRoomLabel, minPlayersField, maxPlayersField, deckChooserLayout,
+				createRoomButton, backButton);
 	}
-
 
 	/**
 	 * Creates the deck chooser lists.
 	 *
 	 * @return
 	 */
-	private HorizontalLayout createDeckChooserLayout()
-	{
+	private HorizontalLayout createDeckChooserLayout() {
 		HorizontalLayout layout = new HorizontalLayout();
 		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		ListSelect<String> availableDecks = new ListSelect<>("Available");
-		availableDecks.setWidth("150px");
-		List<String> availableDeckList = new ArrayList<>(); // holds the items
-		availableDeckList.add("History");
-		availableDeckList.add("Cars");
-		availableDeckList.add("Animals");
-		availableDeckList.add("Math");
-		availableDecks.setItems(availableDeckList);
+		DeckChooser availableDecks = new DeckChooser("Available");
+		availableDecks.addDecks(new Deck("History"), new Deck("Cars"), new Deck("Animals"), new Deck("Math"));
 
-		ListSelect<String> usedDecks = new ListSelect<>("In Use");
-		usedDecks.setWidth("150px");
-		List<String> usedDeckList = new ArrayList<>(); // holds the items
+		DeckChooser usedDecks = new DeckChooser("In Use");
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = new Button("-->");
@@ -99,14 +84,14 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		addButton.addClickListener(e -> {
 			Set<String> selectedDecks = availableDecks.getSelectedItems();
 			Iterator<String> it = selectedDecks.iterator();
-			while (it.hasNext())
-			{
+			Deck[] decks = new Deck[availableDecks.getDeckCount()];
+			for (int i = 0; it.hasNext(); i++) {
 				String item = it.next();
-				availableDeckList.remove(item);
-				usedDeckList.add(item);
+				Deck deck = availableDecks.getDeckByName(item);
+				decks[i] = deck;
 			}
-			availableDecks.setItems(availableDeckList);
-			usedDecks.setItems(usedDeckList);
+			availableDecks.removeDecks(decks);
+			usedDecks.addDecks(decks);
 		});
 
 		Button removeButton = new Button("<--");
@@ -114,14 +99,14 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		removeButton.addClickListener(e -> {
 			Set<String> selectedDecks = usedDecks.getSelectedItems();
 			Iterator<String> it = selectedDecks.iterator();
-			while (it.hasNext())
-			{
+			Deck[] decks = new Deck[usedDecks.getDeckCount()];
+			for (int i = 0; it.hasNext(); i++) {
 				String item = it.next();
-				usedDeckList.remove(item);
-				availableDeckList.add(item);
+				Deck deck = usedDecks.getDeckByName(item);
+				decks[i] = deck;
 			}
-			availableDecks.setItems(availableDeckList);
-			usedDecks.setItems(usedDeckList);
+			availableDecks.addDecks(decks);
+			usedDecks.removeDecks(decks);
 		});
 
 		buttonLayout.addComponents(addButton, removeButton);
@@ -130,10 +115,8 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		return layout;
 	}
 
-
 	@Override
-	public void enter(ViewChangeEvent event)
-	{
+	public void enter(ViewChangeEvent event) {
 		UI.getCurrent().getPage().setTitle("Create Game Room - Fact Racing");
 		initializeLayout();
 	}
