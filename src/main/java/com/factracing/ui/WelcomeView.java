@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.factracing.validation.NameValidator;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;

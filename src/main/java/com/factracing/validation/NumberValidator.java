@@ -1,4 +1,4 @@
-package com.factracing.ui;
+package com.factracing.validation;
 
 /**
  * Created by Janik on 17.05.2017.
