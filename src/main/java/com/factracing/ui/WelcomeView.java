@@ -34,8 +34,8 @@ public class WelcomeView extends VerticalLayout implements View
 		Button button = new Button("Submit");
 		button.setClickShortcut(KeyCode.ENTER, 0);
 		button.addClickListener(e -> {
-			String userName = nameField.getValue();
-			if (userName == null || userName.length() <= 0)
+			String userName = new NameValidator().validate(nameField.getValue());
+			if (userName == null)
 			{
 				nameField.setComponentError(new UserError("Invalid name!"));
 				return;
