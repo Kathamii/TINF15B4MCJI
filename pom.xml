@@ -94,6 +94,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- end of db dependencies -->
     </dependencies>
 
     <dependencyManagement>
