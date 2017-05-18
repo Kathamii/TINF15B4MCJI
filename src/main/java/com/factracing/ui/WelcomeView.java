@@ -1,11 +1,14 @@
 package com.factracing.ui;
 
 
+import javax.servlet.http.Cookie;
+
 import com.factracing.validation.NameValidator;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.UserError;
+import com.vaadin.server.VaadinService;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Alignment;
@@ -35,13 +38,13 @@ public class WelcomeView extends VerticalLayout implements View
 		Button button = new Button("Submit");
 		button.setClickShortcut(KeyCode.ENTER, 0);
 		button.addClickListener(e -> {
-			String userName = new NameValidator().validate(nameField.getValue());
-			if (userName == null)
+			String username = new NameValidator().validate(nameField.getValue());
+			if (username == null)
 			{
 				nameField.setComponentError(new UserError("Invalid name!"));
 				return;
 			}
-			((FactRacingUI) UI.getCurrent()).getUserSession().setUserName(userName);
+			((FactRacingUI) UI.getCurrent()).updateUserSessionCookie(username);
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 
@@ -52,7 +55,7 @@ public class WelcomeView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-		// if the user already logged in don't allow him to go back here
+		// if the user already known don't allow him to go here
 		if (((FactRacingUI) UI.getCurrent()).getUserSession().getUserName() != null)
 		{
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);

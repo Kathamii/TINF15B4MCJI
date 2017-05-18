@@ -1,11 +1,14 @@
 package com.factracing.ui;
 
 
+import javax.servlet.http.Cookie;
+
 import com.factracing.beans.UserSession;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.UserError;
+import com.vaadin.server.VaadinService;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Alignment;
@@ -119,13 +122,13 @@ public class MainNavigationView extends VerticalLayout implements View
 			Button button = new Button("Use This Name");
 			button.setClickShortcut(KeyCode.ENTER, 0);
 			button.addClickListener(ev -> {
-				String userName = nameField.getValue();
-				if (userName == null || userName.length() <= 0)
+				String username = nameField.getValue();
+				if (username == null || username.length() <= 0)
 				{
 					nameField.setComponentError(new UserError("Invalid name!"));
 					return;
 				}
-				((FactRacingUI) UI.getCurrent()).getUserSession().setUserName(userName);
+				((FactRacingUI) UI.getCurrent()).updateUserSessionCookie(username);
 				updateNameOnPage();
 				popUp.close();
 			});
