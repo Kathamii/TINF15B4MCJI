@@ -1,9 +1,7 @@
 package com.factracing.ui;
 
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import com.factracing.beans.Deck;
@@ -12,6 +10,7 @@ import com.factracing.beans.UserSession;
 import com.factracing.components.DeckChooser;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.UserError;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Alignment;
@@ -19,7 +18,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.ListSelect;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -31,6 +29,7 @@ public class GameRoomView extends VerticalLayout implements View
 	public static final String VIEW_NAME = "gameRoom";
 
 	private ListSelect<String> playerList;
+	private int aiCount = 0; // amount of AI players in the room
 
 
 	public GameRoomView()
@@ -50,11 +49,25 @@ public class GameRoomView extends VerticalLayout implements View
 		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
 		Label createRoomLabel = new Label("<h2Game Room<h2>", ContentMode.HTML);
 
-		GameRoom room = ((FactRacingUI) UI.getCurrent()).getUserSession().getCurrentGameRoom();
+		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
+		GameRoom room = user.getCurrentGameRoom();
 		playerList = new ListSelect<>(
 				room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
 		playerList.setItems(room.getPlayerNames());
 		playerList.setWidth("350px");
+		Button createAIButton = new Button("Add Computer");
+		createAIButton.addClickListener(e -> {
+			if(room.getMaxPlayers() == room.getPlayerCount()) {
+				createAIButton.setComponentError(new UserError("Can't add more players!"));
+				return;
+			}
+			UserSession newAI = new UserSession(true);
+			newAI.setUserName("Comp" + aiCount++);
+			room.addPlayer(newAI);
+			playerList.setCaption(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
+			playerList.setItems(room.getPlayerNames());
+		});
+		createAIButton.setVisible(room.getCreator().equals(user));
 		HorizontalLayout deckChooserLayout = createDeckChooserLayout(room);
 
 		Button startGameButton = new Button("Start Game");
@@ -70,7 +83,7 @@ public class GameRoomView extends VerticalLayout implements View
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 
-		addComponents(factRacingLabel, createRoomLabel, playerList, deckChooserLayout, startGameButton, backButton);
+		addComponents(factRacingLabel, createRoomLabel, playerList, createAIButton, deckChooserLayout, startGameButton, backButton);
 	}
 
 
