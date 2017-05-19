@@ -55,7 +55,7 @@ public class WelcomeView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-		// if the user already known don't allow him to go here
+		// if the user is already known don't allow him to go here
 		if (((FactRacingUI) UI.getCurrent()).getUserSession().getUserName() != null)
 		{
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);

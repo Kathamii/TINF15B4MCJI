@@ -47,6 +47,7 @@ public class FactRacingUI extends UI
 		navigator.addView(MainNavigationView.VIEW_NAME, new MainNavigationView());
 		navigator.addView(CreateGameRoomView.VIEW_NAME, new CreateGameRoomView());
 		navigator.addView(GameRoomView.VIEW_NAME, new GameRoomView());
+		navigator.addView(GameView.VIEW_NAME, new GameView());
 
 		navigator.navigateTo(WelcomeView.VIEW_NAME);
 		setNavigator(navigator);
@@ -62,10 +63,8 @@ public class FactRacingUI extends UI
 	private void updateUserSessionData()
 	{
 		Cookie sessionCookie = retrieveSessionCookie();
-		if (sessionCookie != null) {
+		if (sessionCookie != null)
 			user.setUserName(sessionCookie.getValue());
-			return;
-		}
 	}
 
 
@@ -88,7 +87,7 @@ public class FactRacingUI extends UI
 	}
 
 
-	private static Cookie getCookieByName(String name)
+	private Cookie getCookieByName(String name)
 	{
 		Cookie[] cookies = VaadinService.getCurrentRequest().getCookies();
 		for (Cookie cookie : cookies)
