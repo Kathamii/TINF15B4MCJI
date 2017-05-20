@@ -76,6 +76,7 @@ public class GameRoomView extends VerticalLayout implements View
 				return;
 			if (room.getPlayerCount() > room.getMaxPlayers())
 				return;
+			UI.getCurrent().getNavigator().navigateTo(GameView.VIEW_NAME);
 		});
 
 		Button backButton = new Button("Leave");

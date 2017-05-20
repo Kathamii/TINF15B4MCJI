@@ -6,8 +6,11 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.spring.annotation.SpringView;
 import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.ListSelect;
+import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 
@@ -44,11 +47,11 @@ public class GameView extends VerticalLayout implements View
 	private HorizontalLayout createNewGameFieldLayout()
 	{
 		HorizontalLayout gameFieldLayout = new HorizontalLayout();
-		
+
 		VerticalLayout questionLayout = createQuestionLayout();
 		VerticalLayout gameLayout = createGameLayout();
 		VerticalLayout gameLogLayout = createGameLogLayout();
-		
+
 		gameFieldLayout.addComponents(questionLayout, gameLayout, gameLogLayout);
 
 		return gameFieldLayout;
@@ -58,6 +61,19 @@ public class GameView extends VerticalLayout implements View
 	private VerticalLayout createQuestionLayout()
 	{
 		VerticalLayout questionLayout = new VerticalLayout();
+		questionLayout.setDefaultComponentAlignment(Alignment.TOP_LEFT);
+
+		TextArea questionArea = new TextArea();
+		questionArea.setWidth("250px");
+
+		ListSelect<String> questionList = new ListSelect<>();
+		questionList.setWidth("250px");
+
+		Button answerButton = new Button("Answer");
+
+		questionLayout.addComponents(questionArea, questionList, answerButton);
+		questionLayout.setComponentAlignment(answerButton, Alignment.MIDDLE_CENTER);
+
 		return questionLayout;
 	}
 
@@ -67,7 +83,8 @@ public class GameView extends VerticalLayout implements View
 		VerticalLayout gameLayout = new VerticalLayout();
 		return gameLayout;
 	}
-	
+
+
 	private VerticalLayout createGameLogLayout()
 	{
 		VerticalLayout gameLogLayout = new VerticalLayout();
