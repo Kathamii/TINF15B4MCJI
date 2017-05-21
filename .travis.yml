@@ -4,11 +4,16 @@ jdk:
  - oraclejdk8
 
 script:
- - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+ - mvn clean install -B -V
+ - mvn sonar:sonar
+
+ after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+  # deploy
 
 # Update to real values
 deploy:
  provider: heroku
  api-key:
   secure: $HEROKU_API_KEY
- app: fact-racing-name
+ app: factracing
