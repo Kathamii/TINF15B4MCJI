@@ -23,7 +23,11 @@
 		<vaadin.version>8.0.5</vaadin.version>
 		<sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
 		<sonar.jacoco.reportPaths>target/jacoco.exec</sonar.jacoco.reportPaths>
+		<!-- Server sonarqube.com -->
+		<sonar.host.url>https://sonarqube.com</sonar.host.url>
+        <!-- Old DHBW sonarqube
 		<sonar.host.url>http://193.196.7.25</sonar.host.url>
+        -->
 		<sonar.language>java</sonar.language>
 	</properties>
 
