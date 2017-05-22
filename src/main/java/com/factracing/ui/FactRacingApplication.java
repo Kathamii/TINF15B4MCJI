@@ -51,7 +51,7 @@ public class FactRacingApplication
 			model.put("records", output);
 
 			// Closing streams
-			connection.close();
+			stmt.close();
 			rs.close();
 			return "db";
 		} catch (Exception e) {
