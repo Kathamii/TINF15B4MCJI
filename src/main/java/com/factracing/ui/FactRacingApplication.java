@@ -48,8 +48,11 @@ public class FactRacingApplication
 			while (rs.next()) {
 				output.add("Read from DB: " + rs.getTimestamp("tick"));
 			}
-
 			model.put("records", output);
+
+			// Closing streams
+			connection.close();
+			rs.close();
 			return "db";
 		} catch (Exception e) {
 			return null;
