@@ -4,6 +4,7 @@ package com.factracing.beans;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
+import java.util.List;
 
 
 @Service
@@ -11,7 +12,7 @@ public class Deck
 {
 
 	private String category;
-	private LinkedList<Card> Cards;
+	private List<Card> Cards;
 
 
 	public Deck(String category)
@@ -32,13 +33,13 @@ public class Deck
 	}
 
 
-	public LinkedList<Card> getCards()
+	public List<Card> getCards()
 	{
 		return Cards;
 	}
 
 
-	public void setCards(LinkedList<Card> cards)
+	public void setCards(List<Card> cards)
 	{
 		Cards = cards;
 	}
