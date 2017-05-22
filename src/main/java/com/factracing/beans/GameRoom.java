@@ -151,8 +151,8 @@ public class GameRoom
 	 */
 	public boolean canStart()
 	{
-		Integer playerCount = new NumberValidator(minPlayers, maxPlayers).validate(this.playerCount);
-		if(this.playerCount != playerCount)
+		Integer playerCountTest = new NumberValidator(minPlayers, maxPlayers).validate(this.playerCount);
+		if(this.playerCount != playerCountTest)
 			return false;
 		if(decks.size() <= 0)
 			return false;
