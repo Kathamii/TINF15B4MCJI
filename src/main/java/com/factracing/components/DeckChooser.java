@@ -2,6 +2,7 @@ package com.factracing.components;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.factracing.beans.Deck;
@@ -11,7 +12,7 @@ import com.vaadin.ui.ListSelect;
 public class DeckChooser extends ListSelect<String>
 {
 
-	private List<Deck> deckList;
+	private ArrayList<Deck> deckList;
 
 
 	public DeckChooser(String caption)
