@@ -1,14 +1,29 @@
 # New Version
+# Can test file with "http://lint.travis-ci.org/"
 language: java
 jdk:
  - oraclejdk8
 
+addons:
+  sonarqube:
+    organization: "factracing"
+    token:
+      secure: 48a57c51b2aaa6ac7065e33d138043ca694410a0
+    branches:
+      - master
+      - develop
+
 script:
- - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+ - mvn clean install -B -V
+ - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+
+#after_success:
+#- if [ "$TRAVIS_BRANCH" == "master" ]; then
+  # deploy
 
 # Update to real values
-deploy:
- provider: heroku
- api-key:
-  secure: $HEROKU_API_KEY
- app: fact-racing-name
+#deploy:
+# provider: heroku
+# api-key:
+#  secure: $HEROKU_API_KEY
+# app: factracing
