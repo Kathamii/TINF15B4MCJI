@@ -82,7 +82,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		DeckChooser availableDecks = new DeckChooser("Available");
-		availableDecks.addDecks(new Deck("History"), new Deck("Cars"), new Deck("Animals"), new Deck("Math"));
+		availableDecks.addDecks(Deck.DefaultDeck.getAllDefaultDecks());
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = new Button("-->");

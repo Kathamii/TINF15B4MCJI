@@ -34,6 +34,7 @@ public class Card
 		return question;
 	}
 
+
 	public String[] getAnswers()
 	{
 		return answers;

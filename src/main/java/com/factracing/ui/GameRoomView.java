@@ -99,7 +99,7 @@ public class GameRoomView extends VerticalLayout implements View
 		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		DeckChooser availableDecks = new DeckChooser("Available");
-		availableDecks.addDecks(new Deck("History"), new Deck("Cars"), new Deck("Animals"), new Deck("Math"));
+		availableDecks.addDecks(Deck.DefaultDeck.getAllDefaultDecks());
 
 		DeckChooser usedDecks = new DeckChooser("In Use");
 		for (Deck deck : room.getDecks())
