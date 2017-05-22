@@ -22,8 +22,8 @@ script:
   # deploy
 
 # Update to real values
-#deploy:
-# provider: heroku
-# api-key:
-#  secure: $HEROKU_API_KEY
-# app: factracing
+deploy:
+ provider: heroku
+ api-key:
+  secure: 80c1cdda-bec8-41ec-a236-93e1e7de6adb
+ app: factracing
