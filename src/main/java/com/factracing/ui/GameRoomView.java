@@ -8,6 +8,7 @@ import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
 import com.factracing.components.DeckChooser;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.UserError;
@@ -113,7 +114,7 @@ public class GameRoomView extends VerticalLayout implements View
 		}
 
 		VerticalLayout buttonLayout = new VerticalLayout();
-		Button addButton = new Button("-->");
+		Button addButton = new Button(VaadinIcons.ARROW_RIGHT);
 		addButton.setWidth("100px");
 		addButton.addClickListener(e -> {
 			Set<String> selectedDecks = availableDecks.getSelectedItems();
@@ -130,7 +131,7 @@ public class GameRoomView extends VerticalLayout implements View
 			room.setDecks(usedDecks.getDecks());
 		});
 
-		Button removeButton = new Button("<--");
+		Button removeButton = new Button(VaadinIcons.ARROW_LEFT);
 		removeButton.setWidth("100px");
 		removeButton.addClickListener(e -> {
 			Set<String> selectedDecks = usedDecks.getSelectedItems();
