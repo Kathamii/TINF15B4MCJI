@@ -236,6 +236,8 @@ n/a
 ## 8. Testing Workflow
 User interface tests and function tests are executed at every push to the repository.
 
+We integrated Sonarqube into our testing workflow. Every push onto the master and develop-branch will trigger a Sonarqube update. On our [Sonarqube-Page](https://sonarqube.com/organizations/factracing/projects) are many information and metrics related to our code provided.
+
 ## 9. Environmental Needs
 ### 9.1 Base System Hardware
 |Resource | Quantity | Name and Type |
