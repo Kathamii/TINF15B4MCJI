@@ -26,6 +26,8 @@ public class GameRoom
 	public GameRoom(UserSession creator)
 	{
 		roomID = UUID.randomUUID().toString();
+		roomID = roomID.replaceAll("-", "");
+		roomID = roomID.substring(0, 15);
 		players = new ArrayList<>();
 		this.creator = creator;
 		addPlayer(creator);

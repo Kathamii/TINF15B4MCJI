@@ -8,7 +8,9 @@ import com.vaadin.server.UserError;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.ListSelect;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -33,8 +35,9 @@ public class PlayerManagementComponent extends VerticalLayout
 	private void initializeLayout()
 	{
 		HorizontalLayout playerListWithButtons = createPlayerListLayout();
-	
-		addComponent(playerListWithButtons);
+		HorizontalLayout gameRoomLinkLayout = createGameRoomLinkLayout();
+
+		addComponents(playerListWithButtons, gameRoomLinkLayout);
 	}
 
 
@@ -47,13 +50,34 @@ public class PlayerManagementComponent extends VerticalLayout
 	{
 		HorizontalLayout playerListWithButtons = new HorizontalLayout();
 		playerListWithButtons.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-		
+
 		ListSelect<String> playerList = createPlayerListComponent();
 		VerticalLayout buttonLayout = createButtonsForPlayListLayout(playerList);
-		
+
 		playerListWithButtons.addComponents(playerList, buttonLayout);
-		
+
 		return playerListWithButtons;
+	}
+
+
+	/**
+	 * Creates the text field that shows the URL you can give to other people to join the room.
+	 * 
+	 * @return
+	 */
+	private HorizontalLayout createGameRoomLinkLayout()
+	{
+		HorizontalLayout gameRoomLinkLayout = new HorizontalLayout();
+		
+		Label linkLabel = new Label("Room-URL:");
+		TextField linkField = new TextField("Room-URL:");
+		linkField.setReadOnly(true);
+		linkField.setWidth("575px");
+		linkField.setValue("factracing.herokuapp.com/" + room.getRoomID());
+		
+		gameRoomLinkLayout.addComponents(linkField);
+		
+		return gameRoomLinkLayout;
 	}
 
 
@@ -66,12 +90,12 @@ public class PlayerManagementComponent extends VerticalLayout
 	{
 		VerticalLayout buttonLayout = new VerticalLayout();
 		buttonLayout.setDefaultComponentAlignment(Alignment.TOP_LEFT);
-		
+
 		Button addAIButton = createAddAIButton(playerList);
 		Button kickButton = createKickButton();
-		
+
 		buttonLayout.addComponents(addAIButton, kickButton);
-		
+
 		return buttonLayout;
 	}
 
@@ -99,7 +123,6 @@ public class PlayerManagementComponent extends VerticalLayout
 
 		return addAIButton;
 	}
-	
 
 
 	private Button createKickButton()
@@ -115,7 +138,7 @@ public class PlayerManagementComponent extends VerticalLayout
 		ListSelect<String> playerList = new ListSelect<>(
 				room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
 		playerList.setItems(room.getPlayerNames());
-		playerList.setWidth("350px");
+		playerList.setWidth("355px");
 
 		return playerList;
 	}
