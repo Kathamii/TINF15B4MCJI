@@ -7,7 +7,7 @@ import java.util.Set;
 import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
 import com.factracing.components.DeckChooser;
-import com.factracing.components.GameRoomDeckChooserLayout;
+import com.factracing.components.DeckChooserComponent;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -50,7 +50,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		TextField maxPlayersField = new TextField("Maximum Players:");
 		maxPlayersField.setValue("2");
 
-		GameRoomDeckChooserLayout deckChooserLayout = new GameRoomDeckChooserLayout();
+		DeckChooserComponent deckChooserLayout = new DeckChooserComponent();
 
 		Button createRoomButton = new Button("Create Game Room");
 		createRoomButton.setId("createGameRoomButton");

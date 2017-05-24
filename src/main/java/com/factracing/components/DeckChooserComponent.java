@@ -13,7 +13,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
 
 
-public class GameRoomDeckChooserLayout extends HorizontalLayout
+public class DeckChooserComponent extends HorizontalLayout
 {
 
 	private GameRoom room;
@@ -21,7 +21,7 @@ public class GameRoomDeckChooserLayout extends HorizontalLayout
 	private DeckChooser usedDecks;
 
 
-	public GameRoomDeckChooserLayout()
+	public DeckChooserComponent()
 	{
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
@@ -39,7 +39,7 @@ public class GameRoomDeckChooserLayout extends HorizontalLayout
 	}
 
 
-	public GameRoomDeckChooserLayout(GameRoom room)
+	public DeckChooserComponent(GameRoom room)
 	{
 		this();
 		this.room = room;

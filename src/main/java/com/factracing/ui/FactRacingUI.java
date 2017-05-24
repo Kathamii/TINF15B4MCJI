@@ -51,6 +51,7 @@ public class FactRacingUI extends UI
 
 		navigator.navigateTo(WelcomeView.VIEW_NAME);
 		setNavigator(navigator);
+
 	}
 
 
