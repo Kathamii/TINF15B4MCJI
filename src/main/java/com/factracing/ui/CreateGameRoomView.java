@@ -92,41 +92,36 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		addButton.setId("addDeckButton");
 		addButton.setWidth("100px");
 		addButton.addClickListener(e -> {
-			Set<String> selectedDecks = availableDecks.getSelectedItems();
-			Iterator<String> it = selectedDecks.iterator();
-			Deck[] decks = new Deck[availableDecks.getDeckCount()];
-			for (int i = 0; it.hasNext(); i++)
-			{
-				String item = it.next();
-				Deck deck = availableDecks.getDeckByName(item);
-				decks[i] = deck;
-			}
-			availableDecks.removeDecks(decks);
-			usedDecks.addDecks(decks);
-
+			swapSelectedDecks(availableDecks, usedDecks);
 		});
 
 		Button removeButton = new Button(VaadinIcons.ARROW_LEFT);
 		removeButton.setId("removeDeckButton");
 		removeButton.setWidth("100px");
 		removeButton.addClickListener(e -> {
-			Set<String> selectedDecks = usedDecks.getSelectedItems();
-			Iterator<String> it = selectedDecks.iterator();
-			Deck[] decks = new Deck[usedDecks.getDeckCount()];
-			for (int i = 0; it.hasNext(); i++)
-			{
-				String item = it.next();
-				Deck deck = usedDecks.getDeckByName(item);
-				decks[i] = deck;
-			}
-			availableDecks.addDecks(decks);
-			usedDecks.removeDecks(decks);
+			swapSelectedDecks(usedDecks, availableDecks);
 		});
 
 		buttonLayout.addComponents(addButton, removeButton);
 
 		layout.addComponents(availableDecks, buttonLayout, usedDecks);
 		return layout;
+	}
+
+
+	private void swapSelectedDecks(DeckChooser chooserToRemoveFrom, DeckChooser chooserToAddTo)
+	{
+		Set<String> selectedDecks = chooserToRemoveFrom.getSelectedItems();
+		Iterator<String> it = selectedDecks.iterator();
+		Deck[] decks = new Deck[chooserToRemoveFrom.getDeckCount()];
+		for (int i = 0; it.hasNext(); i++)
+		{
+			String item = it.next();
+			Deck deck = chooserToRemoveFrom.getDeckByName(item);
+			decks[i] = deck;
+		}
+		chooserToRemoveFrom.removeDecks(decks);
+		chooserToAddTo.addDecks(decks);
 	}
 
 
