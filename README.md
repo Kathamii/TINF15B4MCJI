@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Kahmul/TINF15B4MCJI.svg?branch=master)](https://travis-ci.org/Kahmul/TINF15B4MCJI)
 # Fact Racing
 
 Software Engineering Java board game project.
