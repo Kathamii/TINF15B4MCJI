@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.factracing.validation.NameValidator;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -32,15 +33,16 @@ public class WelcomeView extends VerticalLayout implements View
 		final TextField nameField = new TextField();
 
 		Button button = new Button("Submit");
+		button.setId("submitButton");
 		button.setClickShortcut(KeyCode.ENTER, 0);
 		button.addClickListener(e -> {
-			String userName = nameField.getValue();
-			if (userName == null || userName.length() <= 0)
+			String username = new NameValidator().validate(nameField.getValue());
+			if (username == null)
 			{
 				nameField.setComponentError(new UserError("Invalid name!"));
 				return;
 			}
-			((FactRacingUI) UI.getCurrent()).getUserSession().setUserName(userName);
+			((FactRacingUI) UI.getCurrent()).updateUserSessionCookie(username);
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 
@@ -51,7 +53,7 @@ public class WelcomeView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-		// if the user already logged in don't allow him to go back here
+		// if the user is already known don't allow him to go here
 		if (((FactRacingUI) UI.getCurrent()).getUserSession().getUserName() != null)
 		{
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);

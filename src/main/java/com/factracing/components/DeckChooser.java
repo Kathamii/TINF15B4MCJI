@@ -11,7 +11,7 @@ import com.vaadin.ui.ListSelect;
 public class DeckChooser extends ListSelect<String>
 {
 
-	private List<Deck> deckList;
+	private ArrayList<Deck> deckList;
 
 
 	public DeckChooser(String caption)

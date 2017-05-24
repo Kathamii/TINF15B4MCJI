@@ -3,15 +3,18 @@ package com.factracing.beans;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+
+import com.factracing.validation.NumberValidator;
 
 
 @Service
 public class GameRoom
 {
 
-	private long roomID;
+	private String roomID;
 	private int minPlayers;
 	private int maxPlayers;
 	private int playerCount;
@@ -22,20 +25,20 @@ public class GameRoom
 
 	public GameRoom(UserSession creator)
 	{
+		roomID = UUID.randomUUID().toString();
 		players = new ArrayList<>();
 		this.creator = creator;
-		players.add(creator);
-		playerCount++;
+		addPlayer(creator);
 	}
 
 
-	public long getRoomID()
+	public String getRoomID()
 	{
 		return roomID;
 	}
 
 
-	public void setRoomID(long id)
+	public void setRoomID(String id)
 	{
 		this.roomID = id;
 	}
@@ -79,7 +82,7 @@ public class GameRoom
 
 	public List<String> getPlayerNames()
 	{
-		List<String> playerNames = new ArrayList(players.size());
+		List<String> playerNames = new ArrayList<>(players.size());
 		for (UserSession player : players)
 		{
 			playerNames.add(player.getUserName());
@@ -121,9 +124,12 @@ public class GameRoom
 		return decks;
 	}
 
-	public void setDecks(List<Deck> decks) {
+
+	public void setDecks(List<Deck> decks)
+	{
 		this.decks = decks;
 	}
+
 
 	public boolean addDeck(Deck deck)
 	{
@@ -134,6 +140,23 @@ public class GameRoom
 	public boolean removeDeck(Deck deck)
 	{
 		return decks.remove(deck);
+	}
+
+
+	/**
+	 * Checks whether the game room fits all the necessary requirements to start a game, i.e. correct player count and at least 1
+	 * deck.
+	 * 
+	 * @return
+	 */
+	public boolean canStart()
+	{
+		Integer playerCountTest = new NumberValidator(minPlayers, maxPlayers).validate(this.playerCount);
+		if(this.playerCount != playerCountTest)
+			return false;
+		if(decks.size() <= 0)
+			return false;
+		return true;
 	}
 
 }

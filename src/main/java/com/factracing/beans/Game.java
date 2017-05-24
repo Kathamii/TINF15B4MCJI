@@ -4,13 +4,14 @@ package com.factracing.beans;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
+import java.util.List;
 
 
 @Service
 public class Game
 {
 
-	private LinkedList<Deck> decks;
+	private List<Deck> decks;
 	private Dice dice = new Dice();
 	private final PlayingField field;
 
@@ -22,13 +23,13 @@ public class Game
 	}
 
 
-	public LinkedList<Deck> getDecks()
+	public List<Deck> getDecks()
 	{
 		return decks;
 	}
 
 
-	public void setDecks(LinkedList<Deck> decks)
+	public void setDecks(List<Deck> decks)
 	{
 		this.decks = decks;
 	}

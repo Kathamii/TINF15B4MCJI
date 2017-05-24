@@ -11,10 +11,17 @@ public class UserSession
 	private PlayingPiece SID;
 	private GameRoom currentGameRoom;
 	private String userName;
+	private boolean isAI;
 
 
 	public UserSession()
 	{
+	}
+
+
+	public UserSession(boolean isAI)
+	{
+		this.isAI = isAI;
 	}
 
 
@@ -52,4 +59,16 @@ public class UserSession
 	{
 		this.userName = userName;
 	}
+
+
+	/**
+	 * Whether this user is an AI or not.
+	 * 
+	 * @return
+	 */
+	public boolean isAI()
+	{
+		return isAI;
+	}
+
 }

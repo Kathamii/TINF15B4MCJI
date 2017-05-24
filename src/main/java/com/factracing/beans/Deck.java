@@ -1,9 +1,9 @@
 package com.factracing.beans;
 
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import java.util.LinkedList;
+import org.springframework.stereotype.Service;
 
 
 @Service
@@ -11,7 +11,7 @@ public class Deck
 {
 
 	private String category;
-	private LinkedList<Card> Cards;
+	private List<Card> cards;
 
 
 	public Deck(String category)
@@ -26,20 +26,56 @@ public class Deck
 	}
 
 
-	public void setCategory(String category)
+	public List<Card> getCards()
 	{
-		this.category = category;
+		return cards;
 	}
 
 
-	public LinkedList<Card> getCards()
+	public void setCards(List<Card> cards)
 	{
-		return Cards;
+		this.cards = cards;
 	}
 
 
-	public void setCards(LinkedList<Card> cards)
+	public boolean addCard(Card card)
 	{
-		Cards = cards;
+		return cards.add(card);
+	}
+
+
+	public enum DefaultDeck
+	{
+		SPORTS("Sports"),
+		MATH("Math"),
+		ANIMALS("Animals"),
+		HISTORY("History"),
+		CARS("Cars");
+
+		Deck deck;
+
+
+		DefaultDeck(String category)
+		{
+			deck = new Deck(category);
+		}
+
+
+		public static Deck[] getAllDefaultDecks()
+		{
+			DefaultDeck[] defaultDecks = values();
+			Deck[] decks = new Deck[defaultDecks.length];
+			for (int i = 0; i < defaultDecks.length; i++)
+			{
+				decks[i] = defaultDecks[i].getDeck();
+			}
+			return decks;
+		}
+
+
+		public Deck getDeck()
+		{
+			return deck;
+		}
 	}
 }

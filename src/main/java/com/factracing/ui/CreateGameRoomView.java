@@ -7,6 +7,7 @@ import java.util.Set;
 import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
 import com.factracing.components.DeckChooser;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -52,6 +53,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		HorizontalLayout deckChooserLayout = createDeckChooserLayout(usedDecks);
 
 		Button createRoomButton = new Button("Create Game Room");
+		createRoomButton.setId("createGameRoomButton");
 		createRoomButton.addClickListener(e -> {
 			GameRoom room = new GameRoom(((FactRacingUI) UI.getCurrent()).getUserSession());
 			room.setMinPlayers(Integer.valueOf(minPlayersField.getValue()));
@@ -63,6 +65,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		});
 
 		Button backButton = new Button("Back");
+		backButton.setId("backButton");
 		backButton.addClickListener(e -> {
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
@@ -82,10 +85,11 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		DeckChooser availableDecks = new DeckChooser("Available");
-		availableDecks.addDecks(new Deck("History"), new Deck("Cars"), new Deck("Animals"), new Deck("Math"));
+		availableDecks.addDecks(Deck.DefaultDeck.getAllDefaultDecks());
 
 		VerticalLayout buttonLayout = new VerticalLayout();
-		Button addButton = new Button("-->");
+		Button addButton = new Button(VaadinIcons.ARROW_RIGHT);
+		addButton.setId("addDeckButton");
 		addButton.setWidth("100px");
 		addButton.addClickListener(e -> {
 			Set<String> selectedDecks = availableDecks.getSelectedItems();
@@ -102,7 +106,8 @@ public class CreateGameRoomView extends VerticalLayout implements View
 
 		});
 
-		Button removeButton = new Button("<--");
+		Button removeButton = new Button(VaadinIcons.ARROW_LEFT);
+		removeButton.setId("removeDeckButton");
 		removeButton.setWidth("100px");
 		removeButton.addClickListener(e -> {
 			Set<String> selectedDecks = usedDecks.getSelectedItems();

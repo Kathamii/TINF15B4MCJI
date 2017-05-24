@@ -67,17 +67,20 @@ public class MainNavigationView extends VerticalLayout implements View
 		buttonLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		Button manualButton = new Button("Read Manual");
+		manualButton.setId("manualButton");
 		manualButton.setSizeFull();
 		manualButton.addClickListener(e -> {
 			showManualWindow();
 		});
 
 		Button joinRandomRoomButton = new Button("Join Random Game Room");
+		joinRandomRoomButton.setId("randomRoomButton");
 		joinRandomRoomButton.setSizeFull();
 		joinRandomRoomButton.addClickListener(e -> {
 		});
 
 		Button createRoomButton = new Button("Create Game Room");
+		createRoomButton.setId("crateRoomButton");
 		createRoomButton.setSizeFull();
 		createRoomButton.addClickListener(e -> {
 			UI.getCurrent().getNavigator().navigateTo(CreateGameRoomView.VIEW_NAME);
@@ -100,6 +103,7 @@ public class MainNavigationView extends VerticalLayout implements View
 		userConfigLayout.setWidth("25%");
 
 		Button changeNameButton = new Button("Change Name");
+		changeNameButton.setId("changeNameButton");
 		changeNameButton.setSizeFull();
 		changeNameButton.addClickListener(e -> {
 			Window popUp = new Window("Namechange");
@@ -119,13 +123,13 @@ public class MainNavigationView extends VerticalLayout implements View
 			Button button = new Button("Use This Name");
 			button.setClickShortcut(KeyCode.ENTER, 0);
 			button.addClickListener(ev -> {
-				String userName = nameField.getValue();
-				if (userName == null || userName.length() <= 0)
+				String username = nameField.getValue();
+				if (username == null || username.length() <= 0)
 				{
 					nameField.setComponentError(new UserError("Invalid name!"));
 					return;
 				}
-				((FactRacingUI) UI.getCurrent()).getUserSession().setUserName(userName);
+				((FactRacingUI) UI.getCurrent()).updateUserSessionCookie(username);
 				updateNameOnPage();
 				popUp.close();
 			});
