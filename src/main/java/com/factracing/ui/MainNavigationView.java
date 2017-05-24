@@ -121,6 +121,7 @@ public class MainNavigationView extends VerticalLayout implements View
 			nameField.setValue(((FactRacingUI) UI.getCurrent()).getUserSession().getUserName());
 
 			Button button = new Button("Use This Name");
+			button.setId("useNameButton");
 			button.setClickShortcut(KeyCode.ENTER, 0);
 			button.addClickListener(ev -> {
 				String username = nameField.getValue();
