@@ -25,8 +25,8 @@ public class GameRoomDeckChooserLayout extends HorizontalLayout
 	{
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		DeckChooser usedDecks = new DeckChooser("In Use");
-		DeckChooser availableDecks = new DeckChooser("Available");
+		usedDecks = new DeckChooser("In Use");
+		availableDecks = new DeckChooser("Available");
 		availableDecks.addDecks(Deck.DefaultDeck.getAllDefaultDecks());
 
 		VerticalLayout buttonLayout = new VerticalLayout();
