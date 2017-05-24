@@ -67,6 +67,8 @@ public class DeckChooser extends ListSelect<String>
 	{
 		for (Deck deck : deckList)
 		{
+			if(deck == null)
+				continue;
 			if (deck.getCategory().equalsIgnoreCase(name))
 			{
 				return deck;

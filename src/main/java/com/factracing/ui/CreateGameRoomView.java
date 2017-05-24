@@ -7,6 +7,7 @@ import java.util.Set;
 import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
 import com.factracing.components.DeckChooser;
+import com.factracing.components.GameRoomDeckChooserLayout;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -49,8 +50,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		TextField maxPlayersField = new TextField("Maximum Players:");
 		maxPlayersField.setValue("2");
 
-		DeckChooser usedDecks = new DeckChooser("In Use");
-		HorizontalLayout deckChooserLayout = createDeckChooserLayout(usedDecks);
+		GameRoomDeckChooserLayout deckChooserLayout = new GameRoomDeckChooserLayout();
 
 		Button createRoomButton = new Button("Create Game Room");
 		createRoomButton.setId("createGameRoomButton");
@@ -58,7 +58,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 			GameRoom room = new GameRoom(((FactRacingUI) UI.getCurrent()).getUserSession());
 			room.setMinPlayers(Integer.valueOf(minPlayersField.getValue()));
 			room.setMaxPlayers(Integer.valueOf(maxPlayersField.getValue()));
-			room.setDecks(usedDecks.getDecks());
+			room.setDecks(deckChooserLayout.getUsedDecksDeckChooser().getDecks());
 			((FactRacingUI) UI.getCurrent()).getUserSession().setCurrentGameRoom(room);
 
 			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
@@ -71,57 +71,6 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		});
 
 		addComponents(factRacingLabel, createRoomLabel, minPlayersField, maxPlayersField, deckChooserLayout, createRoomButton, backButton);
-	}
-
-
-	/**
-	 * Creates the deck chooser lists.
-	 *
-	 * @return
-	 */
-	private HorizontalLayout createDeckChooserLayout(DeckChooser usedDecks)
-	{
-		HorizontalLayout layout = new HorizontalLayout();
-		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-
-		DeckChooser availableDecks = new DeckChooser("Available");
-		availableDecks.addDecks(Deck.DefaultDeck.getAllDefaultDecks());
-
-		VerticalLayout buttonLayout = new VerticalLayout();
-		Button addButton = new Button(VaadinIcons.ARROW_RIGHT);
-		addButton.setId("addDeckButton");
-		addButton.setWidth("100px");
-		addButton.addClickListener(e -> {
-			swapSelectedDecks(availableDecks, usedDecks);
-		});
-
-		Button removeButton = new Button(VaadinIcons.ARROW_LEFT);
-		removeButton.setId("removeDeckButton");
-		removeButton.setWidth("100px");
-		removeButton.addClickListener(e -> {
-			swapSelectedDecks(usedDecks, availableDecks);
-		});
-
-		buttonLayout.addComponents(addButton, removeButton);
-
-		layout.addComponents(availableDecks, buttonLayout, usedDecks);
-		return layout;
-	}
-
-
-	private void swapSelectedDecks(DeckChooser chooserToRemoveFrom, DeckChooser chooserToAddTo)
-	{
-		Set<String> selectedDecks = chooserToRemoveFrom.getSelectedItems();
-		Iterator<String> it = selectedDecks.iterator();
-		Deck[] decks = new Deck[chooserToRemoveFrom.getDeckCount()];
-		for (int i = 0; it.hasNext(); i++)
-		{
-			String item = it.next();
-			Deck deck = chooserToRemoveFrom.getDeckByName(item);
-			decks[i] = deck;
-		}
-		chooserToRemoveFrom.removeDecks(decks);
-		chooserToAddTo.addDecks(decks);
 	}
 
 

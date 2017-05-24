@@ -8,6 +8,7 @@ import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
 import com.factracing.components.DeckChooser;
+import com.factracing.components.GameRoomDeckChooserLayout;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -71,7 +72,7 @@ public class GameRoomView extends VerticalLayout implements View
 			playerList.setItems(room.getPlayerNames());
 		});
 		createAIButton.setVisible(room.getCreator().equals(user));
-		HorizontalLayout deckChooserLayout = createDeckChooserLayout(room);
+		GameRoomDeckChooserLayout deckChooserLayout = new GameRoomDeckChooserLayout(room);
 
 		Button startGameButton = new Button("Start Game");
 		startGameButton.setId("startGameButton");
@@ -90,69 +91,6 @@ public class GameRoomView extends VerticalLayout implements View
 		});
 
 		addComponents(factRacingLabel, createRoomLabel, playerList, createAIButton, deckChooserLayout, startGameButton, backButton);
-	}
-
-
-	/**
-	 * Creates the deck chooser lists.
-	 *
-	 * @return
-	 */
-	private HorizontalLayout createDeckChooserLayout(GameRoom room)
-	{
-		HorizontalLayout layout = new HorizontalLayout();
-		layout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
-
-		DeckChooser availableDecks = new DeckChooser("Available");
-		availableDecks.addDecks(Deck.DefaultDeck.getAllDefaultDecks());
-
-		DeckChooser usedDecks = new DeckChooser("In Use");
-		for (Deck deck : room.getDecks())
-		{
-			if (deck == null)
-				continue;
-			usedDecks.addDeck(deck);
-			// remove decks from available list that have already been added to the In Use list
-			Deck deck2 = availableDecks.getDeckByName(deck.getCategory());
-			availableDecks.removeDeck(deck2);
-		}
-
-		VerticalLayout buttonLayout = new VerticalLayout();
-		Button addButton = new Button(VaadinIcons.ARROW_RIGHT);
-		addButton.setId("addDeckButton");
-		addButton.setWidth("100px");
-		addButton.addClickListener(e -> {
-			swapSelectedDecks(room, availableDecks, usedDecks);
-		});
-
-		Button removeButton = new Button(VaadinIcons.ARROW_LEFT);
-		removeButton.setId("removeDeckButton");
-		removeButton.setWidth("100px");
-		removeButton.addClickListener(e -> {
-			swapSelectedDecks(room, usedDecks, availableDecks);
-		});
-
-		buttonLayout.addComponents(addButton, removeButton);
-
-		layout.addComponents(availableDecks, buttonLayout, usedDecks);
-		return layout;
-	}
-
-
-	private void swapSelectedDecks(GameRoom room, DeckChooser chooserToRemoveFrom, DeckChooser chooserToAddTo)
-	{
-		Set<String> selectedDecks = chooserToRemoveFrom.getSelectedItems();
-		Iterator<String> it = selectedDecks.iterator();
-		Deck[] decks = new Deck[chooserToRemoveFrom.getDeckCount()];
-		for (int i = 0; it.hasNext(); i++)
-		{
-			String item = it.next();
-			Deck deck = chooserToRemoveFrom.getDeckByName(item);
-			decks[i] = deck;
-		}
-		chooserToRemoveFrom.removeDecks(decks);
-		chooserToAddTo.addDecks(decks);
-		room.setDecks(chooserToAddTo.getDecks());
 	}
 
 
