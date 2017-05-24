@@ -1,6 +1,8 @@
 package com.factracing.beans;
 
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 
@@ -11,11 +13,13 @@ public class UserSession
 	private PlayingPiece SID;
 	private GameRoom currentGameRoom;
 	private String userName;
+	private String userID;
 	private boolean isAI;
 
 
 	public UserSession()
 	{
+		userID = UUID.randomUUID().toString();
 	}
 
 
@@ -46,6 +50,16 @@ public class UserSession
 	public void setCurrentGameRoom(GameRoom room)
 	{
 		this.currentGameRoom = room;
+	}
+
+
+	
+	/**
+	 * @return the userID
+	 */
+	public String getUserID()
+	{
+		return userID;
 	}
 
 

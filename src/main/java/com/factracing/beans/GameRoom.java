@@ -113,6 +113,18 @@ public class GameRoom
 	}
 
 
+	public boolean removePlayer(String userID)
+	{
+		for (UserSession user : players)
+		{
+			if(user.getUserID().equals(userID)) {
+				return removePlayer(user);
+			}
+		}
+		return false;
+	}
+
+
 	public UserSession getCreator()
 	{
 		return creator;
@@ -152,9 +164,9 @@ public class GameRoom
 	public boolean canStart()
 	{
 		Integer playerCountTest = new NumberValidator(minPlayers, maxPlayers).validate(this.playerCount);
-		if(this.playerCount != playerCountTest)
+		if (this.playerCount != playerCountTest)
 			return false;
-		if(decks.size() <= 0)
+		if (decks.size() <= 0)
 			return false;
 		return true;
 	}

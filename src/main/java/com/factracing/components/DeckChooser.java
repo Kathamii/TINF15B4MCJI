@@ -12,13 +12,14 @@ public class DeckChooser extends ListSelect<String>
 {
 
 	private ArrayList<Deck> deckList;
+	private static final String WIDTH = "200px";
 
 
 	public DeckChooser(String caption)
 	{
 		super(caption);
 		deckList = new ArrayList<Deck>();
-		setWidth("150px");
+		setWidth(WIDTH);
 	}
 
 
