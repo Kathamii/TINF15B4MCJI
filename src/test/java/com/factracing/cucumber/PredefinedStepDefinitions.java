@@ -2,6 +2,7 @@ package com.factracing.cucumber;
 
 import java.io.IOException;
 
+import cucumber.api.java.en.Given;
 import methods.TestCaseFailed;
 import cucumber.api.java.en.Then;
 import env.BaseTest;
@@ -37,7 +38,7 @@ public class PredefinedStepDefinitions implements BaseTest
 		{
 			driver.navigate().refresh();
 		}
-	
+
 	// Switch between windows
 		
 		//Switch to new window

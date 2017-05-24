@@ -1,4 +1,4 @@
-#Author: is
+#Author: isabll muszynski
 
 Feature: Input Name on Welcome View
   as a User
