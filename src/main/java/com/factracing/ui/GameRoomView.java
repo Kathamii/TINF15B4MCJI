@@ -57,6 +57,7 @@ public class GameRoomView extends VerticalLayout implements View
 		playerList.setItems(room.getPlayerNames());
 		playerList.setWidth("350px");
 		Button createAIButton = new Button("Add Computer");
+		createAIButton.setId("createAIButton");
 		createAIButton.addClickListener(e -> {
 			if(room.getMaxPlayers() == room.getPlayerCount()) {
 				createAIButton.setComponentError(new UserError("Can't add more players!"));
@@ -72,6 +73,7 @@ public class GameRoomView extends VerticalLayout implements View
 		HorizontalLayout deckChooserLayout = createDeckChooserLayout(room);
 
 		Button startGameButton = new Button("Start Game");
+		startGameButton.setId("startGameButton");
 		startGameButton.addClickListener(e -> {
 			if (room.getPlayerCount() < room.getMinPlayers())
 				return;
@@ -81,6 +83,7 @@ public class GameRoomView extends VerticalLayout implements View
 		});
 
 		Button backButton = new Button("Leave");
+		backButton.setId("leaveButton");
 		backButton.addClickListener(e -> {
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
@@ -115,6 +118,7 @@ public class GameRoomView extends VerticalLayout implements View
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = new Button(VaadinIcons.ARROW_RIGHT);
+		addButton.setId("addDeckButton");
 		addButton.setWidth("100px");
 		addButton.addClickListener(e -> {
 			Set<String> selectedDecks = availableDecks.getSelectedItems();
@@ -132,6 +136,7 @@ public class GameRoomView extends VerticalLayout implements View
 		});
 
 		Button removeButton = new Button(VaadinIcons.ARROW_LEFT);
+		removeButton.setId("removeDeckButton");
 		removeButton.setWidth("100px");
 		removeButton.addClickListener(e -> {
 			Set<String> selectedDecks = usedDecks.getSelectedItems();

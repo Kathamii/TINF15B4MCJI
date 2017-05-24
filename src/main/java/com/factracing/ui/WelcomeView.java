@@ -33,6 +33,7 @@ public class WelcomeView extends VerticalLayout implements View
 		final TextField nameField = new TextField();
 
 		Button button = new Button("Submit");
+		button.setId("submitButton");
 		button.setClickShortcut(KeyCode.ENTER, 0);
 		button.addClickListener(e -> {
 			String username = new NameValidator().validate(nameField.getValue());

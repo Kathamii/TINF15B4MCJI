@@ -53,6 +53,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		HorizontalLayout deckChooserLayout = createDeckChooserLayout(usedDecks);
 
 		Button createRoomButton = new Button("Create Game Room");
+		createRoomButton.setId("createGameRoomButton");
 		createRoomButton.addClickListener(e -> {
 			GameRoom room = new GameRoom(((FactRacingUI) UI.getCurrent()).getUserSession());
 			room.setMinPlayers(Integer.valueOf(minPlayersField.getValue()));
@@ -64,6 +65,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		});
 
 		Button backButton = new Button("Back");
+		backButton.setId("backButton");
 		backButton.addClickListener(e -> {
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
@@ -87,6 +89,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = new Button(VaadinIcons.ARROW_RIGHT);
+		addButton.setId("addDeckButton");
 		addButton.setWidth("100px");
 		addButton.addClickListener(e -> {
 			Set<String> selectedDecks = availableDecks.getSelectedItems();
@@ -104,6 +107,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		});
 
 		Button removeButton = new Button(VaadinIcons.ARROW_LEFT);
+		removeButton.setId("removeDeckButton");
 		removeButton.setWidth("100px");
 		removeButton.addClickListener(e -> {
 			Set<String> selectedDecks = usedDecks.getSelectedItems();
