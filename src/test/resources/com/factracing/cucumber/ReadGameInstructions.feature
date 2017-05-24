@@ -11,6 +11,8 @@ Feature: Read Game Instructions
     And I click on element having class "v-button"
     And I wait for 1 sec
     Then An element with class "popupContent" exists
+    And I wait for 1 sec
+    And I close browser
 
   Scenario: Navigate from Home and Back
     Given I navigate to "http://localhost:8080/"
@@ -22,3 +24,4 @@ Feature: Read Game Instructions
     And I wait for 3 sec
     Then I click on element having class "v-window-closebox"
     And I wait for 1 sec
+    And I close browser
