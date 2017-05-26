@@ -42,27 +42,11 @@ public class GameRoomView extends VerticalLayout implements View
 
 		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
 		GameRoom room = user.getCurrentGameRoom();
-		
+
 		PlayerManagementComponent playerManagementComponent = new PlayerManagementComponent(room);
 		DeckChooserComponent deckChooserLayout = new DeckChooserComponent(room);
 
-		Button startGameButton = new Button("Start Game");
-		startGameButton.setId("startGameButton");
-		startGameButton.addClickListener(e -> {
-			if (room.getPlayerCount() < room.getMinPlayers())
-				return;
-			if (room.getPlayerCount() > room.getMaxPlayers())
-				return;
-			UI.getCurrent().getNavigator().navigateTo(GameView.VIEW_NAME);
-		});
-
-		Button backButton = new Button("Leave");
-		backButton.setId("leaveButton");
-		backButton.addClickListener(e -> {
-			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
-		});
-
-		addComponents(factRacingLabel, createRoomLabel, playerManagementComponent, deckChooserLayout, startGameButton, backButton);
+		addComponents(factRacingLabel, createRoomLabel, playerManagementComponent, deckChooserLayout);
 	}
 
 
