@@ -6,14 +6,16 @@ import com.factracing.beans.UserSession;
 import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.GameView;
 import com.factracing.ui.MainNavigationView;
-import com.vaadin.server.UserError;
+import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.ListSelect;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 
 
 public class PlayerManagementComponent extends VerticalLayout
@@ -22,6 +24,7 @@ public class PlayerManagementComponent extends VerticalLayout
 	private GameRoom room;
 	private int aiCount = 0; // amount of AI players in the room
 	private static final String BUTTON_WIDTH = "150px";
+	private PlayerList playerList;
 
 
 	public PlayerManagementComponent(GameRoom room)
@@ -53,8 +56,10 @@ public class PlayerManagementComponent extends VerticalLayout
 		HorizontalLayout playerListWithButtons = new HorizontalLayout();
 		playerListWithButtons.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		ListSelect<String> playerList = createPlayerListComponent();
-		VerticalLayout buttonLayout = createButtonsForPlayListLayout(playerList);
+		playerList = new PlayerList(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)",
+				room);
+		
+		VerticalLayout buttonLayout = createButtonsForPlayerListLayout();
 
 		playerListWithButtons.addComponents(playerList, buttonLayout);
 
@@ -87,13 +92,13 @@ public class PlayerManagementComponent extends VerticalLayout
 	 * 
 	 * @return
 	 */
-	private VerticalLayout createButtonsForPlayListLayout(ListSelect<String> playerList)
+	private VerticalLayout createButtonsForPlayerListLayout()
 	{
 		VerticalLayout buttonLayout = new VerticalLayout();
 		buttonLayout.setDefaultComponentAlignment(Alignment.TOP_LEFT);
 
 		Button startGameButton = createStartGameButton();
-		Button addAIButton = createAddAIButton(playerList);
+		Button addAIButton = createAddAIButton();
 		Button kickButton = createKickButton();
 		Button leaveButton = createLeaveButton();
 
@@ -110,16 +115,26 @@ public class PlayerManagementComponent extends VerticalLayout
 		startGameButton.setId("startGameButton");
 		startGameButton.addClickListener(e -> {
 			if (room.getPlayerCount() < room.getMinPlayers())
+			{
+				showTextPopUp("Not enough players!");
 				return;
+			}
 			if (room.getPlayerCount() > room.getMaxPlayers())
+			{
+				showTextPopUp("Too many players!");
 				return;
+			}
 			UI.getCurrent().getNavigator().navigateTo(GameView.VIEW_NAME);
 		});
+
+		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
+		startGameButton.setEnabled(room.getCreator().equals(user));
+
 		return startGameButton;
 	}
 
 
-	private Button createAddAIButton(ListSelect<String> playerList)
+	private Button createAddAIButton()
 	{
 		Button addAIButton = new Button("Add Computer");
 		addAIButton.setWidth(BUTTON_WIDTH);
@@ -127,18 +142,17 @@ public class PlayerManagementComponent extends VerticalLayout
 		addAIButton.addClickListener(e -> {
 			if (room.getMaxPlayers() == room.getPlayerCount())
 			{
-				addAIButton.setComponentError(new UserError("Can't add more players!"));
+				showTextPopUp("Can't add more players!");
 				return;
 			}
 			UserSession newAI = new UserSession(true);
 			newAI.setUserName("Comp" + aiCount++);
 			room.addPlayer(newAI);
-			playerList.setCaption(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
-			playerList.setItems(room.getPlayerNames());
+			playerList.addPlayer(newAI);
 		});
 
 		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
-		addAIButton.setVisible(room.getCreator().equals(user));
+		addAIButton.setEnabled(room.getCreator().equals(user));
 
 		return addAIButton;
 	}
@@ -149,6 +163,23 @@ public class PlayerManagementComponent extends VerticalLayout
 		Button kickButton = new Button("Kick");
 		kickButton.setWidth(BUTTON_WIDTH);
 		kickButton.setId("kickButton");
+		kickButton.addClickListener(e -> {
+			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
+			UserSession[] selectedPlayers = playerList.getSelectedPlayers();
+			for (UserSession player : selectedPlayers)
+			{
+				if (user.equals(player))
+				{
+					showTextPopUp("You can't kick yourself!");
+					return;
+				}
+			}
+			playerList.removePlayers(selectedPlayers);
+		});
+
+		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
+		kickButton.setEnabled(room.getCreator().equals(user));
+
 		return kickButton;
 	}
 
@@ -165,14 +196,31 @@ public class PlayerManagementComponent extends VerticalLayout
 	}
 
 
-	private ListSelect<String> createPlayerListComponent()
+	private void showTextPopUp(String text)
 	{
-		ListSelect<String> playerList = new ListSelect<>(
-				room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
-		playerList.setItems(room.getPlayerNames());
-		playerList.setWidth("355px");
+		Window popUp = new Window("Warning");
+		popUp.setWidth("20%");
+		popUp.setHeight("20%");
+		popUp.setResizable(false);
+		popUp.center();
+		popUp.setModal(true);
 
-		return playerList;
+		VerticalLayout popUpLayout = new VerticalLayout();
+		popUpLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
+
+		Label welcomeLabel = new Label("<h2>" + text + "<h2>", ContentMode.HTML);
+
+		Button button = new Button("Accept");
+		button.setId("acceptButton");
+		button.setClickShortcut(KeyCode.ENTER, 0);
+		button.addClickListener(ev -> {
+			popUp.close();
+		});
+
+		popUpLayout.addComponents(welcomeLabel, button);
+
+		popUp.setContent(popUpLayout);
+		UI.getCurrent().addWindow(popUp);
 	}
 
 }

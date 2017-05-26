@@ -20,11 +20,14 @@ public class UserSession
 	public UserSession()
 	{
 		userID = UUID.randomUUID().toString();
+		userID = userID.replaceAll("-", "");
+		userID = userID.substring(0, 15);
 	}
 
 
 	public UserSession(boolean isAI)
 	{
+		this();
 		this.isAI = isAI;
 	}
 

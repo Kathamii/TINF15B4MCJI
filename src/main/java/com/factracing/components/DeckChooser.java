@@ -18,7 +18,7 @@ public class DeckChooser extends ListSelect<String>
 	public DeckChooser(String caption)
 	{
 		super(caption);
-		deckList = new ArrayList<Deck>();
+		deckList = new ArrayList<>();
 		setWidth(WIDTH);
 	}
 
