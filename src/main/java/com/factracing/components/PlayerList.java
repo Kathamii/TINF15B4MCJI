@@ -123,8 +123,12 @@ public class PlayerList extends ListSelect<String>
 		List<String> displayNames = new ArrayList<String>(playerList.size());
 		for (UserSession player : playerList)
 		{
-			if (player != null)
-				displayNames.add(player.getUserName() + " (" + player.getUserID().substring(0, 7) + ")");
+			if (player != null) {
+				String name = player.getUserName() + " (" + player.getUserID().substring(0, 7) + ")";
+				if(room.getCreator().equals(player))
+					name += " <Creator>";
+				displayNames.add(name);
+			}
 		}
 		setItems(displayNames);
 		setCaption(room.getPlayerCount() + "/" + room.getMinPlayers() + " Players (" + room.getMaxPlayers() + " Minimum)");
