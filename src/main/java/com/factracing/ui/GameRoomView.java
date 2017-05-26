@@ -42,7 +42,7 @@ public class GameRoomView extends VerticalLayout implements View
 
 		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
 		GameRoom room = user.getCurrentGameRoom();
-
+		
 		PlayerManagementComponent playerManagementComponent = new PlayerManagementComponent(room);
 		DeckChooserComponent deckChooserLayout = new DeckChooserComponent(room);
 

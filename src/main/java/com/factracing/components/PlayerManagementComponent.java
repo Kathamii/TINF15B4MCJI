@@ -68,15 +68,14 @@ public class PlayerManagementComponent extends VerticalLayout
 	private HorizontalLayout createGameRoomLinkLayout()
 	{
 		HorizontalLayout gameRoomLinkLayout = new HorizontalLayout();
-		
-		Label linkLabel = new Label("Room-URL:");
+
 		TextField linkField = new TextField("Room-URL:");
 		linkField.setReadOnly(true);
 		linkField.setWidth("575px");
-		linkField.setValue("factracing.herokuapp.com/" + room.getRoomID());
-		
+		linkField.setValue("factracing.herokuapp.com/#" + room.getRoomID());
+
 		gameRoomLinkLayout.addComponents(linkField);
-		
+
 		return gameRoomLinkLayout;
 	}
 
