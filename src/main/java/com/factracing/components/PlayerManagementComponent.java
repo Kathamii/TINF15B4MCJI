@@ -190,6 +190,8 @@ public class PlayerManagementComponent extends VerticalLayout
 		leaveButton.setWidth(BUTTON_WIDTH);
 		leaveButton.setId("leaveButton");
 		leaveButton.addClickListener(e -> {
+			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
+			room.removePlayer(user);
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 		return leaveButton;

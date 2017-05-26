@@ -109,6 +109,10 @@ public class GameRoom
 		if (players.remove(player))
 		{
 			playerCount--;
+			if (creator.equals(player))
+			{
+				// close the room entirely
+			}
 			return true;
 		}
 		return false;
@@ -119,7 +123,8 @@ public class GameRoom
 	{
 		for (UserSession user : players)
 		{
-			if(user.getUserID().equals(userID)) {
+			if (user.getUserID().equals(userID))
+			{
 				return removePlayer(user);
 			}
 		}
