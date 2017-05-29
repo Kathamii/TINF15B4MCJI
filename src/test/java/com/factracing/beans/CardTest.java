@@ -1,4 +1,4 @@
-package com.factracing;
+package com.factracing.beans;
 
 
 import com.factracing.beans.Difficulty;
