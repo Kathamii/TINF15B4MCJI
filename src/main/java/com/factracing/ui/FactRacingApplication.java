@@ -22,52 +22,51 @@ import java.util.Map;
 //Controller-Annotation just for DB-Test
 @Controller
 @SpringBootApplication
-public class FactRacingApplication
-{
+public class FactRacingApplication {
 
-	@Value("${spring.datasource.url}")
-	private String dbUrl;
+    @Value("${spring.datasource.url}")
+    private String dbUrl;
 
-	@Autowired
-	private DataSource dataSource;
+    @Autowired
+    private DataSource dataSource;
 
-	public static void main(String[] args)
-	{
-		SpringApplication.run(FactRacingApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FactRacingApplication.class, args);
+    }
 
-	@RequestMapping("/db")
-	String db(Map<String, Object> model) {
-		try (Connection connection = dataSource.getConnection()) {
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-			ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
+    @RequestMapping("/db")
+    String db(Map<String, Object> model) {
+        try (Connection connection = dataSource.getConnection()) {
+            try (Statement stmt = connection.createStatement()) {
+                stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick TIMESTAMP)");
+                stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
+                try (ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks")) {
+                    ArrayList<String> output = new ArrayList<String>();
+                    while (rs.next()) {
+                        output.add("Read from DB: " + rs.getTimestamp("tick"));
+                    }
+                    model.put("records", output);
+                    return "db";
+                } catch (Exception e) {
+                    return null;
+                }
+            } catch (Exception e) {
+                return null;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
-			ArrayList<String> output = new ArrayList<String>();
-			while (rs.next()) {
-				output.add("Read from DB: " + rs.getTimestamp("tick"));
-			}
-			model.put("records", output);
-
-			// Closing streams
-			stmt.close();
-			rs.close();
-			return "db";
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	@Bean
-	public DataSource dataSource() throws SQLException {
-		if (dbUrl == null || dbUrl.isEmpty()) {
-			return new HikariDataSource();
-		} else {
-			HikariConfig config = new HikariConfig();
-			config.setJdbcUrl(dbUrl);
-			return new HikariDataSource(config);
-		}
-	}
+    @Bean
+    public DataSource dataSource() throws SQLException {
+        if (dbUrl == null || dbUrl.isEmpty()) {
+            return new HikariDataSource();
+        } else {
+            HikariConfig config = new HikariConfig();
+            config.setJdbcUrl(dbUrl);
+            return new HikariDataSource(config);
+        }
+    }
 
 }
