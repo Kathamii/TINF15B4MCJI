@@ -23,4 +23,22 @@ public class CardTest
         assertEquals(0, emptyCard.getDifficulty());
         assertEquals(DIFFICULTY, simpleCard.getDifficulty());
     }
+
+    @Test
+    public void questionTest(){
+        assertEquals("", emptyCard.getQuestion());
+        assertEquals(QUESTION, simpleCard.getQuestion());
+    }
+
+    @Test
+    public void answersTest(){
+        assertEquals(new String[0], emptyCard.getAnswers());
+        assertEquals(ANSWERS, simpleCard.getAnswers());
+    }
+
+    @Test
+    public void correctAnserTest(){
+        assertEquals("", emptyCard.getCorrectAnswer());
+        assertEquals(CORRECT_ANSWER, simpleCard.getCorrectAnswer());
+    }
 }
