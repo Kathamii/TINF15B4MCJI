@@ -1,6 +1,7 @@
 package com.factracing.beans;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class Deck
 	public Deck(String category)
 	{
 		this.category = category;
+		this.cards = new ArrayList<>();
 	}
 
 
