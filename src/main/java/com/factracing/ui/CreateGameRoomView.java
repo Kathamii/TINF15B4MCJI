@@ -39,8 +39,10 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		Label factRacingLabel = new Label("<h1>Fact Racing<h1>", ContentMode.HTML);
 		Label createRoomLabel = new Label("<h2>Create Game Room<h2>", ContentMode.HTML);
 		TextField minPlayersField = new TextField("Minimum Players:");
+		minPlayersField.setId("minPlayersField");
 		minPlayersField.setValue("2");
 		TextField maxPlayersField = new TextField("Maximum Players:");
+		maxPlayersField.setId("maxPlayersField");
 		maxPlayersField.setValue("2");
 
 		DeckChooserComponent deckChooserLayout = new DeckChooserComponent();
