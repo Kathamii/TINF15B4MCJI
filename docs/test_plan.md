@@ -31,7 +31,7 @@
       1. Data and Database Integrity Testing
       2. Function Testing
       3. Business Cycle Testing
-      4. Business Cycle Testing
+      4. User Interface Testing
       5. Performance Profiling
       6. Load Testing
       7. Stress Testing
@@ -149,7 +149,7 @@ n/a
 #### 5.2.3 Business Cycle Testing
 n/a
 
-#### 5.2.4 Business Cycle Testing
+#### 5.2.4 User Interface Testing
 |                         |                                                      |
 |-------------------------|------------------------------------------------------|
 | Technique Objective:    | Testing the webpages for correct behavior            | 
