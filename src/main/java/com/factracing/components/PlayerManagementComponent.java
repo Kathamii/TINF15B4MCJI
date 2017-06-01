@@ -3,6 +3,7 @@ package com.factracing.components;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
+import com.factracing.database.DatabaseController;
 import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.GameView;
 import com.factracing.ui.MainNavigationView;
@@ -48,7 +49,7 @@ public class PlayerManagementComponent extends VerticalLayout
 
 	/**
 	 * Creates the upper layout with the player list and buttons on the right.
-	 * 
+	 *
 	 * @return
 	 */
 	private HorizontalLayout createPlayerListLayout()
@@ -58,7 +59,7 @@ public class PlayerManagementComponent extends VerticalLayout
 
 		playerList = new PlayerList(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)",
 				room);
-		
+
 		VerticalLayout buttonLayout = createButtonsForPlayerListLayout();
 
 		playerListWithButtons.addComponents(playerList, buttonLayout);
@@ -69,7 +70,7 @@ public class PlayerManagementComponent extends VerticalLayout
 
 	/**
 	 * Creates the text field that shows the URL you can give to other people to join the room.
-	 * 
+	 *
 	 * @return
 	 */
 	private HorizontalLayout createGameRoomLinkLayout()
@@ -89,7 +90,7 @@ public class PlayerManagementComponent extends VerticalLayout
 
 	/**
 	 * Creates the buttons on the right of the player list at the top.
-	 * 
+	 *
 	 * @return
 	 */
 	private VerticalLayout createButtonsForPlayerListLayout()
@@ -192,6 +193,9 @@ public class PlayerManagementComponent extends VerticalLayout
 		leaveButton.addClickListener(e -> {
 			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
 			room.removePlayer(user);
+			if(user.equals(room.getCreator())) {
+				DatabaseController.deleteGameRoomFromDB(room);
+			}
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 		return leaveButton;

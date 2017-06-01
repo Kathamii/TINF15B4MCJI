@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.factracing.beans.GameRoom;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -25,7 +26,7 @@ public class DatabaseController {
 	private String dbUrl;
 
 	@Autowired
-	private DataSource dataSource;
+	private static DataSource dataSource;
 
 	@Bean
 	public DataSource dataSource() throws SQLException {
@@ -60,5 +61,33 @@ public class DatabaseController {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public static boolean saveGameRoomToDB(GameRoom room) {
+		try (Connection connection = dataSource.getConnection()) {
+			try (Statement stmt = connection.createStatement()) {
+				String roomID = room.getRoomID();
+				stmt.executeUpdate("INSERT INTO gameroom (gameroomId) VALUES (" + roomID + ");");
+			} catch (Exception e) {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean deleteGameRoomFromDB(GameRoom room) {
+		try (Connection connection = dataSource.getConnection()) {
+			try (Statement stmt = connection.createStatement()) {
+				String roomID = room.getRoomID();
+				stmt.executeUpdate("DELETE FROM gameroom WHERE gameroomId = " + roomID + ";");
+			} catch (Exception e) {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 }
