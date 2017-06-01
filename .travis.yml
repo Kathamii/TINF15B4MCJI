@@ -6,9 +6,9 @@ jdk:
 
 addons:
   sonarqube:
-    organization: "factracing"
+    organization: $sonar_org
     token:
-      secure: 48a57c51b2aaa6ac7065e33d138043ca694410a0
+      secure: $sonar_key
     branches:
       - master
       - develop
@@ -25,5 +25,5 @@ script:
 deploy:
  provider: heroku
  api-key:
-  secure: 80c1cdda-bec8-41ec-a236-93e1e7de6adb
- app: factracing
+  secure: $heroku_key
+ app: $heroku_app
