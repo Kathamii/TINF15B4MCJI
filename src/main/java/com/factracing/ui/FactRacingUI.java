@@ -46,6 +46,7 @@ public class FactRacingUI extends UI
 		String uri = getPage().getUriFragment();
 
 		getPage().setTitle("Fact Racing");
+		setPollInterval(1000);
 
 		navigator = new Navigator(this, this);
 		user = new UserSession();
