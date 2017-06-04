@@ -1,14 +1,10 @@
 package com.factracing.ui;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.Cookie;
 
 import org.springframework.context.annotation.Configuration;
 
-import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
 import com.factracing.database.DataHandler;
 import com.vaadin.annotations.Theme;
