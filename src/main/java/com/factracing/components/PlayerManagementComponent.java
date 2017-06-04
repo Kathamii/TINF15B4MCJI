@@ -3,6 +3,7 @@ package com.factracing.components;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
+import com.factracing.database.DataHandler;
 import com.factracing.database.DatabaseController;
 import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.GameView;
@@ -149,7 +150,6 @@ public class PlayerManagementComponent extends VerticalLayout
 			UserSession newAI = new UserSession(true);
 			newAI.setUserName("Comp" + aiCount++);
 			room.addPlayer(newAI);
-			playerList.addPlayer(newAI);
 		});
 
 		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
@@ -175,7 +175,7 @@ public class PlayerManagementComponent extends VerticalLayout
 					return;
 				}
 			}
-			playerList.removePlayers(selectedPlayers);
+			room.removePlayers(selectedPlayers);
 		});
 
 		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
@@ -193,9 +193,6 @@ public class PlayerManagementComponent extends VerticalLayout
 		leaveButton.addClickListener(e -> {
 			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
 			room.removePlayer(user);
-			if(user.equals(room.getCreator())) {
-				DatabaseController.deleteGameRoomFromDB(room);
-			}
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 		return leaveButton;

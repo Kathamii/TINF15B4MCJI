@@ -3,7 +3,7 @@ package com.factracing.ui;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.components.DeckChooserComponent;
-import com.factracing.database.DatabaseController;
+import com.factracing.database.DataHandler;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -56,8 +56,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 			room.setMaxPlayers(Integer.valueOf(maxPlayersField.getValue()));
 			room.setDecks(deckChooserLayout.getUsedDecksDeckChooser().getDecks());
 			((FactRacingUI) UI.getCurrent()).getUserSession().setCurrentGameRoom(room);
-
-			DatabaseController.saveGameRoomToDB(room);
+			DataHandler.addGameRoomToList(room);
 
 			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
 		});

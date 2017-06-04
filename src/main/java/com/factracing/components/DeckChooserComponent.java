@@ -6,14 +6,16 @@ import java.util.Set;
 
 import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
+import com.factracing.ui.FactRacingUI;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 
-public class DeckChooserComponent extends HorizontalLayout
+public class DeckChooserComponent extends HorizontalLayout implements GameRoomListener
 {
 
 	private GameRoom room;
@@ -52,6 +54,7 @@ public class DeckChooserComponent extends HorizontalLayout
 			Deck deck2 = availableDecks.getDeckByName(deck.getCategory());
 			availableDecks.removeDeck(deck2);
 		}
+		room.addGameRoomListener(this);
 	}
 
 
@@ -71,6 +74,8 @@ public class DeckChooserComponent extends HorizontalLayout
 			swapSelectedDecks(availableDecks, usedDecks);
 		});
 		availableDecks.addSelectionListener(event -> {
+			if (!room.getCreator().equals(((FactRacingUI) UI.getCurrent()).getUserSession()))
+				return;
 			if (event.getAllSelectedItems().size() > 0)
 			{
 				addButton.setEnabled(true);
@@ -100,6 +105,8 @@ public class DeckChooserComponent extends HorizontalLayout
 			swapSelectedDecks(usedDecks, availableDecks);
 		});
 		usedDecks.addSelectionListener(event -> {
+			if (!room.getCreator().equals(((FactRacingUI) UI.getCurrent()).getUserSession()))
+				return;
 			if (event.getAllSelectedItems().size() > 0)
 			{
 				removeButton.setEnabled(true);
@@ -152,6 +159,27 @@ public class DeckChooserComponent extends HorizontalLayout
 	public void setRoom(GameRoom room)
 	{
 		this.room = room;
+	}
+
+
+	@Override
+	public void playerRemoved()
+	{
+
+	}
+
+
+	@Override
+	public void playerAdded()
+	{
+
+	}
+
+
+	@Override
+	public void roomClosed()
+	{
+
 	}
 
 }

@@ -53,7 +53,6 @@ public class GameRoomView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
-		// FactRacingUI.getUserSession().setCurrentGameRoom(room); Retrieve gameroom from database here and update stuff!
 		UI.getCurrent().getPage().setTitle("Game Room - Fact Racing");
 		initializeLayout();
 	}

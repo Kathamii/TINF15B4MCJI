@@ -2,6 +2,7 @@ package com.factracing.ui;
 
 
 import com.factracing.beans.UserSession;
+import com.factracing.database.DataHandler;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -43,6 +44,14 @@ public class MainNavigationView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
+		// If the game room is already set then it means the user went here "illegally" or followed a game room link
+		// In both cases they should be directed to the gameroomview which is going to display the correct data
+		UserSession currentUser = ((FactRacingUI) UI.getCurrent()).getUserSession();
+		if (currentUser.getCurrentGameRoom() != null)
+		{
+			DataHandler.addUserToGameRoom(currentUser, currentUser.getCurrentGameRoom().getRoomID());
+			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
+		}
 		updateNameOnPage();
 	}
 

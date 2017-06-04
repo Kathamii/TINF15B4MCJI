@@ -7,6 +7,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.factracing.components.GameRoomListener;
+import com.factracing.database.DataHandler;
 import com.factracing.validation.NumberValidator;
 
 
@@ -20,6 +22,7 @@ public class GameRoom
 	private int playerCount;
 	private List<UserSession> players;
 	private List<Deck> decks;
+	private List<GameRoomListener> listeners;
 	private UserSession creator;
 
 
@@ -29,6 +32,7 @@ public class GameRoom
 		roomID = roomID.replaceAll("-", "");
 		roomID = roomID.substring(0, 15);
 		players = new ArrayList<>();
+		listeners = new ArrayList<>();
 		this.creator = creator;
 		addPlayer(creator);
 	}
@@ -98,9 +102,32 @@ public class GameRoom
 		if (players.add(player))
 		{
 			playerCount++;
+			firePlayerAddedEvent();
+			player.setCurrentGameRoom(this);
 			return true;
 		}
 		return false;
+	}
+
+
+	public boolean addPlayers(UserSession... players)
+	{
+		boolean allPlayersAdded = true;
+		boolean atLeastOnePlayerAdded = false;
+		for (UserSession player : players)
+		{
+			if (this.players.add(player))
+			{
+				playerCount++;
+				player.setCurrentGameRoom(this);
+				atLeastOnePlayerAdded = true;
+				continue;
+			}
+			allPlayersAdded = false;
+		}
+		if (atLeastOnePlayerAdded)
+			firePlayerAddedEvent();
+		return allPlayersAdded;
 	}
 
 
@@ -109,13 +136,35 @@ public class GameRoom
 		if (players.remove(player))
 		{
 			playerCount--;
+			player.setCurrentGameRoom(null);
 			if (creator.equals(player))
-			{
-				// close the room entirely
-			}
+				DataHandler.deleteRoom(this);
 			return true;
 		}
 		return false;
+	}
+
+
+	public boolean removePlayers(UserSession... players)
+	{
+		boolean allPlayersRemoved = true;
+		boolean atLeastOnePlayerRemoved = false;
+		for (UserSession player : players)
+		{
+			if (this.players.remove(player))
+			{
+				playerCount--;
+				player.setCurrentGameRoom(null);
+				if (creator.equals(player))
+					DataHandler.deleteRoom(this);
+				atLeastOnePlayerRemoved = true;
+				continue;
+			}
+			allPlayersRemoved = false;
+		}
+		if (atLeastOnePlayerRemoved)
+			firePlayerRemovedEvent();
+		return allPlayersRemoved;
 	}
 
 
@@ -124,11 +173,22 @@ public class GameRoom
 		for (UserSession user : players)
 		{
 			if (user.getUserID().equals(userID))
-			{
 				return removePlayer(user);
-			}
 		}
 		return false;
+	}
+
+
+	public UserSession getPlayerByID(String id)
+	{
+		for (UserSession player : players)
+		{
+			if (player == null)
+				continue;
+			if (player.getUserID().startsWith(id))
+				return player;
+		}
+		return null;
 	}
 
 
@@ -176,6 +236,36 @@ public class GameRoom
 		if (decks.size() <= 0)
 			return false;
 		return true;
+	}
+
+
+	private void firePlayerAddedEvent()
+	{
+		for (GameRoomListener listener : listeners)
+		{
+			listener.playerAdded();
+		}
+	}
+
+
+	private void firePlayerRemovedEvent()
+	{
+		for (GameRoomListener listener : listeners)
+		{
+			listener.playerRemoved();
+		}
+	}
+
+
+	public void addGameRoomListener(GameRoomListener listener)
+	{
+		listeners.add(listener);
+	}
+
+
+	public void removeGameRoomListener(GameRoomListener listener)
+	{
+		listeners.remove(listener);
 	}
 
 }

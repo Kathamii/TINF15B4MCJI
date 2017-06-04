@@ -11,10 +11,9 @@ import com.factracing.beans.UserSession;
 import com.vaadin.ui.ListSelect;
 
 
-public class PlayerList extends ListSelect<String>
+public class PlayerList extends ListSelect<String> implements GameRoomListener
 {
 
-	private ArrayList<UserSession> playerList;
 	private static final String WIDTH = "355px";
 	private GameRoom room;
 
@@ -23,93 +22,23 @@ public class PlayerList extends ListSelect<String>
 	{
 		super(caption);
 		setWidth(WIDTH);
-		
+
 		this.room = room;
-		playerList = new ArrayList<>();
-		addPlayers(room.getPlayers());
-	}
-
-
-	public void addPlayer(UserSession player)
-	{
-		playerList.add(player);
+		room.addGameRoomListener(this);
 		update();
-	}
-
-
-	public void addPlayers(UserSession... players)
-	{
-		for (UserSession player : players)
-		{
-			playerList.add(player);
-		}
-		update();
-	}
-	
-	public void addPlayers(List<UserSession> players)
-	{
-		for (UserSession player : players)
-		{
-			playerList.add(player);
-		}
-		update();
-	}
-
-
-	public void removePlayer(UserSession player)
-	{
-		playerList.remove(player);
-		room.removePlayer(player);
-		update();
-	}
-
-
-	public void removePlayers(UserSession... players)
-	{
-		for (UserSession player : players)
-		{
-			playerList.remove(player);
-			room.removePlayer(player);
-		}
-		update();
-	}
-
-
-	public UserSession getPlayerByID(String id)
-	{
-		for (UserSession player : playerList)
-		{
-			if (player == null)
-				continue;
-			if (player.getUserID().startsWith(id))
-				return player;
-		}
-		return null;
-	}
-
-
-	public List<UserSession> getPlayers()
-	{
-		return playerList;
-	}
-
-
-	public int getPlayerCount()
-	{
-		return playerList.size();
 	}
 
 
 	public UserSession[] getSelectedPlayers()
 	{
-		UserSession[] selectedPlayers = new UserSession[getPlayerCount()];
+		UserSession[] selectedPlayers = new UserSession[room.getPlayerCount()];
 		Set<String> selectedPlayerSet = getSelectedItems();
 		Iterator<String> it = selectedPlayerSet.iterator();
 		for (int i = 0; it.hasNext(); i++)
 		{
 			String item = it.next();
 			String userID = item.substring(item.indexOf("(") + 1, item.indexOf(")"));
-			selectedPlayers[i] = getPlayerByID(userID);
+			selectedPlayers[i] = room.getPlayerByID(userID);
 		}
 		return selectedPlayers;
 	}
@@ -120,17 +49,39 @@ public class PlayerList extends ListSelect<String>
 	 */
 	private void update()
 	{
-		List<String> displayNames = new ArrayList<String>(playerList.size());
-		for (UserSession player : playerList)
+		List<String> displayNames = new ArrayList<String>(room.getPlayerCount());
+		for (UserSession player : room.getPlayers())
 		{
-			if (player != null) {
+			if (player != null)
+			{
 				String name = player.getUserName() + " (" + player.getUserID().substring(0, 7) + ")";
-				if(room.getCreator().equals(player))
+				if (room.getCreator().equals(player))
 					name += " <Creator>";
 				displayNames.add(name);
 			}
 		}
 		setItems(displayNames);
-		setCaption(room.getPlayerCount() + "/" + room.getMinPlayers() + " Players (" + room.getMaxPlayers() + " Minimum)");
+		setCaption(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
+	}
+
+
+	@Override
+	public void playerRemoved()
+	{
+		update();
+	}
+
+
+	@Override
+	public void playerAdded()
+	{
+		update();
+	}
+
+
+	@Override
+	public void roomClosed()
+	{
+
 	}
 }

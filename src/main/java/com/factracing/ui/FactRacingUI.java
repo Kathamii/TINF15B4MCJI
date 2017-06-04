@@ -1,11 +1,16 @@
 package com.factracing.ui;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 
 import org.springframework.context.annotation.Configuration;
 
+import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
+import com.factracing.database.DataHandler;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -37,11 +42,17 @@ public class FactRacingUI extends UI
 	@Override
 	protected void init(VaadinRequest vaadinRequest)
 	{
+		// get the potential gameroom id from the uri
+		String uri = getPage().getUriFragment();
+
 		getPage().setTitle("Fact Racing");
 
 		navigator = new Navigator(this, this);
 		user = new UserSession();
 		updateUserSessionData();
+		DataHandler.addUserToList(user);
+		if (DataHandler.doesRoomExist(uri))
+			user.setCurrentGameRoom(DataHandler.getRoomByID(uri));
 
 		navigator.addView(WelcomeView.VIEW_NAME, new WelcomeView());
 		navigator.addView(MainNavigationView.VIEW_NAME, new MainNavigationView());
@@ -98,4 +109,5 @@ public class FactRacingUI extends UI
 		}
 		return null;
 	}
+
 }
