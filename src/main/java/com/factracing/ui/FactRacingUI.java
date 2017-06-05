@@ -45,6 +45,7 @@ public class FactRacingUI extends UI
 		setPollInterval(1000);
 
 		navigator = new Navigator(this, this);
+		setNavigator(navigator);
 		user = new UserSession();
 		updateUserSessionData();
 		DataHandler.addUserToList(user);
@@ -58,8 +59,6 @@ public class FactRacingUI extends UI
 		navigator.addView(GameView.VIEW_NAME, new GameView());
 
 		navigator.navigateTo(WelcomeView.VIEW_NAME);
-		setNavigator(navigator);
-
 	}
 
 

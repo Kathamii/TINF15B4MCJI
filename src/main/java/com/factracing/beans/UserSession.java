@@ -5,6 +5,10 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.factracing.ui.MainNavigationView;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.ui.UI;
+
 
 @Service
 public class UserSession
@@ -15,6 +19,7 @@ public class UserSession
 	private String userName;
 	private String userID;
 	private boolean isAI;
+	private Navigator nav;
 
 
 	public UserSession()
@@ -22,6 +27,7 @@ public class UserSession
 		userID = UUID.randomUUID().toString();
 		userID = userID.replaceAll("-", "");
 		userID = userID.substring(0, 15);
+		nav = UI.getCurrent().getNavigator();
 	}
 
 
@@ -52,7 +58,9 @@ public class UserSession
 
 	public void setCurrentGameRoom(GameRoom room)
 	{
-		this.currentGameRoom = room;
+		currentGameRoom = room;
+		if(currentGameRoom == null)
+			nav.navigateTo(MainNavigationView.VIEW_NAME);
 	}
 
 

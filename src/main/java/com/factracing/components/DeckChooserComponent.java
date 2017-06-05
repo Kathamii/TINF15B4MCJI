@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
+import com.factracing.beans.UserSession;
 import com.factracing.ui.FactRacingUI;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Alignment;
@@ -163,14 +164,14 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 
 
 	@Override
-	public void playerRemoved()
+	public void playerRemoved(UserSession... players)
 	{
 
 	}
 
 
 	@Override
-	public void playerAdded()
+	public void playerAdded(UserSession... players)
 	{
 
 	}
@@ -178,6 +179,12 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 
 	@Override
 	public void roomClosed()
+	{
+
+	}
+
+
+	public void gameStarted()
 	{
 
 	}

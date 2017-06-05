@@ -8,7 +8,10 @@ import java.util.Set;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
+import com.factracing.ui.FactRacingUI;
+import com.factracing.ui.MainNavigationView;
 import com.vaadin.ui.ListSelect;
+import com.vaadin.ui.UI;
 
 
 public class PlayerList extends ListSelect<String> implements GameRoomListener
@@ -66,14 +69,14 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 
 
 	@Override
-	public void playerRemoved()
+	public void playerRemoved(UserSession... players)
 	{
 		update();
 	}
 
 
 	@Override
-	public void playerAdded()
+	public void playerAdded(UserSession... players)
 	{
 		update();
 	}
@@ -81,6 +84,13 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 
 	@Override
 	public void roomClosed()
+	{
+
+	}
+
+
+	@Override
+	public void gameStarted()
 	{
 
 	}

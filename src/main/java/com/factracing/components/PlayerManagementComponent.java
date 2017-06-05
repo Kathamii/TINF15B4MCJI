@@ -3,11 +3,8 @@ package com.factracing.components;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
-import com.factracing.database.DataHandler;
-import com.factracing.database.DatabaseController;
 import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.GameView;
-import com.factracing.ui.MainNavigationView;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Alignment;
@@ -193,7 +190,6 @@ public class PlayerManagementComponent extends VerticalLayout
 		leaveButton.addClickListener(e -> {
 			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
 			room.removePlayer(user);
-			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 		return leaveButton;
 	}

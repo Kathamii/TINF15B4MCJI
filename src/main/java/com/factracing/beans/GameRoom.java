@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.factracing.components.GameRoomListener;
 import com.factracing.database.DataHandler;
+import com.factracing.ui.MainNavigationView;
 import com.factracing.validation.NumberValidator;
+import com.vaadin.ui.UI;
 
 
 @Service
@@ -99,7 +101,7 @@ public class GameRoom
 
 	public boolean addPlayer(UserSession player)
 	{
-		if (players.add(player))
+		if (getPlayerByID(player.getUserID()) == null && players.add(player))
 		{
 			playerCount++;
 			firePlayerAddedEvent();
@@ -113,20 +115,21 @@ public class GameRoom
 	public boolean addPlayers(UserSession... players)
 	{
 		boolean allPlayersAdded = true;
-		boolean atLeastOnePlayerAdded = false;
+		UserSession[] addedPlayers = new UserSession[players.length];
+		int addedPlayersCount = 0;
 		for (UserSession player : players)
 		{
-			if (this.players.add(player))
+			if (getPlayerByID(player.getUserID()) == null && this.players.add(player))
 			{
 				playerCount++;
 				player.setCurrentGameRoom(this);
-				atLeastOnePlayerAdded = true;
+				addedPlayers[addedPlayersCount++] = player;
 				continue;
 			}
 			allPlayersAdded = false;
 		}
-		if (atLeastOnePlayerAdded)
-			firePlayerAddedEvent();
+		if (addedPlayers.length > 0)
+			firePlayerAddedEvent(addedPlayers);
 		return allPlayersAdded;
 	}
 
@@ -137,6 +140,7 @@ public class GameRoom
 		{
 			playerCount--;
 			player.setCurrentGameRoom(null);
+			firePlayerRemovedEvent(player);
 			if (creator.equals(player))
 				DataHandler.deleteRoom(this);
 			return true;
@@ -148,22 +152,25 @@ public class GameRoom
 	public boolean removePlayers(UserSession... players)
 	{
 		boolean allPlayersRemoved = true;
-		boolean atLeastOnePlayerRemoved = false;
+		UserSession[] removedPlayers = new UserSession[players.length];
+		int removedPlayersCount = 0;
 		for (UserSession player : players)
 		{
+			if(player == null)
+				continue;
 			if (this.players.remove(player))
 			{
 				playerCount--;
 				player.setCurrentGameRoom(null);
 				if (creator.equals(player))
 					DataHandler.deleteRoom(this);
-				atLeastOnePlayerRemoved = true;
+				removedPlayers[removedPlayersCount++] = player;
 				continue;
 			}
 			allPlayersRemoved = false;
 		}
-		if (atLeastOnePlayerRemoved)
-			firePlayerRemovedEvent();
+		if (removedPlayers.length > 0)
+			firePlayerRemovedEvent(removedPlayers);
 		return allPlayersRemoved;
 	}
 
@@ -239,20 +246,20 @@ public class GameRoom
 	}
 
 
-	private void firePlayerAddedEvent()
+	private void firePlayerAddedEvent(UserSession... players)
 	{
 		for (GameRoomListener listener : listeners)
 		{
-			listener.playerAdded();
+			listener.playerAdded(players);
 		}
 	}
 
 
-	private void firePlayerRemovedEvent()
+	private void firePlayerRemovedEvent(UserSession... players)
 	{
 		for (GameRoomListener listener : listeners)
 		{
-			listener.playerRemoved();
+			listener.playerRemoved(players);
 		}
 	}
 
