@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.MainNavigationView;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.UI;
@@ -59,12 +60,11 @@ public class UserSession
 	public void setCurrentGameRoom(GameRoom room)
 	{
 		currentGameRoom = room;
-		if(currentGameRoom == null)
+		if (currentGameRoom == null && ((FactRacingUI) UI.getCurrent()).getUserSession().equals(this))
 			nav.navigateTo(MainNavigationView.VIEW_NAME);
 	}
 
 
-	
 	/**
 	 * @return the userID
 	 */

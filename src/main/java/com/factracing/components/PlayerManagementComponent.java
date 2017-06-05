@@ -3,6 +3,7 @@ package com.factracing.components;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
+import com.factracing.database.DataHandler;
 import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.GameView;
 import com.vaadin.event.ShortcutAction.KeyCode;
@@ -172,7 +173,7 @@ public class PlayerManagementComponent extends VerticalLayout
 					return;
 				}
 			}
-			room.removePlayers(selectedPlayers);
+			DataHandler.removeUsersFromGameRoom(room, selectedPlayers);
 		});
 
 		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
@@ -189,7 +190,7 @@ public class PlayerManagementComponent extends VerticalLayout
 		leaveButton.setId("leaveButton");
 		leaveButton.addClickListener(e -> {
 			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
-			room.removePlayer(user);
+			DataHandler.removeUserFromGameRoom(user, room);
 		});
 		return leaveButton;
 	}
