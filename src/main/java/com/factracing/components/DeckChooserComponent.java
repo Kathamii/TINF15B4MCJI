@@ -75,8 +75,9 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 			swapSelectedDecks(availableDecks, usedDecks);
 		});
 		availableDecks.addSelectionListener(event -> {
-			if (!room.getCreator().equals(((FactRacingUI) UI.getCurrent()).getUserSession()))
-				return;
+			if (room != null)
+				if (!room.getCreator().equals(((FactRacingUI) UI.getCurrent()).getUserSession()))
+					return;
 			if (event.getAllSelectedItems().size() > 0)
 			{
 				addButton.setEnabled(true);
@@ -106,8 +107,9 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 			swapSelectedDecks(usedDecks, availableDecks);
 		});
 		usedDecks.addSelectionListener(event -> {
-			if (!room.getCreator().equals(((FactRacingUI) UI.getCurrent()).getUserSession()))
-				return;
+			if (room != null)
+				if (!room.getCreator().equals(((FactRacingUI) UI.getCurrent()).getUserSession()))
+					return;
 			if (event.getAllSelectedItems().size() > 0)
 			{
 				removeButton.setEnabled(true);
