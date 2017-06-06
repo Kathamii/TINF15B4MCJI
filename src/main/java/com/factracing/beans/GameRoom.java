@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.factracing.components.GameRoomListener;
 import com.factracing.database.DataHandler;
-import com.factracing.ui.MainNavigationView;
 import com.factracing.validation.NumberValidator;
-import com.vaadin.ui.UI;
 
 
 @Service

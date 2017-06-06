@@ -20,7 +20,6 @@ public class UserSession
 	private String userName;
 	private String userID;
 	private boolean isAI;
-	private Navigator nav;
 
 
 	public UserSession()
@@ -28,7 +27,6 @@ public class UserSession
 		userID = UUID.randomUUID().toString();
 		userID = userID.replaceAll("-", "");
 		userID = userID.substring(0, 15);
-		nav = UI.getCurrent().getNavigator();
 	}
 
 
@@ -60,8 +58,6 @@ public class UserSession
 	public void setCurrentGameRoom(GameRoom room)
 	{
 		currentGameRoom = room;
-		if (currentGameRoom == null && ((FactRacingUI) UI.getCurrent()).getUserSession().equals(this))
-			nav.navigateTo(MainNavigationView.VIEW_NAME);
 	}
 
 
