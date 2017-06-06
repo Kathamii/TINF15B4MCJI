@@ -69,14 +69,14 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 
 
 	@Override
-	public void playerRemoved(UserSession... players)
+	public void playerRemoved()
 	{
 		update();
 	}
 
 
 	@Override
-	public void playerAdded(UserSession... players)
+	public void playerAdded()
 	{
 		update();
 	}

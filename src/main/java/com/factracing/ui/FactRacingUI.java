@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.factracing.beans.UserSession;
 import com.factracing.database.DataHandler;
+import com.factracing.database.DataHandlerListener;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -18,7 +19,7 @@ import com.vaadin.ui.UI;
 
 @Theme("valo")
 @SpringUI
-public class FactRacingUI extends UI
+public class FactRacingUI extends UI implements DataHandlerListener
 {
 
 	private Navigator navigator;
@@ -49,6 +50,7 @@ public class FactRacingUI extends UI
 		user = new UserSession();
 		updateUserSessionData();
 		DataHandler.addUserToList(user);
+		DataHandler.register(this);
 		if (DataHandler.doesRoomExist(uri))
 			user.setCurrentGameRoom(DataHandler.getRoomByID(uri));
 
@@ -104,6 +106,20 @@ public class FactRacingUI extends UI
 				return cookie;
 		}
 		return null;
+	}
+
+
+	@Override
+	public void switchView(String viewName)
+	{
+		access(new Runnable() {
+
+			@Override
+			public void run()
+			{
+				getNavigator().navigateTo(viewName);
+			}
+		});
 	}
 
 }

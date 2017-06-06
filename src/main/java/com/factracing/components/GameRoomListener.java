@@ -5,9 +5,9 @@ import com.factracing.beans.UserSession;
 public interface GameRoomListener
 {
 	
-	public void playerRemoved(UserSession... players);
+	public void playerRemoved();
 	
-	public void playerAdded(UserSession... players);
+	public void playerAdded();
 	
 	/**
 	 * Called when the room is closed (usually creator leaves the room)

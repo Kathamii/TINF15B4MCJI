@@ -166,14 +166,14 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 
 
 	@Override
-	public void playerRemoved(UserSession... players)
+	public void playerRemoved()
 	{
 
 	}
 
 
 	@Override
-	public void playerAdded(UserSession... players)
+	public void playerAdded()
 	{
 
 	}

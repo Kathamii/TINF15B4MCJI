@@ -2,28 +2,25 @@ package com.factracing.database;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
+import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.MainNavigationView;
-import com.vaadin.ui.UI;
 
 
 public class DataHandler
 {
 
 	private static List<UserSession> userList = new ArrayList<>();
-	private static Map<UserSession, UI> mapUserUI = new HashMap<>();
+	private static List<DataHandlerListener> listeners = new ArrayList<>();
 	private static List<GameRoom> roomList = new ArrayList<>();
 
 
 	public static void addUserToList(UserSession user)
 	{
 		userList.add(user);
-		mapUserUI.put(user, UI.getCurrent());
 	}
 
 
@@ -46,9 +43,7 @@ public class DataHandler
 		if (room != null)
 		{
 			room.removePlayer(user);
-			UI ui = mapUserUI.get(user);
-			if (ui != null)
-				ui.getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
+			sendViewChangeToUserSession(user, MainNavigationView.VIEW_NAME);
 		}
 	}
 
@@ -59,11 +54,7 @@ public class DataHandler
 		{
 			room.removePlayers(users);
 			for (UserSession user : users)
-			{
-				UI ui = mapUserUI.get(user);
-				if (ui != null)
-					ui.getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
-			}
+				sendViewChangeToUserSession(user, MainNavigationView.VIEW_NAME);
 		}
 	}
 
@@ -92,6 +83,29 @@ public class DataHandler
 				return gameRoom;
 		}
 		return null;
+	}
+
+
+	public static void register(DataHandlerListener listener)
+	{
+		listeners.add(listener);
+	}
+
+
+	public static void unregister(DataHandlerListener listener)
+	{
+		listeners.remove(listener);
+	}
+
+
+	private static void sendViewChangeToUserSession(UserSession session, String viewName)
+	{
+		for (DataHandlerListener listener : listeners)
+		{
+			FactRacingUI ui = (FactRacingUI) listener;
+			if (ui.getUserSession().equals(session))
+				ui.switchView(viewName);
+		}
 	}
 
 }

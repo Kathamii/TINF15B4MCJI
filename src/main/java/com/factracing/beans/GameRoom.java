@@ -113,21 +113,19 @@ public class GameRoom
 	public boolean addPlayers(UserSession... players)
 	{
 		boolean allPlayersAdded = true;
-		UserSession[] addedPlayers = new UserSession[players.length];
-		int addedPlayersCount = 0;
+		int prevPlayerCount = playerCount;
 		for (UserSession player : players)
 		{
 			if (getPlayerByID(player.getUserID()) == null && this.players.add(player))
 			{
 				playerCount++;
 				player.setCurrentGameRoom(this);
-				addedPlayers[addedPlayersCount++] = player;
 				continue;
 			}
 			allPlayersAdded = false;
 		}
-		if (addedPlayers.length > 0)
-			firePlayerAddedEvent(addedPlayers);
+		if (playerCount > prevPlayerCount)
+			firePlayerAddedEvent();
 		return allPlayersAdded;
 	}
 
@@ -138,7 +136,7 @@ public class GameRoom
 		{
 			playerCount--;
 			player.setCurrentGameRoom(null);
-			firePlayerRemovedEvent(player);
+			firePlayerRemovedEvent();
 			if (creator.equals(player))
 				DataHandler.deleteRoom(this);
 			return true;
@@ -150,8 +148,7 @@ public class GameRoom
 	public boolean removePlayers(UserSession... players)
 	{
 		boolean allPlayersRemoved = true;
-		UserSession[] removedPlayers = new UserSession[players.length];
-		int removedPlayersCount = 0;
+		int prevPlayerCount = playerCount;
 		for (UserSession player : players)
 		{
 			if(player == null)
@@ -162,13 +159,12 @@ public class GameRoom
 				player.setCurrentGameRoom(null);
 				if (creator.equals(player))
 					DataHandler.deleteRoom(this);
-				removedPlayers[removedPlayersCount++] = player;
 				continue;
 			}
 			allPlayersRemoved = false;
 		}
-		if (removedPlayers.length > 0)
-			firePlayerRemovedEvent(removedPlayers);
+		if (playerCount < prevPlayerCount)
+			firePlayerRemovedEvent();
 		return allPlayersRemoved;
 	}
 
@@ -244,20 +240,20 @@ public class GameRoom
 	}
 
 
-	private void firePlayerAddedEvent(UserSession... players)
+	private void firePlayerAddedEvent()
 	{
 		for (GameRoomListener listener : listeners)
 		{
-			listener.playerAdded(players);
+			listener.playerAdded();
 		}
 	}
 
 
-	private void firePlayerRemovedEvent(UserSession... players)
+	private void firePlayerRemovedEvent()
 	{
 		for (GameRoomListener listener : listeners)
 		{
-			listener.playerRemoved(players);
+			listener.playerRemoved();
 		}
 	}
 
