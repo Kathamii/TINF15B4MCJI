@@ -29,7 +29,7 @@ public class DatabaseController
 	private String dbUrl;
 
 	@Autowired
-	private static DataSource dataSource;
+	private DataSource dataSource;
 
 
 	@Bean
@@ -84,7 +84,7 @@ public class DatabaseController
 	}
 
 
-	public static boolean saveGameRoomToDB(GameRoom room)
+	public boolean saveGameRoomToDB(GameRoom room)
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -111,7 +111,7 @@ public class DatabaseController
 	}
 
 
-	public static boolean deleteGameRoomFromDB(GameRoom room)
+	public boolean deleteGameRoomFromDB(GameRoom room)
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
