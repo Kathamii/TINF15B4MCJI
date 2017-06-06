@@ -1,7 +1,5 @@
 package com.factracing.components;
 
-import com.factracing.beans.UserSession;
-
 public interface GameRoomListener
 {
 	

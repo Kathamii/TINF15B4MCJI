@@ -3,11 +3,14 @@ package com.factracing.database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
 import com.factracing.ui.FactRacingUI;
+import com.factracing.ui.GameRoomView;
 import com.factracing.ui.MainNavigationView;
+import com.vaadin.ui.UI;
 
 
 public class DataHandler
@@ -59,6 +62,17 @@ public class DataHandler
 	}
 
 
+	public static void joinRandomGameRoom(UserSession user)
+	{
+		GameRoom room = DataHandler.getRandomGameRoom();
+		if (room == null)
+			return;
+		user.setCurrentGameRoom(room);
+		DataHandler.addUserToGameRoom(user, user.getCurrentGameRoom().getRoomID());
+		sendViewChangeToUserSession(user, GameRoomView.VIEW_NAME);
+	}
+
+
 	public static void deleteRoom(GameRoom room)
 	{
 		for (UserSession player : room.getPlayers())
@@ -81,6 +95,17 @@ public class DataHandler
 		{
 			if (gameRoom.getRoomID().equals(roomID))
 				return gameRoom;
+		}
+		return null;
+	}
+
+
+	private static GameRoom getRandomGameRoom()
+	{
+		if (roomList.size() > 0)
+		{
+			int rand = new Random().nextInt(roomList.size());
+			return roomList.get(rand);
 		}
 		return null;
 	}

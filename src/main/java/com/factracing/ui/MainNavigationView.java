@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
 import com.factracing.database.DataHandler;
 import com.vaadin.event.ShortcutAction.KeyCode;
@@ -86,6 +87,8 @@ public class MainNavigationView extends VerticalLayout implements View
 		joinRandomRoomButton.setId("randomRoomButton");
 		joinRandomRoomButton.setSizeFull();
 		joinRandomRoomButton.addClickListener(e -> {
+			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
+			DataHandler.joinRandomGameRoom(user);
 		});
 
 		Button createRoomButton = new Button("Create Game Room");
