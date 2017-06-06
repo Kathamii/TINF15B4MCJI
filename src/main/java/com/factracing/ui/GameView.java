@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.factracing.database.DatabaseController;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.ContentMode;
@@ -14,12 +15,15 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
+import java.sql.SQLException;
+
 
 @SpringView(name = GameView.VIEW_NAME)
 public class GameView extends VerticalLayout implements View
 {
 
 	public static final String VIEW_NAME = "gameView";
+	DatabaseController databaseController = new DatabaseController();
 
 
 	public GameView()
@@ -47,7 +51,7 @@ public class GameView extends VerticalLayout implements View
 
 	/**
 	 * The top half of the layout that has all the game related stuff.
-	 * 
+	 *
 	 * @return
 	 */
 	private HorizontalLayout createNewGameFieldLayout()
@@ -60,7 +64,7 @@ public class GameView extends VerticalLayout implements View
 		VerticalLayout gameLogLayout = createGameLogLayout();
 
 		gameFieldLayout.addComponents(questionLayout, gameLayout, gameLogLayout);
-		
+
 		// make sure that the gamefield gets the most space available
 		gameFieldLayout.setExpandRatio(questionLayout, 1);
 		gameFieldLayout.setExpandRatio(gameLayout, 3);
@@ -72,7 +76,7 @@ public class GameView extends VerticalLayout implements View
 
 	/**
 	 * Creates the fields on the left for the current question.
-	 * 
+	 *
 	 * @return
 	 */
 	private VerticalLayout createQuestionLayout()
@@ -83,8 +87,14 @@ public class GameView extends VerticalLayout implements View
 		TextArea questionArea = new TextArea("Current Question:");
 		questionArea.setEnabled(false);
 		questionArea.setWidth("100%");
+        try {
+            questionArea.setValue(databaseController.getQuestion());
+        } catch (SQLException e) {
 
-		ListSelect<String> questionList = new ListSelect<>("Choose an answer:");
+        }
+
+
+        ListSelect<String> questionList = new ListSelect<>("Choose an answer:");
 		questionList.setWidth("100%");
 
 		Button answerButton = new Button("Answer");
@@ -98,48 +108,48 @@ public class GameView extends VerticalLayout implements View
 
 	/**
 	 * Creates the actual playing field.
-	 * 
+	 *
 	 * @return
 	 */
 	private VerticalLayout createGameLayout()
 	{
 		VerticalLayout gameLayout = new VerticalLayout();
 		gameLayout.setSizeFull();
-		
+
 		Panel gamePanel = new Panel("Game Field");
 		gamePanel.setSizeFull();
-		
+
 		VerticalLayout panelContent = new VerticalLayout();
 		panelContent.setSizeFull();
-		
+
 		Label placeHolderLabel = new Label("");
 		placeHolderLabel.setHeight("420px");
 		panelContent.addComponent(placeHolderLabel);
-		
+
 		gamePanel.setContent(panelContent);
-		
+
 		gameLayout.addComponent(gamePanel);
-		
+
 		return gameLayout;
 	}
 
 
 	/**
 	 * Creates the log on the right of the playing field.
-	 * 
+	 *
 	 * @return
 	 */
 	private VerticalLayout createGameLogLayout()
 	{
 		VerticalLayout gameLogLayout = new VerticalLayout();
-		
+
 		TextArea gameLog = new TextArea("Log:");
 		gameLog.setEnabled(false);
 		gameLog.setHeight("420px");
 		gameLog.setWidth("100%");
-		
+
 		gameLogLayout.addComponent(gameLog);
-		
+
 		return gameLogLayout;
 	}
 
