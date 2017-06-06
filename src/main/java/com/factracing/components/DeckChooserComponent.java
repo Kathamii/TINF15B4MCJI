@@ -6,7 +6,6 @@ import java.util.Set;
 
 import com.factracing.beans.Deck;
 import com.factracing.beans.GameRoom;
-import com.factracing.beans.UserSession;
 import com.factracing.ui.FactRacingUI;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Alignment;

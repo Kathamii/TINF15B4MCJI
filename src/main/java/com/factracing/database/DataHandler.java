@@ -10,7 +10,6 @@ import com.factracing.beans.UserSession;
 import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.GameRoomView;
 import com.factracing.ui.MainNavigationView;
-import com.vaadin.ui.UI;
 
 
 public class DataHandler

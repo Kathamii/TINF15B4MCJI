@@ -8,10 +8,7 @@ import java.util.Set;
 
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
-import com.factracing.ui.FactRacingUI;
-import com.factracing.ui.MainNavigationView;
 import com.vaadin.ui.ListSelect;
-import com.vaadin.ui.UI;
 
 
 public class PlayerList extends ListSelect<String> implements GameRoomListener

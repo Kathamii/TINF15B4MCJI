@@ -1,7 +1,6 @@
 package com.factracing.ui;
 
 
-import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
 import com.factracing.database.DataHandler;
 import com.vaadin.event.ShortcutAction.KeyCode;
