@@ -10,10 +10,12 @@ import com.factracing.beans.GameRoom;
 
 public class UsedDeckChooser extends DeckChooser
 {
+	
+	private static final String CAPTION = "In Use";
 
-	public UsedDeckChooser(String caption, GameRoom room)
+	public UsedDeckChooser(GameRoom room)
 	{
-		super(caption, room);
+		super(CAPTION, room);
 	}
 
 

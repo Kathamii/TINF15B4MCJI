@@ -30,8 +30,8 @@ public class DeckChooserComponent extends HorizontalLayout
 		this.room = room;
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		usedDecks = new UsedDeckChooser("In Use", room);
-		availableDecks = new AvailableDeckChooser("Available", room);
+		usedDecks = new UsedDeckChooser(room);
+		availableDecks = new AvailableDeckChooser(room);
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = createAddDeckButton();
