@@ -26,4 +26,4 @@ deploy:
  provider: heroku
  api-key:
   secure: $heroku_key
-app: $heroku_app
+ app: $heroku_app
