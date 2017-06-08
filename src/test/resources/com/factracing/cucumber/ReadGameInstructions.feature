@@ -5,18 +5,23 @@ Feature: Read Game Instructions
   Scenario: Navigate from Home
     Given I navigate to "http://localhost:8080/"
     And I wait for 1 sec
-    And I click on element having name "read"
+    And I enter "Name" into input field having class "v-textfield"
+    And I click on element having class "v-button"
     And I wait for 1 sec
-    Then I should see page title having partial text as "Instructions"
-    And link having partial text "Back" should be present
+    And I click on element having class "v-button"
+    And I wait for 1 sec
+    Then An element with class "popupContent" exists
+    And I wait for 1 sec
+    And I close browser
 
   Scenario: Navigate from Home and Back
     Given I navigate to "http://localhost:8080/"
     And I wait for 1 sec
-    And I click on element having name "read"
+    When I enter "Name" into input field having class "v-textfield"
+    And I click on element having class "v-button"
     And I wait for 1 sec
-    And I click on element having id "back-link"
+    And I click on element having class "v-button"
+    And I wait for 3 sec
+    Then I click on element having class "v-window-closebox"
     And I wait for 1 sec
-    Then I should see page title as "Fact Racing"
-
-  Scenario: Navigate from Elsewhere to Instructions and back
+    And I close browser

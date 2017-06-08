@@ -2,6 +2,7 @@ package com.factracing.ui;
 
 
 import com.factracing.beans.UserSession;
+import com.factracing.database.DataHandler;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -43,6 +44,14 @@ public class MainNavigationView extends VerticalLayout implements View
 	@Override
 	public void enter(ViewChangeEvent event)
 	{
+		// If the game room is already set then it means the user went here "illegally" or followed a game room link
+		// In both cases they should be directed to the gameroomview which is going to display the correct data
+		UserSession currentUser = ((FactRacingUI) UI.getCurrent()).getUserSession();
+		if (currentUser.getCurrentGameRoom() != null)
+		{
+			DataHandler.addUserToGameRoom(currentUser, currentUser.getCurrentGameRoom().getRoomID());
+			UI.getCurrent().getNavigator().navigateTo(GameRoomView.VIEW_NAME);
+		}
 		updateNameOnPage();
 	}
 
@@ -67,17 +76,22 @@ public class MainNavigationView extends VerticalLayout implements View
 		buttonLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		Button manualButton = new Button("Read Manual");
+		manualButton.setId("manualButton");
 		manualButton.setSizeFull();
 		manualButton.addClickListener(e -> {
 			showManualWindow();
 		});
 
 		Button joinRandomRoomButton = new Button("Join Random Game Room");
+		joinRandomRoomButton.setId("randomRoomButton");
 		joinRandomRoomButton.setSizeFull();
 		joinRandomRoomButton.addClickListener(e -> {
+			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
+			DataHandler.joinRandomGameRoom(user);
 		});
 
 		Button createRoomButton = new Button("Create Game Room");
+		createRoomButton.setId("crateRoomButton");
 		createRoomButton.setSizeFull();
 		createRoomButton.addClickListener(e -> {
 			UI.getCurrent().getNavigator().navigateTo(CreateGameRoomView.VIEW_NAME);
@@ -100,6 +114,7 @@ public class MainNavigationView extends VerticalLayout implements View
 		userConfigLayout.setWidth("25%");
 
 		Button changeNameButton = new Button("Change Name");
+		changeNameButton.setId("changeNameButton");
 		changeNameButton.setSizeFull();
 		changeNameButton.addClickListener(e -> {
 			Window popUp = new Window("Namechange");
@@ -117,15 +132,16 @@ public class MainNavigationView extends VerticalLayout implements View
 			nameField.setValue(((FactRacingUI) UI.getCurrent()).getUserSession().getUserName());
 
 			Button button = new Button("Use This Name");
+			button.setId("useNameButton");
 			button.setClickShortcut(KeyCode.ENTER, 0);
 			button.addClickListener(ev -> {
-				String userName = nameField.getValue();
-				if (userName == null || userName.length() <= 0)
+				String username = nameField.getValue();
+				if (username == null || username.length() <= 0)
 				{
 					nameField.setComponentError(new UserError("Invalid name!"));
 					return;
 				}
-				((FactRacingUI) UI.getCurrent()).getUserSession().setUserName(userName);
+				((FactRacingUI) UI.getCurrent()).updateUserSessionCookie(username);
 				updateNameOnPage();
 				popUp.close();
 			});

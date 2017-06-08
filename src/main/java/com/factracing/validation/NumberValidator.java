@@ -1,13 +1,13 @@
 package com.factracing.validation;
 
 
-public class NumberValidator implements Validator
+public class NumberValidator implements Validator<Integer>
 {
 
 	private int min, max;
 
 
-	NumberValidator(int min, int max)
+	public NumberValidator(int min, int max)
 	{
 		this.min = min;
 		this.max = max;
@@ -15,9 +15,8 @@ public class NumberValidator implements Validator
 
 
 	@Override
-	public Object validate(Object ob)
+	public Integer validate(Integer number)
 	{
-		int number = (int) ob;
 		if (number < min || number > max)
 			return null;
 		return number;
