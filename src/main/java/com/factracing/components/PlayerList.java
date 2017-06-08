@@ -91,4 +91,11 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 	{
 
 	}
+
+
+	@Override
+	public void decksChanged()
+	{
+
+	}
 }

@@ -21,7 +21,8 @@ public class GameRoom
 	private int maxPlayers;
 	private int playerCount;
 	private List<UserSession> players;
-	private List<Deck> decks;
+	private List<Deck> usedDecks;
+	private List<Deck> availableDecks;
 	private List<GameRoomListener> listeners;
 	private UserSession creator;
 
@@ -33,6 +34,8 @@ public class GameRoom
 		roomID = roomID.substring(0, 15);
 		players = new ArrayList<>();
 		listeners = new ArrayList<>();
+		usedDecks = new ArrayList<>();
+		availableDecks = Deck.DefaultDeck.getAllDefaultDecksAsList();
 		this.creator = creator;
 		addPlayer(creator);
 	}
@@ -151,7 +154,7 @@ public class GameRoom
 		int prevPlayerCount = playerCount;
 		for (UserSession player : players)
 		{
-			if(player == null)
+			if (player == null)
 				continue;
 			if (this.players.remove(player))
 			{
@@ -199,27 +202,43 @@ public class GameRoom
 	}
 
 
-	public List<Deck> getDecks()
+	public List<Deck> getUsedDecks()
 	{
-		return decks;
+		return usedDecks;
 	}
 
 
-	public void setDecks(List<Deck> decks)
+	public List<Deck> getAvailableDecks()
 	{
-		this.decks = decks;
+		return availableDecks;
 	}
 
 
-	public boolean addDeck(Deck deck)
+	public void addToUsedDecks(List<Deck> decks)
 	{
-		return decks.add(deck);
+		this.usedDecks.addAll(decks);
+		fireDecksChangedEvent();
 	}
 
 
-	public boolean removeDeck(Deck deck)
+	public void addToAvailableDecks(List<Deck> availDecks)
 	{
-		return decks.remove(deck);
+		this.availableDecks.addAll(availDecks);
+		fireDecksChangedEvent();
+	}
+
+
+	public void removeFromUsedDecks(List<Deck> decks)
+	{
+		this.usedDecks.removeAll(decks);
+		fireDecksChangedEvent();
+	}
+
+
+	public void removeFromAvailableDecks(List<Deck> availDecks)
+	{
+		this.availableDecks.removeAll(availDecks);
+		fireDecksChangedEvent();
 	}
 
 
@@ -234,7 +253,7 @@ public class GameRoom
 		Integer playerCountTest = new NumberValidator(minPlayers, maxPlayers).validate(this.playerCount);
 		if (this.playerCount != playerCountTest)
 			return false;
-		if (decks.size() <= 0)
+		if (usedDecks.size() <= 0)
 			return false;
 		return true;
 	}
@@ -254,6 +273,15 @@ public class GameRoom
 		for (GameRoomListener listener : listeners)
 		{
 			listener.playerRemoved();
+		}
+	}
+
+
+	private void fireDecksChangedEvent()
+	{
+		for (GameRoomListener listener : listeners)
+		{
+			listener.decksChanged();
 		}
 	}
 

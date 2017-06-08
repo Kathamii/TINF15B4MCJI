@@ -1,74 +1,50 @@
 package com.factracing.components;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.factracing.beans.Deck;
+import com.factracing.beans.GameRoom;
 import com.vaadin.ui.ListSelect;
 
 
-public class DeckChooser extends ListSelect<String>
+public abstract class DeckChooser extends ListSelect<String> implements GameRoomListener
 {
 
-	private ArrayList<Deck> deckList;
 	private static final String WIDTH = "200px";
+	private GameRoom room;
 
 
-	public DeckChooser(String caption)
+	public DeckChooser(String caption, GameRoom room)
 	{
 		super(caption);
-		deckList = new ArrayList<>();
+		this.room = room;
 		setWidth(WIDTH);
-	}
-
-
-	public DeckChooser(String caption, Deck... decks)
-	{
-		this(caption);
-		addDecks(decks);
-	}
-
-
-	public void addDeck(Deck deck)
-	{
-		deckList.add(deck);
+		room.addGameRoomListener(this);
 		update();
 	}
 
 
-	public void addDecks(Deck... decks)
+	/**
+	 * Updates the DeckChooser component with the current state of the list data.
+	 */
+	protected abstract void update();
+
+
+	protected abstract List<Deck> getDecks();
+
+
+	protected abstract void removeDecks(List<Deck> decks);
+
+
+	protected abstract void addDecks(List<Deck> decks);
+
+
+	protected Deck getDeckByName(String name)
 	{
-		for (Deck deck : decks)
+		for (Deck deck : getDecks())
 		{
-			deckList.add(deck);
-		}
-		update();
-	}
-
-
-	public void removeDeck(Deck deck)
-	{
-		deckList.remove(deck);
-		update();
-	}
-
-
-	public void removeDecks(Deck... decks)
-	{
-		for (Deck deck : decks)
-		{
-			deckList.remove(deck);
-		}
-		update();
-	}
-
-
-	public Deck getDeckByName(String name)
-	{
-		for (Deck deck : deckList)
-		{
-			if(deck == null)
+			if (deck == null)
 				continue;
 			if (deck.getCategory().equalsIgnoreCase(name))
 			{
@@ -79,29 +55,43 @@ public class DeckChooser extends ListSelect<String>
 	}
 
 
-	public List<Deck> getDecks()
+	protected GameRoom getRoom()
 	{
-		return deckList;
+		return room;
 	}
 
 
-	public int getDeckCount()
+	@Override
+	public void playerRemoved()
 	{
-		return deckList.size();
+
 	}
 
 
-	/**
-	 * Updates the ListSelect component with the current state of the list data.
-	 */
-	private void update()
+	@Override
+	public void playerAdded()
 	{
-		List<String> displayNames = new ArrayList<String>(deckList.size());
-		for (Deck deck : deckList)
-		{
-			if (deck != null)
-				displayNames.add(deck.getCategory());
-		}
-		setItems(displayNames);
+
+	}
+
+
+	@Override
+	public void roomClosed()
+	{
+
+	}
+
+
+	@Override
+	public void decksChanged()
+	{
+		update();
+	}
+
+
+	@Override
+	public void gameStarted()
+	{
+
 	}
 }

@@ -1,7 +1,9 @@
 package com.factracing.components;
 
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import com.factracing.beans.Deck;
@@ -15,7 +17,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 
-public class DeckChooserComponent extends HorizontalLayout implements GameRoomListener
+public class DeckChooserComponent extends HorizontalLayout
 {
 
 	private GameRoom room;
@@ -23,13 +25,13 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 	private DeckChooser usedDecks;
 
 
-	public DeckChooserComponent()
+	public DeckChooserComponent(GameRoom room)
 	{
+		this.room = room;
 		setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		usedDecks = new DeckChooser("In Use");
-		availableDecks = new DeckChooser("Available");
-		availableDecks.addDecks(Deck.DefaultDeck.getAllDefaultDecks());
+		usedDecks = new UsedDeckChooser("In Use", room);
+		availableDecks = new AvailableDeckChooser("Available", room);
 
 		VerticalLayout buttonLayout = new VerticalLayout();
 		Button addButton = createAddDeckButton();
@@ -38,23 +40,7 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 		buttonLayout.addComponents(addButton, removeButton);
 
 		addComponents(availableDecks, buttonLayout, usedDecks);
-	}
 
-
-	public DeckChooserComponent(GameRoom room)
-	{
-		this();
-		this.room = room;
-		for (Deck deck : room.getDecks())
-		{
-			if (deck == null)
-				continue;
-			usedDecks.addDeck(deck);
-			// remove decks from available list that have already been added to the In Use list
-			Deck deck2 = availableDecks.getDeckByName(deck.getCategory());
-			availableDecks.removeDeck(deck2);
-		}
-		room.addGameRoomListener(this);
 	}
 
 
@@ -126,17 +112,15 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 	{
 		Set<String> selectedDecks = chooserToRemoveFrom.getSelectedItems();
 		Iterator<String> it = selectedDecks.iterator();
-		Deck[] decks = new Deck[chooserToRemoveFrom.getDeckCount()];
-		for (int i = 0; it.hasNext(); i++)
+		List<Deck> decks = new ArrayList<>();
+		while (it.hasNext())
 		{
 			String item = it.next();
 			Deck deck = chooserToRemoveFrom.getDeckByName(item);
-			decks[i] = deck;
+			decks.add(deck);
 		}
 		chooserToRemoveFrom.removeDecks(decks);
 		chooserToAddTo.addDecks(decks);
-		if (room != null)
-			room.setDecks(chooserToAddTo.getDecks());
 	}
 
 
@@ -161,33 +145,6 @@ public class DeckChooserComponent extends HorizontalLayout implements GameRoomLi
 	public void setRoom(GameRoom room)
 	{
 		this.room = room;
-	}
-
-
-	@Override
-	public void playerRemoved()
-	{
-
-	}
-
-
-	@Override
-	public void playerAdded()
-	{
-
-	}
-
-
-	@Override
-	public void roomClosed()
-	{
-
-	}
-
-
-	public void gameStarted()
-	{
-
 	}
 
 }

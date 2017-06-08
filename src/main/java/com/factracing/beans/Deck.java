@@ -75,6 +75,17 @@ public class Deck
 		}
 
 
+		public static List<Deck> getAllDefaultDecksAsList()
+		{
+			List<Deck> decks = new ArrayList<>();
+			for (DefaultDeck deck : values())
+			{
+				decks.add(deck.getDeck());
+			}
+			return decks;
+		}
+
+
 		public Deck getDeck()
 		{
 			return deck;

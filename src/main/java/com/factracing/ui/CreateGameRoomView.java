@@ -46,15 +46,14 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		maxPlayersField.setId("maxPlayersField");
 		maxPlayersField.setValue("2");
 
-		DeckChooserComponent deckChooserLayout = new DeckChooserComponent();
+		GameRoom room = new GameRoom(((FactRacingUI) UI.getCurrent()).getUserSession());
+		DeckChooserComponent deckChooserLayout = new DeckChooserComponent(room);
 
 		Button createRoomButton = new Button("Create Game Room");
 		createRoomButton.setId("createGameRoomButton");
 		createRoomButton.addClickListener(e -> {
-			GameRoom room = new GameRoom(((FactRacingUI) UI.getCurrent()).getUserSession());
 			room.setMinPlayers(Integer.valueOf(minPlayersField.getValue()));
 			room.setMaxPlayers(Integer.valueOf(maxPlayersField.getValue()));
-			room.setDecks(deckChooserLayout.getUsedDecksDeckChooser().getDecks());
 			((FactRacingUI) UI.getCurrent()).getUserSession().setCurrentGameRoom(room);
 			DataHandler.addGameRoomToList(room);
 
