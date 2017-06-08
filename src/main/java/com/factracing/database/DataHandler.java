@@ -74,10 +74,12 @@ public class DataHandler
 
 	public static void deleteRoom(GameRoom room)
 	{
-		for (UserSession player : room.getPlayers())
+		UserSession[] players = new UserSession[room.getPlayers().size()];
+		for (int i = 0; i < players.length; i++)
 		{
-			player.setCurrentGameRoom(null);
+			players[i] = room.getPlayers().get(i);
 		}
+		removeUsersFromGameRoom(room, players);
 		roomList.remove(room);
 	}
 

@@ -41,6 +41,7 @@ public class FactRacingUI extends UI implements DataHandlerListener
 	{
 		// get the potential gameroom id from the uri
 		String uri = getPage().getUriFragment();
+		System.out.println(uri);
 
 		getPage().setTitle("Fact Racing");
 		setPollInterval(1000);
