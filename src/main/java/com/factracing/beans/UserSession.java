@@ -15,7 +15,6 @@ import com.vaadin.ui.UI;
 public class UserSession
 {
 
-	private PlayingPiece SID;
 	private GameRoom currentGameRoom;
 	private String userName;
 	private String userID;
@@ -34,18 +33,6 @@ public class UserSession
 	{
 		this();
 		this.isAI = isAI;
-	}
-
-
-	public PlayingPiece getSID()
-	{
-		return SID;
-	}
-
-
-	public void setSID(PlayingPiece SID)
-	{
-		this.SID = SID;
 	}
 
 
