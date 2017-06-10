@@ -64,7 +64,7 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 		}
 		setItems(displayNames);
 		setCaption(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
-		if(caption != null)
+		if (caption != null)
 			setCaption(caption);
 	}
 

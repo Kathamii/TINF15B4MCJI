@@ -43,7 +43,7 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		VerticalLayout panelContent = new VerticalLayout();
 		panelContent.setSizeFull();
 
-		remainingTimeLabel = new Label("<h3>Remaining Time: 0:00 </h3>", ContentMode.HTML);
+		remainingTimeLabel = new Label("<h3>Remaining Time: 0:00</h3>", ContentMode.HTML);
 		updateRemainingTimeLabel(game.getRemainingTime());
 		
 		questionsAnswered = new Label("<h3>Answered Questions: 0</h3><br>", ContentMode.HTML);

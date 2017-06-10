@@ -12,7 +12,6 @@ import com.factracing.components.EndscreenWindow;
 import com.factracing.database.DataHandler;
 import com.factracing.game.GameListener;
 import com.factracing.game.GameThread;
-import com.vaadin.ui.UI;
 
 
 public class Game
@@ -153,9 +152,15 @@ public class Game
 
 	public void fireGameStartEvent()
 	{
-		if (questions.size() > 0)
-			for (GameListener listener : listeners)
+		for (GameListener listener : listeners)
+		{
+			if (questions.size() > 0)
+			{
 				listener.gameStart(questions.get(0));
+				continue;
+			}
+			listener.gameStart(null);
+		}
 	}
 
 

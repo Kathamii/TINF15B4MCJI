@@ -98,6 +98,15 @@ public class GameQuestionComponent extends VerticalLayout implements GameListene
 
 	private void updateQuestion(Card question)
 	{
+		if(question == null) {
+			questionArea.setValue("All questions answered!");
+			for (int i = 0; i < 4; i++)
+			{
+				Button button = answerButtons.get(i);
+				button.setEnabled(false);
+			}
+			return;
+		}
 		currentQuestion = question;
 
 		questionArea.setValue(question.getQuestion());
