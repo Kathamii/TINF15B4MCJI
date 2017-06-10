@@ -18,23 +18,23 @@ public class ChatComponent extends VerticalLayout implements GameRoomListener
 	private TextArea chatArea;
 
 
-	public ChatComponent(GameRoom room)
+	public ChatComponent(GameRoom room, String size)
 	{
 		this.room = room;
 		room.addGameRoomListener(this);
 
-		initChatArea();
+		initChatArea(size);
 		HorizontalLayout messageFieldLayout = createMessageFieldLayout();
 
 		addComponents(chatArea, messageFieldLayout);
 	}
 
 
-	private void initChatArea()
+	private void initChatArea(String size)
 	{
 		chatArea = new TextArea("Chat:");
 		chatArea.setEnabled(false);
-		chatArea.setHeight("420px");
+		chatArea.setHeight(size);
 		chatArea.setWidth("100%");
 	}
 

@@ -63,7 +63,7 @@ public class GameView extends VerticalLayout implements View
 
 		VerticalLayout statusLayout = createStatusLayout();
 		VerticalLayout questionLayout = createQuestionLayout();
-		ChatComponent chat = new ChatComponent(((FactRacingUI) UI.getCurrent()).getUserSession().getCurrentGameRoom());
+		ChatComponent chat = new ChatComponent(((FactRacingUI) UI.getCurrent()).getUserSession().getCurrentGameRoom(), "420px");
 
 		gameFieldLayout.addComponents(statusLayout, questionLayout, chat);
 
