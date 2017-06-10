@@ -60,14 +60,14 @@ public class GameView extends VerticalLayout implements View
 
 		GameRoom room = ((FactRacingUI) UI.getCurrent()).getUserSession().getCurrentGameRoom();
 		
-		GameStatusComponent status = new GameStatusComponent(room.getGame());
+		GameStatusComponent status = new GameStatusComponent(room);
 		GameQuestionComponent question = new GameQuestionComponent(room.getGame());
 		ChatComponent chat = new ChatComponent(room, "420px");
 
 		gameFieldLayout.addComponents(status, question, chat);
 
 		// make sure that the question part gets the most space available
-		gameFieldLayout.setExpandRatio(status, 1.25f);
+		gameFieldLayout.setExpandRatio(status, 1f);
 		gameFieldLayout.setExpandRatio(question, 1.5f);
 		gameFieldLayout.setExpandRatio(chat, 1.25f);
 

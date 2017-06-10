@@ -56,8 +56,7 @@ public class PlayerManagementComponent extends VerticalLayout
 		HorizontalLayout playerListWithButtons = new HorizontalLayout();
 		playerListWithButtons.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
-		playerList = new PlayerList(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)",
-				room);
+		playerList = new PlayerList(null, room);
 
 		VerticalLayout buttonLayout = createButtonsForPlayerListLayout();
 

@@ -26,6 +26,8 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 		this.room = room;
 		room.addGameRoomListener(this);
 		update();
+		if(caption != null)
+			setCaption(caption);
 	}
 
 
