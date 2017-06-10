@@ -16,6 +16,7 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 
 	private static final String WIDTH = "355px";
 	private GameRoom room;
+	private String caption;
 
 
 	public PlayerList(String caption, GameRoom room)
@@ -24,10 +25,9 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 		setWidth(WIDTH);
 
 		this.room = room;
+		this.caption = caption;
 		room.addGameRoomListener(this);
 		update();
-		if(caption != null)
-			setCaption(caption);
 	}
 
 
@@ -64,6 +64,8 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 		}
 		setItems(displayNames);
 		setCaption(room.getPlayerCount() + "/" + room.getMaxPlayers() + " Players (" + room.getMinPlayers() + " Minimum)");
+		if(caption != null)
+			setCaption(caption);
 	}
 
 

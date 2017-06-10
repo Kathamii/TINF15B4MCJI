@@ -5,6 +5,7 @@ import com.factracing.beans.Card;
 import com.factracing.beans.Game;
 import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
+import com.factracing.database.DataHandler;
 import com.factracing.game.GameListener;
 import com.factracing.ui.FactRacingUI;
 import com.vaadin.shared.ui.ContentMode;
@@ -66,7 +67,6 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		startGameButton.setWidth("150px");
 		startGameButton.setId("startGameButton");
 		startGameButton.addClickListener(event -> {
-			
 			game.start();
 			startGameButton.setEnabled(false);
 		});
@@ -84,7 +84,7 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		leaveGameButton.setWidth("150px");
 		leaveGameButton.setId("leaveGameButton");
 		leaveGameButton.addClickListener(event -> {
-			
+			DataHandler.removeUserFromGameRoom(currentUser, room);
 		});
 		leaveGameButton.setVisible(false);
 
