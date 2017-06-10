@@ -43,10 +43,10 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		VerticalLayout panelContent = new VerticalLayout();
 		panelContent.setSizeFull();
 
-		remainingTimeLabel = new Label("<b>Remaining Time: 0:00 </b>", ContentMode.HTML);
+		remainingTimeLabel = new Label("<h3>Remaining Time: 0:00 </h3>", ContentMode.HTML);
 		updateRemainingTimeLabel(game.getRemainingTime());
 		
-		questionsAnswered = new Label("<b>Answered Questions: 0</b><br>", ContentMode.HTML);
+		questionsAnswered = new Label("<h3>Answered Questions: 0</h3><br>", ContentMode.HTML);
 
 		startGameButton = createStartGameButton();
 		leaveGameButton = createLeaveGameButton();
@@ -100,13 +100,13 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		
 		String additionalZero = seconds < 10 ? "0" : "";
 
-		remainingTimeLabel.setValue("<b>Remaining Time: " + minutes + ":" + additionalZero + seconds + "</b>");
+		remainingTimeLabel.setValue("<h3>Remaining Time: " + minutes + ":" + additionalZero + seconds + "</h3>");
 	}
 
 
 	private void updateAnsweredQuestionsCount(int answeredQuestionsCount)
 	{
-		questionsAnswered.setValue("<b>Answered Questions: " + answeredQuestionsCount + "</b><br>");
+		questionsAnswered.setValue("<h3>Answered Questions: " + answeredQuestionsCount + "</h3><br>");
 	}
 
 
