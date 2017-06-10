@@ -25,8 +25,8 @@ public class FactRacingUI extends UI implements DataHandlerListener
 {
 
 	private Navigator navigator;
-
 	private UserSession user;
+	private static final int UI_POLLING_RATE = 500;
 
 	private static final String SESSION_COOKIE_ID = "FactRacingUsernameCookie";
 
@@ -45,7 +45,7 @@ public class FactRacingUI extends UI implements DataHandlerListener
 		String uri = getPage().getUriFragment();
 
 		getPage().setTitle("Fact Racing");
-		setPollInterval(1000);
+		setPollInterval(UI_POLLING_RATE);
 
 		navigator = new Navigator(this, this);
 		setNavigator(navigator);

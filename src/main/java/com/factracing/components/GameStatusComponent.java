@@ -40,7 +40,9 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		VerticalLayout panelContent = new VerticalLayout();
 		panelContent.setSizeFull();
 
-		remainingTimeLabel = new Label("<b>Remaining Time: 2:30</b>", ContentMode.HTML);
+		remainingTimeLabel = new Label("", ContentMode.HTML);
+		updateRemainingTimeLabel(game.getRemainingTime());
+		
 		questionsAnswered = new Label("<b>Answered Questions: 0</b><br>", ContentMode.HTML);
 
 		Button startGameButton = createStartGameButton(room);
@@ -60,7 +62,8 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		startGameButton.setWidth("150px");
 		startGameButton.setId("startGameButton");
 		startGameButton.addClickListener(event -> {
-
+			game.start();
+			startGameButton.setEnabled(false);
 		});
 
 		currentUser = ((FactRacingUI) UI.getCurrent()).getUserSession();
@@ -75,8 +78,10 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		int totalSeconds = (int) (remainingTime / 1000);
 		int minutes = totalSeconds / 60;
 		int seconds = totalSeconds % 60;
+		
+		String additionalZero = seconds < 10 ? "0" : "";
 
-		remainingTimeLabel.setValue("<b>Remaining Time:" + minutes + ":" + seconds + "</b>");
+		remainingTimeLabel.setValue("<b>Remaining Time: " + minutes + ":" + additionalZero + seconds + "</b>");
 	}
 
 

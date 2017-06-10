@@ -56,9 +56,9 @@ public class GameQuestionComponent extends VerticalLayout implements GameListene
 		upperButtons.setSizeFull();
 		upperButtons.setSpacing(true);
 		upperButtons.setMargin(true);
-		
+
 		upperButtons.addComponents(answerButtons.get(0), answerButtons.get(1));
-		
+
 		return upperButtons;
 	}
 
@@ -70,9 +70,9 @@ public class GameQuestionComponent extends VerticalLayout implements GameListene
 		lowerButtons.setSizeFull();
 		lowerButtons.setSpacing(true);
 		lowerButtons.setMargin(true);
-		
+
 		lowerButtons.addComponents(answerButtons.get(2), answerButtons.get(3));
-		
+
 		return lowerButtons;
 	}
 
@@ -85,13 +85,13 @@ public class GameQuestionComponent extends VerticalLayout implements GameListene
 		answerButton.setEnabled(false);
 		answerButton.addClickListener(event -> {
 			String answer = answerButton.getCaption();
-			
+
 			boolean isAnswerCorrect = answer.equals(currentQuestion.getCorrectAnswer());
 			UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
-			
+
 			updateQuestion(game.getNextQuestion(isAnswerCorrect, user));
 		});
-		
+
 		return answerButton;
 	}
 
@@ -99,7 +99,7 @@ public class GameQuestionComponent extends VerticalLayout implements GameListene
 	private void updateQuestion(Card question)
 	{
 		currentQuestion = question;
-		
+
 		questionArea.setValue(question.getQuestion());
 		for (int i = 0; i < 4; i++)
 		{

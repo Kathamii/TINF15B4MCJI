@@ -61,6 +61,12 @@ public class Game
 	}
 
 
+	public long getRemainingTime()
+	{
+		return remainingTime;
+	}
+
+
 	public Card getNextQuestion(boolean prevAnswer, UserSession user)
 	{
 		if (prevAnswer)
@@ -94,15 +100,15 @@ public class Game
 
 	public void fireGameStartEvent()
 	{
-		for (GameListener listener : listeners)
-		{
-			listener.gameStart(questions.get(0));
-		}
+		if (questions.size() > 0)
+			for (GameListener listener : listeners)
+				listener.gameStart(questions.get(0));
 	}
 
 
 	public void fireRemainingTimeUpdateEvent(long remainingTime)
 	{
+		this.remainingTime = remainingTime;
 		for (GameListener listener : listeners)
 		{
 			listener.remainingTimeUpdate(remainingTime);
