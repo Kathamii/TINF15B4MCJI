@@ -11,6 +11,7 @@ import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.GameRoomView;
 import com.factracing.ui.GameView;
 import com.factracing.ui.MainNavigationView;
+import com.vaadin.ui.Window;
 
 
 public class DataHandler
@@ -151,6 +152,17 @@ public class DataHandler
 			FactRacingUI ui = (FactRacingUI) listener;
 			if (ui.getUserSession().equals(session))
 				ui.switchView(viewName);
+		}
+	}
+
+
+	public static void showWindowToUserSession(UserSession session, Window window)
+	{
+		for (DataHandlerListener listener : listeners)
+		{
+			FactRacingUI ui = (FactRacingUI) listener;
+			if (ui.getUserSession().equals(session))
+				ui.showWindow(window);
 		}
 	}
 

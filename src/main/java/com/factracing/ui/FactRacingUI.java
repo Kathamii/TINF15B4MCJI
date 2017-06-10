@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import org.springframework.context.annotation.Configuration;
 
 import com.factracing.beans.UserSession;
+import com.factracing.components.EndscreenWindow;
 import com.factracing.database.DataHandler;
 import com.factracing.database.DataHandlerListener;
 import com.vaadin.annotations.PreserveOnRefresh;
@@ -16,6 +17,7 @@ import com.vaadin.server.VaadinService;
 import com.vaadin.spring.annotation.EnableVaadin;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 
 
 @Theme("valo")
@@ -120,6 +122,20 @@ public class FactRacingUI extends UI implements DataHandlerListener
 			public void run()
 			{
 				getNavigator().navigateTo(viewName);
+			}
+		});
+	}
+
+
+	@Override
+	public void showWindow(Window window)
+	{
+		access(new Runnable() {
+
+			@Override
+			public void run()
+			{
+				UI.getCurrent().addWindow(window);
 			}
 		});
 	}

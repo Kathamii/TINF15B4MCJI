@@ -2,13 +2,17 @@ package com.factracing.beans;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.factracing.components.EndscreenWindow;
+import com.factracing.database.DataHandler;
 import com.factracing.game.GameListener;
 import com.factracing.game.GameThread;
+import com.vaadin.ui.UI;
 
 
 public class Game
@@ -22,7 +26,7 @@ public class Game
 	private Map<UserSession, Integer> userQuestionIndexMap;
 	private Map<UserSession, Integer> userCorrectQuestionsMap;
 	private long remainingTime;
-	private static final long TOTAL_SECONDS = 10;
+	private static final long TOTAL_SECONDS = 2;
 
 
 	public Game(GameRoom room)
@@ -36,7 +40,12 @@ public class Game
 		for (UserSession user : room.getPlayers())
 		{
 			userQuestionIndexMap.put(user, 1);
-			userCorrectQuestionsMap.put(user, 0);
+			if (!user.isAI())
+			{
+				userCorrectQuestionsMap.put(user, 0);
+				continue;
+			}
+			userCorrectQuestionsMap.put(user, new Random().nextInt(totalQuestions));
 		}
 	}
 
@@ -66,6 +75,12 @@ public class Game
 	}
 
 
+	private void resetRemainingTime()
+	{
+		remainingTime = (TOTAL_SECONDS) * 1000;
+	}
+
+
 	public long getRemainingTime()
 	{
 		return remainingTime;
@@ -90,12 +105,43 @@ public class Game
 	}
 
 
+	public int getCorrectQuestionsCount(UserSession user)
+	{
+		return userCorrectQuestionsMap.get(user);
+	}
+
+
 	public void start()
 	{
 		generateQuestionOrder();
 		thread = new GameThread(this, remainingTime);
 		thread.start();
 		fireGameStartEvent();
+	}
+
+
+	private void end()
+	{
+		for (UserSession user : room.getPlayers())
+		{
+			DataHandler.showWindowToUserSession(user, new EndscreenWindow(this));
+		}
+	}
+
+
+	public List<UserSession> getLeaderboard()
+	{
+		List<UserSession> players = new ArrayList<>();
+		players.addAll(room.getPlayers());
+
+		players.sort(new Comparator<UserSession>() {
+
+			public int compare(UserSession user1, UserSession user2)
+			{
+				return getCorrectQuestionsCount(user2) - getCorrectQuestionsCount(user1);
+			}
+		});
+		return players;
 	}
 
 
@@ -123,12 +169,6 @@ public class Game
 	}
 
 
-	private void resetRemainingTime()
-	{
-		remainingTime = (TOTAL_SECONDS) * 1000;
-	}
-
-
 	public void fireGameEndEvent()
 	{
 		resetRemainingTime();
@@ -136,6 +176,7 @@ public class Game
 		{
 			listener.gameEnd();
 		}
+		end();
 	}
 
 }
