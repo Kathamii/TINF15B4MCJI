@@ -14,4 +14,6 @@ public interface GameListener
 	 */
 	public void gameStart(Card question);
 	
+	public void gameEnd();
+	
 }

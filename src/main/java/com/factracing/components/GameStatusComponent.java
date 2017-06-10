@@ -43,11 +43,7 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		remainingTimeLabel = new Label("<b>Remaining Time: 2:30</b>", ContentMode.HTML);
 		questionsAnswered = new Label("<b>Answered Questions: 0</b><br>", ContentMode.HTML);
 
-		Button startGameButton = new Button("Start");
-		startGameButton.setWidth("150px");
-		startGameButton.setId("startGameButton");
-		currentUser = ((FactRacingUI) UI.getCurrent()).getUserSession();
-		startGameButton.setEnabled(room.getCreator().equals(currentUser));
+		Button startGameButton = createStartGameButton(room);
 
 		panelContent.addComponents(remainingTimeLabel, questionsAnswered, startGameButton);
 		panelContent.setComponentAlignment(startGameButton, Alignment.MIDDLE_CENTER);
@@ -58,12 +54,28 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 	}
 
 
+	private Button createStartGameButton(GameRoom room)
+	{
+		Button startGameButton = new Button("Start");
+		startGameButton.setWidth("150px");
+		startGameButton.setId("startGameButton");
+		startGameButton.addClickListener(event -> {
+
+		});
+
+		currentUser = ((FactRacingUI) UI.getCurrent()).getUserSession();
+		startGameButton.setEnabled(room.getCreator().equals(currentUser));
+
+		return startGameButton;
+	}
+
+
 	private void updateRemainingTimeLabel(long remainingTime)
 	{
 		int totalSeconds = (int) (remainingTime / 1000);
 		int minutes = totalSeconds / 60;
 		int seconds = totalSeconds % 60;
-		
+
 		remainingTimeLabel.setValue("<b>Remaining Time:" + minutes + ":" + seconds + "</b>");
 	}
 
@@ -86,6 +98,12 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 	public void gameStart(Card question)
 	{
 
+	}
+
+
+	@Override
+	public void gameEnd()
+	{
 	}
 
 }

@@ -124,4 +124,10 @@ public class GameQuestionComponent extends VerticalLayout implements GameListene
 		updateQuestion(question);
 	}
 
+
+	@Override
+	public void gameEnd()
+	{
+	}
+
 }

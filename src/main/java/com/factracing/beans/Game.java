@@ -27,7 +27,8 @@ public class Game
 	public Game(GameRoom room)
 	{
 		this.room = room;
-		thread = new GameThread();
+		remainingTime = (2 * 60 + 30) * 1000;
+		thread = new GameThread(this, remainingTime);
 		listeners = new ArrayList<>();
 		userQuestionIndexMap = new HashMap<>();
 		userCorrectQuestionsMap = new HashMap<>();
@@ -37,7 +38,6 @@ public class Game
 			userCorrectQuestionsMap.put(user, 0);
 		}
 		generateQuestionOrder();
-		remainingTime = (2 * 60 + 30) * 1000;
 	}
 
 
@@ -82,12 +82,40 @@ public class Game
 	public void start()
 	{
 		thread.start();
+		fireGameStartEvent();
 	}
 
 
 	public void register(GameListener listener)
 	{
 		listeners.add(listener);
+	}
+
+
+	public void fireGameStartEvent()
+	{
+		for (GameListener listener : listeners)
+		{
+			listener.gameStart(questions.get(0));
+		}
+	}
+
+
+	public void fireRemainingTimeUpdateEvent(long remainingTime)
+	{
+		for (GameListener listener : listeners)
+		{
+			listener.remainingTimeUpdate(remainingTime);
+		}
+	}
+
+
+	public void fireGameEndEvent()
+	{
+		for (GameListener listener : listeners)
+		{
+			listener.gameEnd();
+		}
 	}
 
 }
