@@ -1,13 +1,9 @@
 package com.factracing.beans;
 
 
-import com.factracing.beans.Difficulty;
-import org.junit.Before;
-import org.junit.Test;
-
-import com.factracing.beans.Card;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 
 public class CardTest
