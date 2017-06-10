@@ -20,6 +20,8 @@ public class Game
 	private List<Card> questions;
 	private int totalQuestions = 12;
 	private Map<UserSession, Integer> userQuestionIndexMap;
+	private Map<UserSession, Integer> userCorrectQuestionsMap;
+	private long remainingTime;
 
 
 	public Game(GameRoom room)
@@ -28,11 +30,14 @@ public class Game
 		thread = new GameThread();
 		listeners = new ArrayList<>();
 		userQuestionIndexMap = new HashMap<>();
+		userCorrectQuestionsMap = new HashMap<>();
 		for (UserSession user : room.getPlayers())
 		{
-			userQuestionIndexMap.put(user, 0);
+			userQuestionIndexMap.put(user, 1);
+			userCorrectQuestionsMap.put(user, 0);
 		}
 		generateQuestionOrder();
+		remainingTime = (2 * 60 + 30) * 1000;
 	}
 
 
@@ -46,7 +51,7 @@ public class Game
 			List<Card> cards = deck.getCards();
 			for (int i = 0; i < questionsPerDeck; i++)
 			{
-				if(cards.size() <= 0)
+				if (cards.size() <= 0)
 					break;
 				int rand = new Random().nextInt(cards.size());
 				questions.add(cards.get(rand));
@@ -56,13 +61,21 @@ public class Game
 	}
 
 
-	public Card getNextQuestion(UserSession user)
+	public Card getNextQuestion(boolean prevAnswer, UserSession user)
 	{
+		if (prevAnswer)
+			userCorrectQuestionsMap.put(user, userCorrectQuestionsMap.get(user) + 1);
 		int index = userQuestionIndexMap.get(user);
 		Card question = questions.get(index);
 		userQuestionIndexMap.put(user, index + 1);
-		
+
 		return question;
+	}
+
+
+	public int getAnsweredQuestionsCount(UserSession user)
+	{
+		return userQuestionIndexMap.get(user) - 1;
 	}
 
 

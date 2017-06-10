@@ -62,7 +62,7 @@ public class GameView extends VerticalLayout implements View
 		
 		GameStatusComponent status = new GameStatusComponent(room);
 		GameQuestionComponent question = new GameQuestionComponent(room.getGame());
-		ChatComponent chat = new ChatComponent(room, "420px");
+		ChatComponent chat = new ChatComponent(room, "365px");
 
 		gameFieldLayout.addComponents(status, question, chat);
 
