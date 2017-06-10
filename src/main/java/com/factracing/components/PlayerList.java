@@ -80,22 +80,19 @@ public class PlayerList extends ListSelect<String> implements GameRoomListener
 
 
 	@Override
-	public void roomClosed()
-	{
-
-	}
-
-
-	@Override
 	public void gameStarted()
 	{
-
 	}
 
 
 	@Override
 	public void decksChanged()
 	{
+	}
 
+
+	@Override
+	public void receiveChatMessage(String message)
+	{
 	}
 }

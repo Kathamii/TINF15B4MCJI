@@ -10,15 +10,12 @@ public interface GameRoomListener
 	public void playerAdded();
 
 
-	/**
-	 * Called when the room is closed (usually creator leaves the room)
-	 */
-	public void roomClosed();
-
-
 	public void decksChanged();
 
 
 	public void gameStarted();
+	
+	
+	public void receiveChatMessage(String message);
 
 }

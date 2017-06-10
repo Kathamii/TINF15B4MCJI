@@ -74,14 +74,6 @@ public abstract class DeckChooser extends ListSelect<String> implements GameRoom
 
 	}
 
-
-	@Override
-	public void roomClosed()
-	{
-
-	}
-
-
 	@Override
 	public void decksChanged()
 	{
@@ -94,4 +86,11 @@ public abstract class DeckChooser extends ListSelect<String> implements GameRoom
 	{
 
 	}
+	
+	@Override
+	public void receiveChatMessage(String message)
+	{
+
+	}
+	
 }

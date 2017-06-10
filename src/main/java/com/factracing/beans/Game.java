@@ -1,36 +1,38 @@
 package com.factracing.beans;
 
 
-import org.springframework.stereotype.Service;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.factracing.game.GameListener;
+import com.factracing.game.GameThread;
 
-@Service
+
 public class Game
 {
 
-	private List<Deck> decks;
-	private Dice dice = new Dice();
-	private final PlayingField field;
+	private GameRoom room;
+	private GameThread thread;
+	private List<GameListener> listeners;
 
 
-	public Game()
+	public Game(GameRoom room)
 	{
-		// TODO
-		field = null;
+		this.room = room;
+		thread = new GameThread();
+		listeners = new ArrayList<>();
 	}
 
 
-	public List<Deck> getDecks()
+	public void start()
 	{
-		return decks;
+		thread.start();
 	}
 
 
-	public void setDecks(List<Deck> decks)
+	public void register(GameListener listener)
 	{
-		this.decks = decks;
+		listeners.add(listener);
 	}
+
 }

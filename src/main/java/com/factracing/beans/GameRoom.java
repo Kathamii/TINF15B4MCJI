@@ -26,6 +26,7 @@ public class GameRoom
 	private List<GameRoomListener> listeners;
 	private UserSession creator;
 	private boolean hasStarted;
+	private Game game;
 
 
 	public GameRoom(UserSession creator)
@@ -259,16 +260,25 @@ public class GameRoom
 		return true;
 	}
 
-	
+
 	public boolean hasStarted()
 	{
 		return hasStarted;
 	}
 
-	
+
 	public void start()
 	{
+		if (!canStart())
+			return;
 		hasStarted = true;
+		game = new Game(this);
+	}
+
+
+	public Game getGame()
+	{
+		return game;
 	}
 
 
