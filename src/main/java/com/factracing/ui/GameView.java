@@ -59,16 +59,16 @@ public class GameView extends VerticalLayout implements View
 		HorizontalLayout gameFieldLayout = new HorizontalLayout();
 		gameFieldLayout.setSizeFull();
 
+		VerticalLayout statusLayout = createStatusLayout();
 		VerticalLayout questionLayout = createQuestionLayout();
-		VerticalLayout gameLayout = createGameLayout();
-		VerticalLayout gameLogLayout = createGameLogLayout();
+		VerticalLayout chatLayout = createChatLayout();
 
-		gameFieldLayout.addComponents(questionLayout, gameLayout, gameLogLayout);
+		gameFieldLayout.addComponents(statusLayout, questionLayout, chatLayout);
 
-		// make sure that the gamefield gets the most space available
-		gameFieldLayout.setExpandRatio(questionLayout, 1);
-		gameFieldLayout.setExpandRatio(gameLayout, 3);
-		gameFieldLayout.setExpandRatio(gameLogLayout, 1);
+		// make sure that the question part gets the most space available
+		gameFieldLayout.setExpandRatio(statusLayout, 1.25f);
+		gameFieldLayout.setExpandRatio(questionLayout, 1.5f);
+		gameFieldLayout.setExpandRatio(chatLayout, 1.25f);
 
 		return gameFieldLayout;
 	}
@@ -111,12 +111,12 @@ public class GameView extends VerticalLayout implements View
 	 *
 	 * @return
 	 */
-	private VerticalLayout createGameLayout()
+	private VerticalLayout createStatusLayout()
 	{
 		VerticalLayout gameLayout = new VerticalLayout();
 		gameLayout.setSizeFull();
 
-		Panel gamePanel = new Panel("Game Field");
+		Panel gamePanel = new Panel("Status");
 		gamePanel.setSizeFull();
 
 		VerticalLayout panelContent = new VerticalLayout();
@@ -139,11 +139,11 @@ public class GameView extends VerticalLayout implements View
 	 *
 	 * @return
 	 */
-	private VerticalLayout createGameLogLayout()
+	private VerticalLayout createChatLayout()
 	{
 		VerticalLayout gameLogLayout = new VerticalLayout();
 
-		TextArea gameLog = new TextArea("Log:");
+		TextArea gameLog = new TextArea("Chat:");
 		gameLog.setEnabled(false);
 		gameLog.setHeight("420px");
 		gameLog.setWidth("100%");
