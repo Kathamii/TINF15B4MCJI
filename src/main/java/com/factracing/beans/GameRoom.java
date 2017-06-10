@@ -25,6 +25,7 @@ public class GameRoom
 	private List<Deck> availableDecks;
 	private List<GameRoomListener> listeners;
 	private UserSession creator;
+	private boolean hasStarted;
 
 
 	public GameRoom(UserSession creator)
@@ -256,6 +257,18 @@ public class GameRoom
 		if (usedDecks.size() <= 0)
 			return false;
 		return true;
+	}
+
+	
+	public boolean hasStarted()
+	{
+		return hasStarted;
+	}
+
+	
+	public void start()
+	{
+		hasStarted = true;
 	}
 
 

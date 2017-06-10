@@ -63,11 +63,11 @@ public class DataHandler
 
 	public static void joinRandomGameRoom(UserSession user)
 	{
-		GameRoom room = DataHandler.getRandomGameRoom();
+		GameRoom room = getRandomGameRoom();
 		if (room == null)
 			return;
 		user.setCurrentGameRoom(room);
-		DataHandler.addUserToGameRoom(user, user.getCurrentGameRoom().getRoomID());
+		addUserToGameRoom(user, user.getCurrentGameRoom().getRoomID());
 		sendViewChangeToUserSession(user, GameRoomView.VIEW_NAME);
 	}
 
@@ -86,7 +86,8 @@ public class DataHandler
 
 	public static boolean doesRoomExist(String roomID)
 	{
-		return getRoomByID(roomID) != null;
+		GameRoom room = getRoomByID(roomID);
+		return room != null && !room.hasStarted();
 	}
 
 
@@ -105,8 +106,17 @@ public class DataHandler
 	{
 		if (roomList.size() > 0)
 		{
-			int rand = new Random().nextInt(roomList.size());
-			return roomList.get(rand);
+			List<GameRoom> availableRooms = new ArrayList<>();
+			for (GameRoom room : roomList)
+			{
+				if (!room.hasStarted())
+					availableRooms.add(room);
+			}
+			if (availableRooms.size() > 0)
+			{
+				int rand = new Random().nextInt(availableRooms.size());
+				return roomList.get(rand);
+			}
 		}
 		return null;
 	}
