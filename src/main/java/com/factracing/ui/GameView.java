@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.factracing.components.ChatComponent;
 import com.factracing.database.DatabaseController;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -13,6 +14,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import java.sql.SQLException;
@@ -61,14 +63,14 @@ public class GameView extends VerticalLayout implements View
 
 		VerticalLayout statusLayout = createStatusLayout();
 		VerticalLayout questionLayout = createQuestionLayout();
-		VerticalLayout chatLayout = createChatLayout();
+		ChatComponent chat = new ChatComponent(((FactRacingUI) UI.getCurrent()).getUserSession().getCurrentGameRoom());
 
-		gameFieldLayout.addComponents(statusLayout, questionLayout, chatLayout);
+		gameFieldLayout.addComponents(statusLayout, questionLayout, chat);
 
 		// make sure that the question part gets the most space available
 		gameFieldLayout.setExpandRatio(statusLayout, 1.25f);
 		gameFieldLayout.setExpandRatio(questionLayout, 1.5f);
-		gameFieldLayout.setExpandRatio(chatLayout, 1.25f);
+		gameFieldLayout.setExpandRatio(chat, 1.25f);
 
 		return gameFieldLayout;
 	}
@@ -87,14 +89,16 @@ public class GameView extends VerticalLayout implements View
 		TextArea questionArea = new TextArea("Current Question:");
 		questionArea.setEnabled(false);
 		questionArea.setWidth("100%");
-        try {
-            questionArea.setValue(databaseController.getQuestion());
-        } catch (SQLException e) {
+		try
+		{
+			questionArea.setValue(databaseController.getQuestion());
+		}
+		catch (SQLException e)
+		{
 
-        }
+		}
 
-
-        ListSelect<String> questionList = new ListSelect<>("Choose an answer:");
+		ListSelect<String> questionList = new ListSelect<>("Choose an answer:");
 		questionList.setWidth("100%");
 
 		Button answerButton = new Button("Answer");
@@ -131,26 +135,6 @@ public class GameView extends VerticalLayout implements View
 		gameLayout.addComponent(gamePanel);
 
 		return gameLayout;
-	}
-
-
-	/**
-	 * Creates the log on the right of the playing field.
-	 *
-	 * @return
-	 */
-	private VerticalLayout createChatLayout()
-	{
-		VerticalLayout gameLogLayout = new VerticalLayout();
-
-		TextArea gameLog = new TextArea("Chat:");
-		gameLog.setEnabled(false);
-		gameLog.setHeight("420px");
-		gameLog.setWidth("100%");
-
-		gameLogLayout.addComponent(gameLog);
-
-		return gameLogLayout;
 	}
 
 

@@ -9,6 +9,7 @@ import com.factracing.beans.GameRoom;
 import com.factracing.beans.UserSession;
 import com.factracing.ui.FactRacingUI;
 import com.factracing.ui.GameRoomView;
+import com.factracing.ui.GameView;
 import com.factracing.ui.MainNavigationView;
 
 
@@ -81,6 +82,15 @@ public class DataHandler
 		}
 		removeUsersFromGameRoom(room, players);
 		roomList.remove(room);
+	}
+
+
+	public static void startGame(GameRoom room)
+	{
+		for (UserSession user : room.getPlayers())
+		{
+			sendViewChangeToUserSession(user, GameView.VIEW_NAME);
+		}
 	}
 
 

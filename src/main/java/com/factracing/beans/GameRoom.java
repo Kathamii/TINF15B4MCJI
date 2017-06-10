@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.factracing.components.GameRoomListener;
 import com.factracing.database.DataHandler;
+import com.factracing.ui.FactRacingUI;
 import com.factracing.validation.NumberValidator;
+import com.vaadin.ui.UI;
 
 
 @Service
@@ -273,6 +275,7 @@ public class GameRoom
 			return;
 		hasStarted = true;
 		game = new Game(this);
+		DataHandler.startGame(this);
 	}
 
 
@@ -305,6 +308,16 @@ public class GameRoom
 		for (GameRoomListener listener : listeners)
 		{
 			listener.decksChanged();
+		}
+	}
+
+
+	public void sendChatMessage(String message)
+	{
+		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
+		for (GameRoomListener listener : listeners)
+		{
+			listener.receiveChatMessage(user.getUserName() + ": " + message);
 		}
 	}
 

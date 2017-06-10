@@ -124,7 +124,12 @@ public class PlayerManagementComponent extends VerticalLayout
 				showTextPopUp("Too many players!");
 				return;
 			}
-			UI.getCurrent().getNavigator().navigateTo(GameView.VIEW_NAME);
+			if (room.getUsedDecks().size() <= 0)
+			{
+				showTextPopUp("At least one deck is needed!");
+				return;
+			}
+			room.start();
 		});
 
 		UserSession user = ((FactRacingUI) UI.getCurrent()).getUserSession();
