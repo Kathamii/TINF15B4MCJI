@@ -1,6 +1,7 @@
 package com.factracing.ui;
 
 
+import com.factracing.beans.GameRoom;
 import com.factracing.components.ChatComponent;
 import com.factracing.components.GameQuestionComponent;
 import com.factracing.components.GameStatusComponent;
@@ -57,9 +58,11 @@ public class GameView extends VerticalLayout implements View
 		HorizontalLayout gameFieldLayout = new HorizontalLayout();
 		gameFieldLayout.setSizeFull();
 
-		GameStatusComponent status = new GameStatusComponent();
-		GameQuestionComponent question = new GameQuestionComponent();
-		ChatComponent chat = new ChatComponent(((FactRacingUI) UI.getCurrent()).getUserSession().getCurrentGameRoom(), "420px");
+		GameRoom room = ((FactRacingUI) UI.getCurrent()).getUserSession().getCurrentGameRoom();
+		
+		GameStatusComponent status = new GameStatusComponent(room.getGame());
+		GameQuestionComponent question = new GameQuestionComponent(room.getGame());
+		ChatComponent chat = new ChatComponent(room, "420px");
 
 		gameFieldLayout.addComponents(status, question, chat);
 
