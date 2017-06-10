@@ -107,7 +107,6 @@ public class GameQuestionComponent extends VerticalLayout implements GameListene
 			button.setCaption(question.getAnswers()[i]);
 			button.setEnabled(true);
 		}
-
 	}
 
 
@@ -128,6 +127,12 @@ public class GameQuestionComponent extends VerticalLayout implements GameListene
 	@Override
 	public void gameEnd()
 	{
+		questionArea.setValue("");
+		for (int i = 0; i < 4; i++)
+		{
+			Button button = answerButtons.get(i);
+			button.setEnabled(false);
+		}
 	}
 
 }

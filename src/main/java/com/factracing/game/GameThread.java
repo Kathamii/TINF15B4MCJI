@@ -31,14 +31,14 @@ public class GameThread extends Thread
 			if (delta >= 500)
 			{
 				remainingTime -= delta;
+				lastUpdateTime = System.currentTimeMillis();
+				game.fireRemainingTimeUpdateEvent(remainingTime);
 				if (remainingTime <= 0L)
 				{
 					setRunning(false);
 					game.fireGameEndEvent();
 					break;
 				}
-				lastUpdateTime = System.currentTimeMillis();
-				game.fireRemainingTimeUpdateEvent(remainingTime);
 			}
 		}
 	}

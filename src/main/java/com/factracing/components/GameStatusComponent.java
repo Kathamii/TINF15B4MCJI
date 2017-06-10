@@ -24,6 +24,8 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 	private Label remainingTimeLabel;
 	private Label questionsAnswered;
 	private UserSession currentUser;
+	private Button startGameButton;
+	private Button leaveGameButton;
 
 
 	public GameStatusComponent(GameRoom room)
@@ -40,15 +42,17 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		VerticalLayout panelContent = new VerticalLayout();
 		panelContent.setSizeFull();
 
-		remainingTimeLabel = new Label("", ContentMode.HTML);
+		remainingTimeLabel = new Label("<b>Remaining Time: 0:00 </b>", ContentMode.HTML);
 		updateRemainingTimeLabel(game.getRemainingTime());
 		
 		questionsAnswered = new Label("<b>Answered Questions: 0</b><br>", ContentMode.HTML);
 
-		Button startGameButton = createStartGameButton(room);
+		startGameButton = createStartGameButton();
+		leaveGameButton = createLeaveGameButton();
 
-		panelContent.addComponents(remainingTimeLabel, questionsAnswered, startGameButton);
+		panelContent.addComponents(remainingTimeLabel, questionsAnswered, startGameButton, leaveGameButton);
 		panelContent.setComponentAlignment(startGameButton, Alignment.MIDDLE_CENTER);
+		panelContent.setComponentAlignment(leaveGameButton, Alignment.MIDDLE_CENTER);
 
 		statusPanel.setContent(panelContent);
 
@@ -56,12 +60,13 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 	}
 
 
-	private Button createStartGameButton(GameRoom room)
+	private Button createStartGameButton()
 	{
 		Button startGameButton = new Button("Start");
 		startGameButton.setWidth("150px");
 		startGameButton.setId("startGameButton");
 		startGameButton.addClickListener(event -> {
+			
 			game.start();
 			startGameButton.setEnabled(false);
 		});
@@ -70,6 +75,20 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 		startGameButton.setEnabled(room.getCreator().equals(currentUser));
 
 		return startGameButton;
+	}
+
+
+	private Button createLeaveGameButton()
+	{
+		Button leaveGameButton = new Button("Leave");
+		leaveGameButton.setWidth("150px");
+		leaveGameButton.setId("leaveGameButton");
+		leaveGameButton.addClickListener(event -> {
+			
+		});
+		leaveGameButton.setVisible(false);
+
+		return leaveGameButton;
 	}
 
 
@@ -102,13 +121,17 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 	@Override
 	public void gameStart(Card question)
 	{
-
+		updateRemainingTimeLabel(game.getRemainingTime());
+		leaveGameButton.setVisible(false);
 	}
 
 
 	@Override
 	public void gameEnd()
 	{
+		updateRemainingTimeLabel(game.getRemainingTime());
+		startGameButton.setEnabled(room.getCreator().equals(currentUser));
+		leaveGameButton.setVisible(true);
 	}
 
 }

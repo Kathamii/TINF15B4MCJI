@@ -22,12 +22,13 @@ public class Game
 	private Map<UserSession, Integer> userQuestionIndexMap;
 	private Map<UserSession, Integer> userCorrectQuestionsMap;
 	private long remainingTime;
+	private static final long TOTAL_SECONDS = 10;
 
 
 	public Game(GameRoom room)
 	{
 		this.room = room;
-		remainingTime = (2 * 60 + 30) * 1000;
+		resetRemainingTime();
 		thread = new GameThread(this, remainingTime);
 		listeners = new ArrayList<>();
 		userQuestionIndexMap = new HashMap<>();
@@ -37,7 +38,6 @@ public class Game
 			userQuestionIndexMap.put(user, 1);
 			userCorrectQuestionsMap.put(user, 0);
 		}
-		generateQuestionOrder();
 	}
 
 
@@ -49,13 +49,18 @@ public class Game
 		for (Deck deck : decks)
 		{
 			List<Card> cards = deck.getCards();
+			List<Integer> usedIndices = new ArrayList<>(cards.size());
+			Random rng = new Random();
 			for (int i = 0; i < questionsPerDeck; i++)
 			{
 				if (cards.size() <= 0)
 					break;
-				int rand = new Random().nextInt(cards.size());
+				int rand = rng.nextInt(cards.size());
+				// make sure the same question isn't used twice
+				while (usedIndices.contains(rand))
+					rand = rng.nextInt(cards.size());
 				questions.add(cards.get(rand));
-				cards.remove(rand);
+				usedIndices.add(rand);
 			}
 		}
 	}
@@ -87,6 +92,8 @@ public class Game
 
 	public void start()
 	{
+		generateQuestionOrder();
+		thread = new GameThread(this, remainingTime);
 		thread.start();
 		fireGameStartEvent();
 	}
@@ -116,8 +123,15 @@ public class Game
 	}
 
 
+	private void resetRemainingTime()
+	{
+		remainingTime = (TOTAL_SECONDS) * 1000;
+	}
+
+
 	public void fireGameEndEvent()
 	{
+		resetRemainingTime();
 		for (GameListener listener : listeners)
 		{
 			listener.gameEnd();
