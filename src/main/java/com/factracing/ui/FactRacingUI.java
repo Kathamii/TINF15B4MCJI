@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import com.factracing.beans.UserSession;
 import com.factracing.database.DataHandler;
 import com.factracing.database.DataHandlerListener;
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -19,6 +20,7 @@ import com.vaadin.ui.UI;
 
 @Theme("valo")
 @SpringUI
+@PreserveOnRefresh
 public class FactRacingUI extends UI implements DataHandlerListener
 {
 
