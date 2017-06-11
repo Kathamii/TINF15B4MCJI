@@ -25,7 +25,7 @@ public class Game
 	private Map<UserSession, Integer> userQuestionIndexMap;
 	private Map<UserSession, Integer> userCorrectQuestionsMap;
 	private long remainingTime;
-	private static final long TOTAL_SECONDS = 2;
+	private static final long TOTAL_SECONDS = 30;
 
 
 	public Game(GameRoom room)
@@ -34,6 +34,12 @@ public class Game
 		resetRemainingTime();
 		thread = new GameThread(this, remainingTime);
 		listeners = new ArrayList<>();
+		resetUserDataMaps();
+	}
+
+
+	private void resetUserDataMaps()
+	{
 		userQuestionIndexMap = new HashMap<>();
 		userCorrectQuestionsMap = new HashMap<>();
 		for (UserSession user : room.getPlayers())
@@ -91,6 +97,11 @@ public class Game
 		if (prevAnswer)
 			userCorrectQuestionsMap.put(user, userCorrectQuestionsMap.get(user) + 1);
 		int index = userQuestionIndexMap.get(user);
+		if (index >= totalQuestions)
+		{
+			userQuestionIndexMap.put(user, index + 1);
+			return null;
+		}
 		Card question = questions.get(index);
 		userQuestionIndexMap.put(user, index + 1);
 
@@ -121,10 +132,12 @@ public class Game
 
 	private void end()
 	{
+		resetRemainingTime();
 		for (UserSession user : room.getPlayers())
 		{
 			DataHandler.showWindowToUserSession(user, new EndscreenWindow(this));
 		}
+		resetUserDataMaps();
 	}
 
 
@@ -154,12 +167,7 @@ public class Game
 	{
 		for (GameListener listener : listeners)
 		{
-			if (questions.size() > 0)
-			{
-				listener.gameStart(questions.get(0));
-				continue;
-			}
-			listener.gameStart(null);
+			listener.gameStart(questions.get(0));
 		}
 	}
 
@@ -176,7 +184,6 @@ public class Game
 
 	public void fireGameEndEvent()
 	{
-		resetRemainingTime();
 		for (GameListener listener : listeners)
 		{
 			listener.gameEnd();

@@ -68,9 +68,6 @@ public class Deck
 		{
 			if (category.equals("Sports"))
 			{
-				deck.addCard(new Card("Was ist das besondere an der Fußballmeisterschaft des 1. FC Kaiserslautern von 1998?", 3,
-						"Tabellenführung ab dem 4. Spieltag", "Am 1.Spieltag wurde Bayern München besiegt",
-						"Der Trainer hieß Otto Rehhagel", "Erster Deutscher Meister nach einem Aufstieg"));
 				deck.addCard(new Card("Wo wurde die Bundesrepublik Deutschland zum zweitenmal Fußballweltmeister der Herren?", 1, "in Bern",
 						"in München", "in Berlin", "in Rom"));
 				deck.addCard(new Card("Süper Lig heißt die höchste Fußballspielklasse in ...?", 0, "der Türkei", "Finnland", "der Ukraine",

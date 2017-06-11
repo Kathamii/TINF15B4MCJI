@@ -122,6 +122,7 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 	public void gameStart(Card question)
 	{
 		updateRemainingTimeLabel(game.getRemainingTime());
+		updateAnsweredQuestionsCount(0);
 		leaveGameButton.setVisible(false);
 	}
 
@@ -130,6 +131,7 @@ public class GameStatusComponent extends VerticalLayout implements GameListener
 	public void gameEnd()
 	{
 		updateRemainingTimeLabel(game.getRemainingTime());
+		updateAnsweredQuestionsCount(0);
 		startGameButton.setEnabled(room.getCreator().equals(currentUser));
 		leaveGameButton.setVisible(true);
 	}

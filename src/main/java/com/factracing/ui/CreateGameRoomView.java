@@ -63,6 +63,7 @@ public class CreateGameRoomView extends VerticalLayout implements View
 		Button backButton = new Button("Back");
 		backButton.setId("backButton");
 		backButton.addClickListener(e -> {
+			((FactRacingUI) UI.getCurrent()).getUserSession().setCurrentGameRoom(null);
 			UI.getCurrent().getNavigator().navigateTo(MainNavigationView.VIEW_NAME);
 		});
 
