@@ -1,11 +1,9 @@
 package com.factracing.beans;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Janik on 29.05.2017.
@@ -14,7 +12,7 @@ public class DeckTest {
     private static String CATEGORY = "Doctor Who";
     private Deck simpleDeck = new Deck(CATEGORY);
     private Deck emptyDeck = new Deck("");
-    private Card simpleCard = new Card("", new String[0], "", 0);
+    private Card simpleCard = new Card("", 0, "");
 
     @Before
     public void setUp(){

@@ -8,24 +8,16 @@ import org.springframework.stereotype.Service;
 public class Card
 {
 
-	private int difficulty;
 	private String question;
 	private String[] answers;
 	private String correctAnswer;
 
 
-	public Card(String question, String[] answers, String correctAnswer, int difficulty)
+	public Card(String question, int correctAnswer, String... answers)
 	{
 		this.question = question;
 		this.answers = answers;
-		this.correctAnswer = correctAnswer;
-		this.difficulty = difficulty;
-	}
-
-
-	public int getDifficulty()
-	{
-		return difficulty;
+		this.correctAnswer = answers[correctAnswer];
 	}
 
 
