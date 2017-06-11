@@ -103,6 +103,31 @@ public class Deck
 			}
 			if (category.equals("Animals"))
 			{
+				deck.addCard(new Card("Welches dieser Insekten erreicht eine Fluggeschwindigkeit von bis zu 50 km/h?", 1, "Fliege",
+						"Libelle", "Biene", "Motte"));
+				deck.addCard(
+						new Card("Welche Käferart hat das höchste Gewicht?", 2, "Ölkäfer", "Prachtkäfer", "Goliathkäfer", "Speckkäfer"));
+				deck.addCard(new Card("Wie nennt man ein männliches Schaf?", 3, "Bulle", "Widder", "Hengst", "Keiler"));
+				deck.addCard(
+						new Card("Welches dieser Insekten krabbelt am schnellsten?", 0, "Hundefloh", "Kakerlake", "Mistkäfer", "Ohrwurm"));
+				deck.addCard(new Card("Womit werden Pferde gebürstet?", 0, "Striegel", "Koppel", "Mash", "Halfter"));
+				deck.addCard(new Card("Wie nennt man die Kreuzung aus einem männlichen Löwen und einem weiblichen Tiger?", 3, "Tigon",
+						"Töwe", "Gibt es nicht", "Liger"));
+				deck.addCard(new Card("Welche Raubkatzen haben Pinselohren?", 2, "Leoparden", "Pumas", "Luchse", "Geparden"));
+				deck.addCard(new Card("Wo werden gefährdete Tierarten erfasst?", 0, "auf einer roten Liste", "auf einem grünen Zettel",
+						"in einem schwarzen Buch", "in einer blauen Tabelle"));
+				deck.addCard(new Card("Wie nennt man ein junges Reh?", 2, "Ricke", "Frischling", "Kitz", "Fähe"));
+				deck.addCard(
+						new Card("Welches dieser Tiere schläft die meisten Stunden am Tag?", 2, "Panda", "Faultier", "Koala", "Braunbär"));
+				deck.addCard(new Card("Wie wird ein männliches Kaninchen bezeichnet?", 3, "Schaufler", "Ganter", "Zibbe", "Rammler"));
+				deck.addCard(new Card("Welches Tier ist am giftigsten?", 1, "Schrecklicher Pfeilgiftfrosch", "Seewespe",
+						"Sydney-Trichternetzspinne", "Gelber Mittelmeerskorpion"));
+				deck.addCard(new Card("Welcher Zugvogel legt während eines Jahres die längste Strecke zurück?", 1, "Weißstorch",
+						"Küstenseeschwalbe", "Mauersegler", "Grauer Kranich"));
+				deck.addCard(new Card("Welches dieser Tiere hält einen Winterschlaf?", 1, "Krokodil", "Haselmaus", "Braunbär",
+						"Blindschleiche"));
+				deck.addCard(new Card("Wie nennt man ein Pferd mit rötlichem Fell?", 2, "Schimmel", "Rappe", "Fuchs", "Falbe"));
+
 				return;
 			}
 		}
