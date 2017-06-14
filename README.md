@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/Kahmul/TINF15B4MCJI.svg?branch=master)](https://travis-ci.org/Kahmul/TINF15B4MCJI)
+[![Coverage Status](https://img.shields.io/badge/coverage-sonar-blue.svg)](https://sonarqube.com/organizations/factracing/projects)
+[![Deploy Status](https://img.shields.io/badge/deploy-heroku-blue.svg)](http://factracing.herokuapp.com/)
 # Fact Racing
 
 Software Engineering Java board game project.
