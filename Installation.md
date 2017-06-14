@@ -1,7 +1,8 @@
 # Installation
 
 We are using Spring Boot with Maven and use Travis-CI for automatic Tests and Deployment.  
-Addidionally we use Heroku for our Server, because you can get one for free.
+Addidionally we use Heroku for our Server, because you can get one for free.  
+The Application normally runs on Port 8080.
 
 ## Local Installation
 Just use some modern IDE and pull our Git.
