@@ -40,6 +40,7 @@
       10. Failover and Recovery Testing
       11. Configuration Testing
       12. Installation Testing
+      13. User Test
 6. Entry and Exit Criteria
    1. Test Plan
       1. Test Plan Entry Criteria
@@ -140,24 +141,24 @@ n/a
 #### 5.2.2 Function Testing
 |                         |                                                      |
 |-------------------------|------------------------------------------------------|
-| Technique Objective:    | Testing the functionality of the code                | 
-| Technique:              | Testing the self-written code                        | 
-| Oracles:                | Cucumber extension for Eclipse/IntelliJ + Java JUnit | 
-| Success Criteria:       | All tests pass                                       | 
-| Special Considerations: | n/a                                                  | 
+| Technique Objective:    | Testing the functionality of the code                |
+| Technique:              | Testing the self-written code                        |
+| Oracles:                | Cucumber extension for Eclipse/IntelliJ + Java JUnit |
+| Success Criteria:       | All tests pass                                       |
+| Special Considerations: | n/a                                                  |
 
 #### 5.2.3 Business Cycle Testing
 n/a
 
 #### 5.2.4 User Interface Testing
-|                         |                                                      |
-|-------------------------|------------------------------------------------------|
-| Technique Objective:    | Testing the webpages for correct behavior            | 
-| Technique:              | Create or modify tests for each window to verify proper navigation and object states for each application window and object. | 
-| Oracles:                | Tests are successful if every interaction with the GUI could be performed and produces an logical answer. | 
-| Required Tools:         | Cucumber                                             |
-| Success Criteria:       | All tests pass successfully                          | 
-| Special Considerations: | n/a                                                  | 
+|                         |                                                                                                                              |
+|:------------------------|:-----------------------------------------------------------------------------------------------------------------------------|
+| Technique Objective:    | Testing the webpages for correct behavior                                                                                    |
+| Technique:              | Create or modify tests for each window to verify proper navigation and object states for each application window and object. |
+| Oracles:                | Tests are successful if every interaction with the GUI could be performed and produces an logical answer.                    |
+| Required Tools:         | Cucumber                                                                                                                     |
+| Success Criteria:       | All tests pass successfully                                                                                                  |
+| Special Considerations: | n/a                                                                                                                          |
 
 #### 5.2.5 Performance Profiling
 n/a
@@ -182,6 +183,16 @@ n/a
 
 #### 5.2.12 Installation Testing
 n/a
+
+#### 5.2.13 User Test
+|                         |                                                                                                                     |
+|:------------------------|:--------------------------------------------------------------------------------------------------------------------|
+| Technique Objective:    | Testing the design and behavior with real human user input                                                          |
+| Technique:              | Let someone try the web app, without further instructions from team members                                         |
+| Oracles:                | Tests are successful if the test subject understands the game and is able to create a gameroom and play with others |
+| Required Tools:         | Browser, Human                                                                                                      |
+| Success Criteria:       | All tests pass successfully                                                                                                               |
+| Special Considerations: | n/a                                                                                                                 |
 
 ## 6. Entry and Exit Criteria
 ### 6.1 Test Plan
