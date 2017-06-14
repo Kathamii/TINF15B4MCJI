@@ -7,7 +7,7 @@ Software Engineering Java quiz game project.
 
 ## General
 
-A racing quiz game with at least 2 players. You are given a limited amount of time in which you need to answer as many question as possible correctly. The amount of questions is limited, so purely choosing random answers is not worthwhile. The winner is whoever got the most question right.
+A racing quiz game with at least 2 players. You are given a limited amount of time in which you need to answer as many question as possible correctly. The amount of questions is limited, so purely choosing random answers is not worthwhile. The winner is whoever got the most questions right.
 
 ## Instructions
 
