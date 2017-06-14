@@ -17,7 +17,7 @@
     1. References
     1. Overview
 2. Overall Description
-    2. Game Rules
+    2. Instructions
 3. Specific Requirements
    3. Functionality
       3. Creating a game session
@@ -39,6 +39,7 @@
    6. Design Constraints
       1. Languages
       2. Spring Framework
+      3. Vaadin
    7. On-line User Documentation and Help System Requirements
    8. Purchased Components
    9. Interfaces
@@ -68,13 +69,14 @@ This SRS applies to the whole application. It consists of a website that allows 
 
 | Abbreviation | Meaning |
 |:-------------|:--------|
-| MTBF         |         |
+|              |         |
 
 
 ### References
 
-Github: https://github.com/Kahmul/TINF15B4MCJI
-Blog: https://gamescobold.wordpress.com
+Github: https://github.com/Kahmul/TINF15B4MCJI  
+Blog: https://gamescobold.wordpress.com  
+Server: https://factracing.herokuapp.com
 
 ### Overview
 
@@ -82,37 +84,38 @@ The following chapters of this SRS will be addressing the design of the game, ou
 
 ## Overall Description
 
-A web-based board game written in the Java programming language using the Spring Framework.
-Players can create a room to start a game and other people can join it. No account required, the creator of the session is able to invite other people by providing the link.
-The game consists of a 6×10 playing field and between 2-4 players moving on the board. A dice throw (1-6) determines how many fields a player can move at a time. Fields can have a question attached to them that the player currently on the field has to answer. Answering questions correctly awards you points that you need in order to win the game as well as allowing you to sometimes take shortcuts.
+A web-based question game written in the Java programming language using the Spring Framework with Spring Boot.  
+Players can create a room to start a game and other people can join it. No account required, everyone is able to invite other people by sending the provided link.  
+All players have to answer 12 questions in 60 second and the player who answers the most questions correctly in the given time wins.
 
-### Game Rules
+### Instructions
 
-– Everybody starts on the same starting field.
-– Starting player is decided at random.
-– Each player has to throw a dice each turn unless they have been forced to skip a turn the round before.
-– If a player lands on a field with a question he has to answer it. The field determines whether it is an easy or a hard question.
-– Answering a question correctly awards the player with points depending on the difficulty of the question. Any shortcuts associated with the field are also allowed to be taken by the player.
-– Answering the question incorrectly results in a penalty for the player in question. This can vary between things like having to skip a turn the next round or receiving a point penalty.
-– Each time a player reaches the starting field again they are awarded points.
-– The game ends after a player has reached a certain amount of points set before the start of the game or when one deck of cards is empty at which point the player with the highest score wins.
+1. Create a game room on your own or follow a link.
+2. In the game room the creator can choose the decks for the game.
+3. Use the chat to communicate with other players.
+4. Once everybody is ready the creator can switch to the game view.
+5. There you can play as many rounds as you want.
+6. Each round lasts for 60 seconds and has a set of 12 questions each.
+7. The goal is to answer as many questions correctly in the given amount of time.
+8. Once the time elapsed the round is over.
+9. The winner is the player that answered the most questions correctly.
 
 
 ## Specific Requirements
 
 ### Functionality
 
-#### Creating a game session
+#### Creating a gameroom
 
-The user is able to create his own game session on the website. There he will be able to communicate with other users that have joined the game via chat. Users can be invited via a link or can randomly be assigned to a game if they wish.
+The user is able to create his own gameroom on the website. There he will be able to communicate with other users that have joined the game via chat. Users can be invited via a link or can randomly be assigned to a game if they wish.
 
-#### Joining a game session
+#### Joining a gameroom
 
-Joining a game can be done either by being given a link to a specific session by the user who created it or by choosing to be assigned to a random currently open game session.
+Joining a gameroom can be done either by being given a link to a specific session by the user who created it or by choosing to be assigned to a random currently open game session.
 
 #### Playing the game
 
-Players that have joined a game session will end up playing together once the game is started. Users will act in turns throughout the game according to the rules described in chapter 2.
+Players that have joined a gameroom will end up playing against each other once the game is started. Everyone gets 60 seconds for 12 questions, details in the Instructions.
 
 ### Usability
 
@@ -120,9 +123,9 @@ Players that have joined a game session will end up playing together once the ga
 
 The user is expected to be familiar with standard website design like buttons, chat, etc. and knows how to use them.
 
-#### Familiarity with board game
+#### Familiarity with quiz game
 
-The user should have knowledge about standard board game components like moving across a playing field, throwing a dice and so on.
+The user should have knowledge about standard quiz game components like answering questions with four possible answers.
 
 #### Language
 
@@ -146,7 +149,7 @@ Should be as low as possible, a few days at most.
 
 #### Response time
 
-The response time should be low, doesn’t have to be incredibly fast though, 1-2s are enough even while in-game.
+The response time should be low, doesn’t have to be incredibly fast though, 0.5-1s are enough even while in-game.
 
 #### Capacity
 
@@ -166,7 +169,11 @@ The language use for the implementation will be Java.
 
 #### Spring Framework
 
-The Spring MVC architecture has to be used.
+The Spring MVC with Spring Boot architecture has to be used.
+
+#### Vaadin
+
+Vaadin is a java web framework used for beautiful UI
 
 ### On-line User Documentation and Help System Requirements
 
@@ -180,9 +187,11 @@ N/A
 
 #### User Interfaces
 
-UC1: [Create Game Room](Use-Cases/Create%20Game%20Room/CreateGameRoom.md)
-UC2: [Enter Game Room by Link](Use-Cases/Enter%20Game%20Room%20By%20Link/UseCase-EnterGameRoomByLink.md)
-UC3: [Start Game](Use-Cases/Start%20Game/UseCase-StartGame.md)
+UC1: [Create Game Room](Use-Cases/Create%20Game%20Room/CreateGameRoom.md)  
+UC2: [Enter Game Room by Link](Use-Cases/Enter%20Game%20Room%20By%20Link/UseCase-EnterGameRoomByLink.md)  
+UC3: [Start Game](Use-Cases/Start%20Game/UseCase-StartGame.md)  
+//TODO missing Use-Cases
+
 
 #### Hardware Interfaces
 
@@ -194,7 +203,7 @@ N/A
 
 #### Communications Interfaces
 
-N/A
+Chat???
 
 ### Licensing Requirements
 
@@ -214,5 +223,5 @@ Not yet determined.
 
 ### Overall Use-Case-Diagram
 
-![Use-Cases](Use-Cases/Use-Case%20Overview%201.0.png)
+![Use-Cases](Use-Cases/Use-Case%20Overview%20Endterm.png)
 
