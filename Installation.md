@@ -6,7 +6,8 @@ The Application normally runs on Port 8080.
 
 ## Local Installation
 Just use some modern IDE and pull our Git.
-Run mvn clean install and run the Spring Boot Application (FactRacingApplication.java).
+Run mvn clean install and run the Spring Boot Application (FactRacingApplication.java).  
+If you are running it outside of an IDE be sure to run the generated FactRacingApplication.jar and not the FactRacingApplication.java .
 
 ## Deploy to Heroku Server
 You can use Travis-CI with a Fork of this Git and the only thing you have to change is the Key-Value-Pairs in Travis-CI for the .travis.yml to push the application to the correct Heroku site.  
