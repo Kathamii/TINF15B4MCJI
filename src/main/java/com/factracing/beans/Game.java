@@ -26,7 +26,7 @@ public class Game
 	private Map<UserSession, Integer> userQuestionIndexMap;
 	private Map<UserSession, Integer> userCorrectQuestionsMap;
 	private long remainingTime;
-	private static final long TOTAL_SECONDS = 120;
+	private static final long TOTAL_SECONDS = 60;
 
 
 	public Game(GameRoom room)

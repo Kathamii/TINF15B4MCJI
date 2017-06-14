@@ -172,15 +172,15 @@ public class MainNavigationView extends VerticalLayout implements View
 		popUpLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER);
 
 		Label welcomeLabel = new Label("<h2>Fact Racing Manual<h2>", ContentMode.HTML);
-		Label rule1 = new Label("1. Everybody starts on the field in the top left corner.");
-		Label rule2 = new Label("2. The starting player is decided at random.");
-		Label rule3 = new Label("3. If it's your turn, you first roll your dice before moving.");
-		Label rule4 = new Label("4. Red fields are easy questions, black fields are hard questions.");
-		Label rule5 = new Label("5. If you get the question right, you get points.");
-		Label rule6 = new Label("6. If you get the question wrong, you get a penalty.");
-		Label rule7 = new Label("7. If you complete a round, you get points.");
-		Label rule8 = new Label("8. Accumulating a certain amount of points will win you the game.");
-		Label rule9 = new Label("9. The game ends if there are no more questions. Winner is the player with the most points.");
+		Label rule1 = new Label("1. Create a game room on your own or follow a link.");
+		Label rule2 = new Label("2. In the game room the creator can choose the decks for the game.");
+		Label rule3 = new Label("3. Use the chat to communicate with other players.");
+		Label rule4 = new Label("4. Once everybody is ready the creator can switch to the game view.");
+		Label rule5 = new Label("5. There you can play as many rounds as you want.");
+		Label rule6 = new Label("6. Each round lasts for 60 seconds and has a set of 12 questions each.");
+		Label rule7 = new Label("7. The goal is to answer as many questions correctly in the given amount of time.");
+		Label rule8 = new Label("8. Once the time elapsed the round is over.");
+		Label rule9 = new Label("9. The winner is the player that answered the most questions correctly.");
 
 		popUpLayout.addComponent(welcomeLabel);
 		popUpLayout.setDefaultComponentAlignment(Alignment.TOP_LEFT);
